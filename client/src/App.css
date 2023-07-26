@@ -1,0 +1,23 @@
+:root {
+  --primary: rgb(204, 34, 22);
+  --primaryHover: rgb(233, 68, 56);
+  --bgColor: rgb(31, 31, 31);
+  --bgColorDarker: rgb(26, 26, 26);
+  --textColor: rgb(238, 238, 238);
+  --textGrey: rgb(132, 132, 132);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html * {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+}
