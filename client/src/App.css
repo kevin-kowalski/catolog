@@ -11,6 +11,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 html * {
@@ -20,4 +21,14 @@ html * {
 body {
   background-color: var(--bgColor);
   color: var(--textColor);
+}
+
+#root {
+  height: 100%;
+}
+
+.app-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
 }

@@ -1,3 +1,13 @@
 :root {
+}
 
+.wee-view {
+  border: 2px dotted red;
+  margin: 1rem 1rem 0;
+}
+
+.object-info {
+  border: 2px dotted green;
+  padding: 1rem;
+  margin: 0 1rem 1rem;
 }

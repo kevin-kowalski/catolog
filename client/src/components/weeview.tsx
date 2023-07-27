@@ -1,13 +1,19 @@
 import { Canvas } from '@react-three/fiber';
-import WeeObject from './weeobject';
+import WeeObject from './WeeObject';
+import WeeObjectInfo from './WeeObjectInfo';
 
 function WeeView() {
   return (
-    <Canvas>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <WeeObject position={[0, 0, 0]} />
-    </Canvas>
+    <>
+      <div className="wee-view">
+        <Canvas>
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+          <WeeObject position={[0, 0, 0]} />
+        </Canvas>
+      </div>
+      <WeeObjectInfo />
+    </>
   );
 }
 
