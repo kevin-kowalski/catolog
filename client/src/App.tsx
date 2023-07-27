@@ -1,11 +1,8 @@
+import WeeView from './components/weeview';
 import './App.css';
 
 function App() {
-  return (
-    <>
-      <div>i</div>
-    </>
-  );
+  return <WeeView />;
 }
 
 export default App;
