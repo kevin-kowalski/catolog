@@ -8,6 +8,8 @@ const weeObjSchema = new mongoose.Schema({
   glb: Buffer,
   source: String,
   category: String,
+  scale: Number,
+  date: { type: Date, default: Date.now },
 });
 
 const WeeObj = mongoose.model('WeeObj', weeObjSchema);
