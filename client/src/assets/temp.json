@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Default Cube",
+    "author": "Unknown Artist",
+    "description": "R3F Box Object",
+    "tsx": "",
+    "glb": "",
+    "category": "Default",
+    "scale": 1,
+    "date": 1690448981121
+  },
+  {
+    "title": "Cube Two",
+    "author": "Artist Unknown",
+    "description": "Box Object",
+    "tsx": "",
+    "glb": "",
+    "category": "Default",
+    "scale": 1,
+    "date": 1690368728216
+  },
+  {
+    "title": "Non-Cube",
+    "author": "Unknown",
+    "description": "Not A Box",
+    "tsx": "",
+    "glb": "",
+    "category": "Default",
+    "scale": 1,
+    "date": 1690282348975
+  }
+]

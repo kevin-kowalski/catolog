@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const weeObjSchema = new mongoose.Schema({
   title: String,
   author: String,
-  jsx: Buffer,
+  tsx: Buffer,
   glb: Buffer,
   source: String,
   category: String,

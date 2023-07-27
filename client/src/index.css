@@ -2,12 +2,34 @@
 }
 
 .wee-view {
-  border: 2px dotted red;
+  position: relative;
+  border: 2px dotted rgb(106, 27, 135);
   margin: 1rem 1rem 0;
+}
+.btn-nav {
+  position: absolute;
+  top: 0;
+  border: 0;
+  background: rgba(50, 50, 50, 0.2);
+  color: rgba(50, 50, 50, 0.7);
+  font-size: 7.5rem;
+  height: 100%;
+  width: 10dvw;
+}
+.btn-nav:hover {
+  cursor: pointer;
+  background: rgba(50, 50, 50, 0.3);
+  color: rgba(50, 50, 50, 0.9);
+}
+.nav-prev {
+  left: 0;
+}
+.nav-next {
+  right: 0;
 }
 
 .object-info {
-  border: 2px dotted green;
+  border: 2px dotted rgb(109, 76, 32);
   padding: 1rem;
   margin: 0 1rem 1rem;
 }
