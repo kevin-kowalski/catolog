@@ -1,4 +1,4 @@
-interface IElement {
+export interface IElement {
   title: string;
   author: string;
   description: string;

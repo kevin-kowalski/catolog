@@ -3,31 +3,29 @@ import { Canvas } from '@react-three/fiber';
 import WeeScene from './WeeScene';
 import WeeObject from './WeeObject';
 import WeeObjectInfo from './WeeObjectInfo';
-import tmp from '../assets/temp.json';
+import { getCategory } from '../apiService';
+import { IElement } from './WeeObjectInfo';
 
 function WeeView() {
   const activeCategory = 'Default';
-  const categoryElements = tmp.map((el) => el.title);
+  const [models, setModels] = useState([]);
   const [elIndex, setElIndex] = useState(0);
-  const [element, setElement] = useState(tmp[elIndex]);
-  const handleClickPrev = () => {
-    if (elIndex > 0) {
-      setElIndex(elIndex - 1);
-    } else {
-      setElIndex(categoryElements.length - 1);
-    }
-  };
-  const handleClickNext = () => {
-    if (elIndex < categoryElements.length - 1) {
-      setElIndex(elIndex + 1);
-    } else {
-      setElIndex(0);
-    }
-  };
+  const [element, setElement] = useState(models[elIndex]);
+  const [catElements, setCatElements] = useState<string[]>([]);
 
   useEffect(() => {
-    setElement(tmp[elIndex]);
-  }, [elIndex]);
+    getCategory(activeCategory)
+      .then(async (res) => {
+        setModels(res);
+      })
+      .catch((err) => console.log(err));
+  }, [activeCategory]);
+
+  useEffect(() => {
+    setElement(models[elIndex]);
+    const newCatElements = models.map((m: IElement) => m.title);
+    setCatElements(newCatElements);
+  }, [models, elIndex]);
 
   return (
     <>
@@ -43,9 +41,24 @@ function WeeView() {
           &gt;
         </button>
       </div>
-      <WeeObjectInfo category={activeCategory} element={element} />
+      {element && <WeeObjectInfo category={activeCategory} element={element} />}
     </>
   );
+
+  function handleClickPrev() {
+    if (elIndex > 0) {
+      setElIndex(elIndex - 1);
+    } else {
+      setElIndex(catElements.length - 1);
+    }
+  }
+  function handleClickNext() {
+    if (elIndex < catElements.length - 1) {
+      setElIndex(elIndex + 1);
+    } else {
+      setElIndex(0);
+    }
+  }
 }
 
 export default WeeView;
