@@ -12,16 +12,29 @@ export interface IWeeObjectInfo {
 }
 
 function WeeModelInfo({ category, model }: IWeeObjectInfo) {
-  const dateFmt = new Date(model.date).toLocaleDateString('de-DE');
+  if (!model) return <DisplayLoading />;
+
+  const dateFmt = new Date(model.date).toLocaleDateString('de-DE') ?? '';
+  const description = model.description ?? '';
+  const modelCategory = category ?? '';
+
   return (
     <>
       <div className="object-info">
         <h3>{model.title}</h3>
-        <p>{model.description}</p>
+        <p>{description}</p>
         <p>{dateFmt}</p>
-        {category}
+        {modelCategory}
       </div>
     </>
+  );
+}
+
+function DisplayLoading() {
+  return (
+    <div className="object-info">
+      <p>Loading..</p>
+    </div>
   );
 }
 

@@ -43,9 +43,7 @@ function WeeView() {
           &gt;
         </button>
       </div>
-      {currentModel && (
-        <WeeModelInfo category={activeCategory} model={currentModel} />
-      )}
+      <WeeModelInfo category={activeCategory} model={currentModel} />
     </>
   );
 
