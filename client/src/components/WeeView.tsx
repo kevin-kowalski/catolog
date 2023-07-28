@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import WeeScene from './WeeScene';
 import WeeModel from './WeeModel';
 import WeeModelInfo from './WeeModelInfo';
+import LoadingStatus from './LoadingStatus';
 import { getCategory } from '../apiService';
 import { IElement } from './WeeModelInfo';
 
@@ -33,8 +34,10 @@ function WeeView() {
     <>
       <div className="wee-view">
         <Canvas>
-          <WeeScene />
-          {currentModel && <WeeModel glb={currentModel.glb} />}
+          <Suspense fallback={<LoadingStatus />}>
+            <WeeScene />
+            {currentModel && <WeeModel glb={currentModel.glb} />}
+          </Suspense>
         </Canvas>
         <button onClick={handleClickPrev} className="btn-nav nav-prev">
           &lt;
