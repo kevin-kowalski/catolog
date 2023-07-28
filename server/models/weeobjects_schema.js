@@ -8,7 +8,7 @@ const weeObjSchema = new mongoose.Schema({
   glb: String,
   source: String,
   category: String,
-  scale: Number,
+  scale: mongoose.Types.Decimal128,
   date: { type: Date, default: Date.now },
 });
 

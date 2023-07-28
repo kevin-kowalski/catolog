@@ -2,23 +2,25 @@ import * as THREE from 'three';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
-import { GLTFResult } from './WeeTypes';
+import { GLTFResult, scale } from './WeeTypes';
 
-export interface IWeeGLB {
+export interface IWeeModel {
   glb: string;
+  scale: scale;
 }
 
-function WeeModel({ glb }: IWeeGLB) {
+function WeeModel({ glb, scale }: IWeeModel) {
   const meshRef = useRef<THREE.Mesh>(null!);
   useFrame((state, delta) => (meshRef.current.rotation.x += delta / 3));
-  let gltf = null;
-  gltf = useGLTF(glb) as GLTFResult;
+  const gltf = useGLTF(glb) as GLTFResult;
   const model = setupModel(gltf);
   const geometry = model.geometry;
 
+  const modelScale = scale.$numberDecimal ?? 1;
+
   return (
     geometry && (
-      <mesh geometry={geometry} ref={meshRef}>
+      <mesh geometry={geometry} ref={meshRef} scale={modelScale}>
         <meshStandardMaterial color={'rgb(40,40,40)'} />
       </mesh>
     )

@@ -5,8 +5,13 @@ export interface IElement {
   author: string;
   description: string;
   glb: string;
+  scale: scale;
   date: number;
 }
+
+export type scale = {
+  $numberDecimal: number;
+};
 
 export interface IWeeObjectInfo {
   category: string;
