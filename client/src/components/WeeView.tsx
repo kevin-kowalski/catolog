@@ -5,7 +5,7 @@ import WeeModel from './WeeModel';
 import WeeModelInfo from './WeeModelInfo';
 import LoadingStatus from './LoadingStatus';
 import { getCategory } from '../apiService';
-import { IElement } from './WeeModelInfo';
+import { IElement } from './WeeTypes';
 
 function WeeView() {
   const activeCategory = 'Default';

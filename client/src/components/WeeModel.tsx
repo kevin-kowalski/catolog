@@ -1,21 +1,12 @@
 import * as THREE from 'three';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { GLTF } from 'three-stdlib';
 import { useGLTF } from '@react-three/drei';
+import { GLTFResult } from './WeeTypes';
 
 export interface IWeeGLB {
   glb: string;
 }
-
-type GLTFResult = GLTF & {
-  nodes: {
-    Cube: THREE.Mesh;
-  };
-  materials: {
-    Material: THREE.MeshStandardMaterial;
-  };
-};
 
 function setupModel(data: GLTFResult) {
   let model = null;

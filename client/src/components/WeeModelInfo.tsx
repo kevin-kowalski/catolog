@@ -1,15 +1,4 @@
-export interface IElement {
-  title: string;
-  author: string;
-  description: string;
-  glb: string;
-  date: number;
-}
-
-export interface IWeeObjectInfo {
-  category: string;
-  model: IElement;
-}
+import { IWeeObjectInfo } from './WeeTypes';
 
 function WeeModelInfo({ category, model }: IWeeObjectInfo) {
   if (!model) return <DisplayLoading />;
