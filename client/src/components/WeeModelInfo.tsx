@@ -10,7 +10,7 @@ interface IWeeObjectInfo {
   element: IElement;
 }
 
-function WeeObjectInfo({ category, element }: IWeeObjectInfo) {
+function WeeModelInfo({ category, element }: IWeeObjectInfo) {
   const dateFmt = new Date(element.date).toLocaleDateString('de-DE');
   return (
     <>
@@ -24,4 +24,4 @@ function WeeObjectInfo({ category, element }: IWeeObjectInfo) {
   );
 }
 
-export default WeeObjectInfo;
+export default WeeModelInfo;

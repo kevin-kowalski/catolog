@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import WeeScene from './WeeScene';
-import WeeObject from './WeeObject';
-import WeeObjectInfo from './WeeObjectInfo';
+import WeeModel from './WeeModel';
+import WeeModelInfo from './WeeModelInfo';
 import { getCategory } from '../apiService';
-import { IElement } from './WeeObjectInfo';
+import { IElement } from './WeeModelInfo';
 
 function WeeView() {
   const activeCategory = 'Default';
   const [models, setModels] = useState([]);
-  const [elIndex, setElIndex] = useState(0);
-  const [element, setElement] = useState(models[elIndex]);
+  const [modelIndex, setModelIndex] = useState(0);
+  const [element, setElement] = useState(models[modelIndex]);
   const [catElements, setCatElements] = useState<string[]>([]);
 
   useEffect(() => {
@@ -22,17 +22,17 @@ function WeeView() {
   }, [activeCategory]);
 
   useEffect(() => {
-    setElement(models[elIndex]);
+    setElement(models[modelIndex]);
     const newCatElements = models.map((m: IElement) => m.title);
     setCatElements(newCatElements);
-  }, [models, elIndex]);
+  }, [models, modelIndex]);
 
   return (
     <>
       <div className="wee-view">
         <Canvas>
           <WeeScene />
-          <WeeObject position={[0, 0, 0]} />
+          <WeeModel />
         </Canvas>
         <button onClick={handleClickPrev} className="btn-nav nav-prev">
           &lt;
@@ -41,22 +41,24 @@ function WeeView() {
           &gt;
         </button>
       </div>
-      {element && <WeeObjectInfo category={activeCategory} element={element} />}
+      {element && <WeeModelInfo category={activeCategory} element={element} />}
     </>
   );
 
   function handleClickPrev() {
-    if (elIndex > 0) {
-      setElIndex(elIndex - 1);
+    const max = catElements.length - 1;
+    if (modelIndex > 0) {
+      setModelIndex(modelIndex - 1);
     } else {
-      setElIndex(catElements.length - 1);
+      setModelIndex(max);
     }
   }
   function handleClickNext() {
-    if (elIndex < catElements.length - 1) {
-      setElIndex(elIndex + 1);
+    const max = catElements.length - 1;
+    if (modelIndex < max) {
+      setModelIndex(modelIndex + 1);
     } else {
-      setElIndex(0);
+      setModelIndex(0);
     }
   }
 }
