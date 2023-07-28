@@ -10,7 +10,9 @@ function WeeView() {
   const activeCategory = 'Default';
   const [models, setModels] = useState([]);
   const [modelIndex, setModelIndex] = useState(0);
-  const [element, setElement] = useState(models[modelIndex]);
+  const [currentModel, setCurrentModel] = useState<IElement>(
+    models[modelIndex],
+  );
   const [catElements, setCatElements] = useState<string[]>([]);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ function WeeView() {
   }, [activeCategory]);
 
   useEffect(() => {
-    setElement(models[modelIndex]);
+    setCurrentModel(models[modelIndex]);
     const newCatElements = models.map((m: IElement) => m.title);
     setCatElements(newCatElements);
   }, [models, modelIndex]);
@@ -32,7 +34,7 @@ function WeeView() {
       <div className="wee-view">
         <Canvas>
           <WeeScene />
-          <WeeModel />
+          {currentModel && <WeeModel glb={currentModel.glb} />}
         </Canvas>
         <button onClick={handleClickPrev} className="btn-nav nav-prev">
           &lt;
@@ -41,7 +43,9 @@ function WeeView() {
           &gt;
         </button>
       </div>
-      {element && <WeeModelInfo category={activeCategory} element={element} />}
+      {currentModel && (
+        <WeeModelInfo category={activeCategory} model={currentModel} />
+      )}
     </>
   );
 

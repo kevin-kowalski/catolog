@@ -2,21 +2,22 @@ export interface IElement {
   title: string;
   author: string;
   description: string;
+  glb: string;
   date: number;
 }
 
-interface IWeeObjectInfo {
+export interface IWeeObjectInfo {
   category: string;
-  element: IElement;
+  model: IElement;
 }
 
-function WeeModelInfo({ category, element }: IWeeObjectInfo) {
-  const dateFmt = new Date(element.date).toLocaleDateString('de-DE');
+function WeeModelInfo({ category, model }: IWeeObjectInfo) {
+  const dateFmt = new Date(model.date).toLocaleDateString('de-DE');
   return (
     <>
       <div className="object-info">
-        <h3>{element.title}</h3>
-        <p>{element.description}</p>
+        <h3>{model.title}</h3>
+        <p>{model.description}</p>
         <p>{dateFmt}</p>
         {category}
       </div>

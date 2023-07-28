@@ -4,6 +4,10 @@ import { useFrame } from '@react-three/fiber';
 import { GLTF } from 'three-stdlib';
 import { useGLTF } from '@react-three/drei';
 
+export interface IWeeGLB {
+  glb: string;
+}
+
 type GLTFResult = GLTF & {
   nodes: {
     Cube: THREE.Mesh;
@@ -16,14 +20,16 @@ type GLTFResult = GLTF & {
 function setupModel(data: GLTFResult) {
   let model = null;
   const child = data.scene.children[0];
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   model = child.isMesh && child;
   return model;
 }
 
-function WeeModel() {
+function WeeModel({ glb }: IWeeGLB) {
   const meshRef = useRef<THREE.Mesh>(null!);
   useFrame((state, delta) => (meshRef.current.rotation.x += delta / 3));
-  const gltf = useGLTF('default_cube-transformed.glb') as GLTFResult;
+  const gltf = useGLTF(glb) as GLTFResult;
   const model = setupModel(gltf);
   const geometry = model.geometry;
 
@@ -37,5 +43,3 @@ function WeeModel() {
 }
 
 export default WeeModel;
-
-useGLTF.preload('/default_cube-transformed.glb');
