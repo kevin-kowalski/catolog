@@ -2,24 +2,29 @@
 }
 
 .wee-view {
+  background-color: #050505;
+  border-radius: 12px;
   position: relative;
-  border: 2px dotted rgb(106, 27, 135);
-  margin: 1rem 1rem 0;
+  margin: 2rem 1.5rem 0;
 }
 .btn-nav {
   position: absolute;
   top: 0;
   border: 0;
-  background: rgba(50, 50, 50, 0.2);
+  background: var(--bgColor);
+  opacity: 0.3;
   color: rgba(50, 50, 50, 0.7);
-  font-size: 7.5rem;
+  font-size: 8.5dvw;
   height: 100%;
   width: 10dvw;
+  transition: background-color 1000ms ease-in;
 }
 .btn-nav:hover {
   cursor: pointer;
   background: rgba(50, 50, 50, 0.3);
   color: rgba(50, 50, 50, 0.9);
+  opacity: 0.4;
+  transition: background-color 1000ms ease-in;
 }
 .nav-prev {
   left: 0;
@@ -29,13 +34,15 @@
 }
 
 .object-info {
-  border: 2px dotted rgb(109, 76, 32);
-  padding: 1rem;
+  color: var(--textGrey);
+  padding: 2rem 2.5rem;
   margin: 0 1rem 1rem;
 }
 .object-info h3 {
+  color: var(--textColor);
   margin: 0 0 0.5rem;
 }
 .object-info p {
   margin: 0;
+  font-size: 0.9rem;
 }

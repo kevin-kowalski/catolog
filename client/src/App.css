@@ -1,8 +1,8 @@
 :root {
-  --primary: rgb(204, 34, 22);
-  --primaryHover: rgb(233, 68, 56);
-  --bgColor: rgb(31, 31, 31);
-  --bgColorDarker: rgb(26, 26, 26);
+  --primary: rgb(31, 111, 235);
+  --primaryHover: rgb(55, 135, 255);
+  --bgColor: rgb(22, 27, 34);
+  --bgColorDarker: rgb(14, 17, 22);
   --textColor: rgb(238, 238, 238);
   --textGrey: rgb(132, 132, 132);
 }
