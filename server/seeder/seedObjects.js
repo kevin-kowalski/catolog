@@ -44,6 +44,17 @@ const defaultObjects = [
     ypos: -1.85,
     date: 1690620720422,
   }),
+  new WeeObj({
+    title: 'Knot',
+    author: 'Unknonw',
+    description: '3D Knot',
+    glb: 'knot.glb',
+    category: 'Default',
+    source: '',
+    scale: 1,
+    ypos: 0,
+    date: 1690651481963,
+  }),
 ];
 
 mongoose
