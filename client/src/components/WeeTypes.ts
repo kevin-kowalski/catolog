@@ -3,6 +3,7 @@ import { GLTF } from 'three-stdlib';
 export interface IElement {
   title: string;
   author: string;
+  source: string;
   description: string;
   glb: string;
   scale: numdecimal;

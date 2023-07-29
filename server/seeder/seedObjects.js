@@ -39,7 +39,7 @@ const defaultObjects = [
     description: "It's a duck",
     glb: 'rubber_duck.glb',
     category: 'Default',
-    source: 'https://free3d.com/user/printable_models',
+    source: 'https://free3d.com/3d-model/rubber-duck-v1--614347.html',
     scale: 1,
     ypos: -1.85,
     date: 1690620720422,
