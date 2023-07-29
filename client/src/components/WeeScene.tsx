@@ -1,4 +1,4 @@
-import { Stage } from '@react-three/drei';
+import { Stage, OrbitControls } from '@react-three/drei';
 
 interface IWeeScene {
   children: JSX.Element;
@@ -15,6 +15,7 @@ function Scene({ children }: IWeeScene) {
       >
         {children}
       </Stage>
+      <OrbitControls />
     </>
   );
 }
