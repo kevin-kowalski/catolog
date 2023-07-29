@@ -5,11 +5,12 @@ export interface IElement {
   author: string;
   description: string;
   glb: string;
-  scale: scale;
+  scale: numdecimal;
+  ypos: numdecimal;
   date: number;
 }
 
-export type scale = {
+export type numdecimal = {
   $numberDecimal: number;
 };
 
