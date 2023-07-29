@@ -8,21 +8,19 @@ function WeeModelInfo({ category, model }: IWeeObjectInfo) {
   const modelCategory = category ?? '';
 
   return (
-    <>
-      <div className="object-info">
-        <h3>{model.title}</h3>
-        <p>{description}</p>
-        <p>{dateFmt}</p>
-        {modelCategory}
-      </div>
-    </>
+    <div className="object-info">
+      <h3>{model.title}</h3>
+      <p>{description}</p>
+      <p>{dateFmt}</p>
+      {modelCategory}
+    </div>
   );
 }
 
 function DisplayLoading() {
   return (
-    <div className="object-info">
-      <p>Loading..</p>
+    <div className="object-info loading">
+      <h3>Loading..</h3>
     </div>
   );
 }

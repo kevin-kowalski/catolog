@@ -46,3 +46,6 @@
   margin: 0;
   font-size: 0.9rem;
 }
+.object-info.loading {
+  padding: 3.5rem 2.5rem;
+}
