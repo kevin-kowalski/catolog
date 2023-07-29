@@ -35,8 +35,9 @@ function WeeView() {
       <div className="wee-view">
         <Canvas>
           <Suspense fallback={<LoadingStatus />}>
-            <WeeScene />
-            {currentModel && <WeeModel currentModel={currentModel} />}
+            <WeeScene>
+              {currentModel && <WeeModel currentModel={currentModel} />}
+            </WeeScene>
           </Suspense>
         </Canvas>
         <button onClick={handleClickPrev} className="btn-nav nav-prev">

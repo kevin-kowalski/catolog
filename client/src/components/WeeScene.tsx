@@ -1,10 +1,20 @@
-function Scene() {
+import { Stage } from '@react-three/drei';
+
+interface IWeeScene {
+  children: JSX.Element;
+}
+
+function Scene({ children }: IWeeScene) {
   return (
     <>
-      <group>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-      </group>
+      <Stage
+        adjustCamera={1.25}
+        intensity={0.65}
+        shadows="contact"
+        environment="city"
+      >
+        {children}
+      </Stage>
     </>
   );
 }
