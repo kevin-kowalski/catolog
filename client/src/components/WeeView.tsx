@@ -33,7 +33,7 @@ function WeeView() {
   return (
     <>
       <div className="wee-view">
-        <Canvas>
+        <Canvas shadows>
           <Suspense fallback={<LoadingStatus />}>
             <WeeScene>
               {currentModel && <WeeModel currentModel={currentModel} />}

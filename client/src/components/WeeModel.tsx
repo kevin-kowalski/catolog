@@ -21,6 +21,7 @@ function WeeModel({ currentModel }: IWeeModel) {
   return (
     geometry && (
       <mesh
+        castShadow
         geometry={geometry}
         ref={meshRef}
         scale={modelScale}
