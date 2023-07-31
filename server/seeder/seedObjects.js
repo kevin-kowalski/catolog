@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const db = require('../models/index');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const WeeObj = require('../models/weeobjects_schema.js');
 
 const defaultObjects = [
@@ -53,10 +54,21 @@ const defaultObjects = [
     scale: 1,
     date: 1690651481963,
   }),
+  new WeeObj({
+    title: 'Head',
+    author: 'allpolovinkina',
+    description: 'Head low poly version, transformed to gltf',
+    glb: 'head_lowpoly.glb',
+    category: 'Default',
+    source:
+      'https://www.turbosquid.com/3d-models/3d-free-bust-head-base-mesh-model-1832518',
+    scale: 2,
+    date: 1690800144064,
+  }),
 ];
 
 mongoose
-  .connect(String(db.url), { useNewUrlParser: true })
+  .connect(String(process.env.DB_URL), { useNewUrlParser: true })
   .catch((err) => {
     console.log(err.stack);
     process.exit(1);
