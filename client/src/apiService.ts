@@ -8,3 +8,12 @@ export function getCategory(name = 'Default') {
     })
     .catch((e) => console.log(e));
 }
+
+export function getAll() {
+  return fetch(`${baseUrl}/models`)
+    .then(async (response) => {
+      const catData = await response.json();
+      return catData;
+    })
+    .catch((e) => console.log(e));
+}

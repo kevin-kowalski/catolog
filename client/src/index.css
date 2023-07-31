@@ -12,6 +12,23 @@ a:hover {
   align-items: center;
   justify-content: center;
 }
+.home .models {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  margin: 0;
+  padding: 0 0 0.25rem;
+}
+.models p {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+}
+.models a {
+  display: block;
+  margin: 1rem 0 0.25rem;
+}
 
 .wee-view {
   background-color: #050505;
