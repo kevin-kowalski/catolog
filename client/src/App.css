@@ -23,6 +23,8 @@ body {
   color: var(--textColor);
   font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Helvetica Neue',
     'Lucida Grande', sans-serif;
+  font-size: clamp(16px, 1.75vw, 36px);
+  font-weight: 400;
 }
 
 #root {
@@ -31,6 +33,6 @@ body {
 
 .app-container {
   display: grid;
-  grid-template-rows: 1fr auto;
-  height: 100%;
+  grid-template-rows: 1fr 18dvh;
+  height: 100dvh;
 }
