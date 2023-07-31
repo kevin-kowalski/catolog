@@ -23,6 +23,11 @@ export interface IWeeObjectInfo {
   setColor: Dispatch<SetStateAction<string>>;
 }
 
+export interface IPopoverPicker {
+  color: string;
+  onChange: Dispatch<SetStateAction<string>>;
+}
+
 export type GLTFResult = GLTF & {
   nodes: {
     Cube: THREE.Mesh;

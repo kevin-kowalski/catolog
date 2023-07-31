@@ -1,9 +1,10 @@
-import React, { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import useClickOutside from './useClickOutside';
+import { IPopoverPicker } from '../WeeTypes';
 
-export const PopoverPicker = ({ color, onChange }) => {
-  const popover = useRef();
+export const PopoverPicker = ({ color, onChange }: IPopoverPicker) => {
+  const popover = useRef<HTMLDivElement>(null);
   const [isOpen, toggle] = useState(false);
 
   const close = useCallback(() => toggle(false), []);
