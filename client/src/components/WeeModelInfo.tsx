@@ -1,4 +1,4 @@
-import { IWeeObjectInfo } from './WeeTypes';
+import { IWeeObjectInfo } from './utils/WeeTypes.js';
 import { PopoverPicker } from './utils/PopoverPicker.jsx';
 
 function WeeModelInfo({ category, model, color, setColor }: IWeeObjectInfo) {

@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
-import { IElement } from './WeeTypes';
+import { IElement } from './utils/WeeTypes';
 
 export interface IWeeModel {
   currentModel: IElement;
