@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const url = 'mongodb://127.0.0.1:27017/wee-three';
+const url = process.env.DB_URL;
 
 const db = {};
 db.mongoose = mongoose;
