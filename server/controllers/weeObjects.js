@@ -19,7 +19,7 @@ async function getObject(req, res) {
 
 async function getCategory(req, res) {
   try {
-    const catName = req.params.name;
+    const catName = req.params.category;
     if (!catName) {
       res.status(400);
       res.send('No category name provided in data.');

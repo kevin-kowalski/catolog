@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:3001';
 
 export function getCategory(name = 'Default') {
-  return fetch(`${baseUrl}/category/${name}`)
+  return fetch(`${baseUrl}/models/category/${name}`)
     .then(async (response) => {
       const catData = await response.json();
       return catData;
