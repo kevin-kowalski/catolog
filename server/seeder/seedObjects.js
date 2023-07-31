@@ -41,7 +41,6 @@ const defaultObjects = [
     category: 'Default',
     source: 'https://free3d.com/3d-model/rubber-duck-v1--614347.html',
     scale: 1,
-    ypos: -1.85,
     date: 1690620720422,
   }),
   new WeeObj({
@@ -52,7 +51,6 @@ const defaultObjects = [
     category: 'Default',
     source: '',
     scale: 1,
-    ypos: 0,
     date: 1690651481963,
   }),
 ];

@@ -16,7 +16,6 @@ function WeeModel({ currentModel }: IWeeModel) {
   const geometry = model.geometry;
 
   const modelScale = currentModel.scale.$numberDecimal ?? 1;
-  const yPos = currentModel.ypos?.$numberDecimal ?? 0;
 
   return (
     geometry && (
@@ -25,7 +24,7 @@ function WeeModel({ currentModel }: IWeeModel) {
         geometry={geometry}
         ref={meshRef}
         scale={modelScale}
-        position={[0, yPos, 0]}
+        position={[0, 0, 0]}
       >
         <meshStandardMaterial color={'rgb(40,40,40)'} />
       </mesh>
