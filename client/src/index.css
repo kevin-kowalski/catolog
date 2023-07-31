@@ -6,6 +6,13 @@ a:hover {
   color: var(--primaryHover);
 }
 
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .wee-view {
   background-color: #050505;
   border-radius: 12px;
