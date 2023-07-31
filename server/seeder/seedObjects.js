@@ -65,6 +65,16 @@ const defaultObjects = [
     scale: 3.5,
     date: 1690800144064,
   }),
+  new WeeObj({
+    title: 'Cat',
+    author: 'printable_models',
+    description: 'Cat',
+    glb: 'cat.glb',
+    category: 'Default',
+    source: 'https://free3d.com/3d-model/cat-v1--522281.html',
+    scale: 1,
+    date: 1690829240292,
+  }),
 ];
 
 mongoose
