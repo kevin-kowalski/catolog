@@ -5,7 +5,7 @@ const router = express.Router();
 const ctrl = require('./controllers/weeObjects');
 
 router.get('/model/:title', ctrl.getObject);
+router.get('/models', ctrl.getAll);
 router.get('/category/:name', ctrl.getCategory);
-router.get('/all', ctrl.getAll);
 
 module.exports = router;
