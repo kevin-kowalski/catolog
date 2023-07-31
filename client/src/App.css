@@ -36,3 +36,11 @@ body {
   grid-template-rows: 1fr 18dvh;
   height: 100dvh;
 }
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

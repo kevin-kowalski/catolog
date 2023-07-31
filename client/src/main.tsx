@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root';
 import ErrorPage from './routes/error-page';
-import WeeView from './routes/view';
+import WeeView from './routes/wee';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: '/view',
+    path: '/wee',
     element: <WeeView />,
   },
 ]);

@@ -38,7 +38,7 @@ function WeeView() {
     const color = currentScene === 'light' ? lightColor : darkColor;
     if (currentColor === lightColor || currentColor === darkColor)
       setCurrentColor(color);
-  }, [currentScene]);
+  }, [currentColor, currentScene]);
 
   return (
     <>
