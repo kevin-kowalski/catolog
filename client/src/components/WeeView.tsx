@@ -23,15 +23,19 @@ function WeeView() {
   useEffect(() => {
     getCategory(activeCategory)
       .then(async (res) => {
-        setModels(res);
+        if (res) {
+          setModels(res);
+        }
       })
       .catch((err) => console.log(err));
   }, [activeCategory]);
 
   useEffect(() => {
-    setCurrentModel(models[modelIndex]);
-    const newCatElements = models.map((m: IElement) => m.title);
-    setCatElements(newCatElements);
+    if (models) {
+      setCurrentModel(models[modelIndex]);
+      const newCatElements = models.map((m: IElement) => m.title);
+      setCatElements(newCatElements);
+    }
   }, [models, modelIndex]);
 
   useEffect(() => {
