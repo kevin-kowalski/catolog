@@ -46,7 +46,7 @@ const defaultObjects = [
   }),
   new WeeObj({
     title: 'Knot',
-    author: 'Unknonw',
+    author: 'Unknown',
     description: '3D Knot',
     glb: 'knot.glb',
     category: 'Default',
@@ -57,7 +57,7 @@ const defaultObjects = [
   new WeeObj({
     title: 'Head',
     author: 'allpolovinkina',
-    description: 'Head low poly version, transformed to gltf',
+    description: 'Head - low poly version',
     glb: 'head_lowpoly.glb',
     category: 'Default',
     source:
