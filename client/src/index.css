@@ -43,6 +43,19 @@ h1 {
   letter-spacing: -0.15rem;
   margin: 1rem 0 0;
 }
+.portal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.portal {
+  display: flex;
+  margin: 2rem;
+  width: 30vw;
+  height: 70vh;
+}
 
 .wee-view {
   background-color: #050505;
