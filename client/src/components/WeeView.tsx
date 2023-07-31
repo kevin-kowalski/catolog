@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import WeeScene from './WeeScene';
 import WeeModel from './WeeModel';
 import WeeModelInfo from './WeeModelInfo';
-import LoadingStatus from './LoadingStatus';
+import LoadingStatus from './utils/LoadingStatus';
 import { getCategory } from '../apiService';
 import { IElement } from './WeeTypes';
 
