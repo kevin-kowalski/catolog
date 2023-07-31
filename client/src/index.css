@@ -74,3 +74,13 @@ a:hover {
 .category {
   margin-left: auto;
 }
+
+@media screen and (max-width: 639px) {
+  .wee-view {
+    margin: 0;
+    width: 100vw;
+  }
+  .object-info {
+    padding: 1rem 1.5rem;
+  }
+}
