@@ -62,7 +62,7 @@ const defaultObjects = [
     category: 'Default',
     source:
       'https://www.turbosquid.com/3d-models/3d-free-bust-head-base-mesh-model-1832518',
-    scale: 2,
+    scale: 3.5,
     date: 1690800144064,
   }),
 ];
