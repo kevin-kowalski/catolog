@@ -36,7 +36,8 @@ function WeeView() {
 
   useEffect(() => {
     const color = currentScene === 'light' ? lightColor : darkColor;
-    setCurrentColor(color);
+    if (currentColor === lightColor || currentColor === darkColor)
+      setCurrentColor(color);
   }, [currentScene]);
 
   return (
