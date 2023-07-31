@@ -15,6 +15,7 @@ function WeeView() {
     models[modelIndex],
   );
   const [catElements, setCatElements] = useState<string[]>([]);
+  const [currentColor, setCurrentColor] = useState('rgb(40,40,40)');
 
   useEffect(() => {
     getCategory(activeCategory)
@@ -36,7 +37,9 @@ function WeeView() {
         <Canvas shadows>
           <Suspense fallback={<LoadingStatus />}>
             <WeeScene>
-              {currentModel && <WeeModel currentModel={currentModel} />}
+              {currentModel && (
+                <WeeModel currentModel={currentModel} color={currentColor} />
+              )}
             </WeeScene>
           </Suspense>
         </Canvas>
@@ -47,7 +50,12 @@ function WeeView() {
           &gt;
         </button>
       </div>
-      <WeeModelInfo category={activeCategory} model={currentModel} />
+      <WeeModelInfo
+        category={activeCategory}
+        model={currentModel}
+        color={currentColor}
+        setColor={setCurrentColor}
+      />
     </>
   );
 

@@ -6,9 +6,10 @@ import { IElement } from './WeeTypes';
 
 export interface IWeeModel {
   currentModel: IElement;
+  color?: string;
 }
 
-function WeeModel({ currentModel }: IWeeModel) {
+function WeeModel({ currentModel, color = '#282828' }: IWeeModel) {
   const meshRef = useRef<THREE.Mesh>(null!);
   useFrame((state, delta) => (meshRef.current.rotation.y += delta / 3));
   const { scene } = useGLTF(currentModel.glb);
@@ -26,7 +27,7 @@ function WeeModel({ currentModel }: IWeeModel) {
         scale={modelScale}
         position={[0, 0, 0]}
       >
-        <meshStandardMaterial color={'rgb(40,40,40)'} />
+        <meshStandardMaterial color={color} />
       </mesh>
     )
   );

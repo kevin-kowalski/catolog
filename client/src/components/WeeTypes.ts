@@ -1,4 +1,5 @@
 import { GLTF } from 'three-stdlib';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface IElement {
   title: string;
@@ -18,6 +19,8 @@ export type numdecimal = {
 export interface IWeeObjectInfo {
   category: string;
   model: IElement;
+  color: string;
+  setColor: Dispatch<SetStateAction<string>>;
 }
 
 export type GLTFResult = GLTF & {

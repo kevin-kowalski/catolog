@@ -10,7 +10,7 @@ function Scene({ children }: IWeeScene) {
       <Stage
         adjustCamera={1.25}
         intensity={0.65}
-        shadows="accumulative"
+        shadows="contact"
         environment="city"
       >
         {children}

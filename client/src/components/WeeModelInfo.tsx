@@ -1,6 +1,7 @@
 import { IWeeObjectInfo } from './WeeTypes';
+import { PopoverPicker } from './utils/PopoverPicker.jsx';
 
-function WeeModelInfo({ category, model }: IWeeObjectInfo) {
+function WeeModelInfo({ category, model, color, setColor }: IWeeObjectInfo) {
   if (!model) return <DisplayLoading />;
 
   const dateFmt = new Date(model.date).toLocaleDateString('de-DE') ?? '';
@@ -30,6 +31,7 @@ function WeeModelInfo({ category, model }: IWeeObjectInfo) {
       <div className="category">
         {' '}
         <p>{modelCategory}</p>
+        <PopoverPicker color={color} onChange={setColor} />
       </div>{' '}
     </div>
   );
