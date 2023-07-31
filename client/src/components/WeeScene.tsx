@@ -1,20 +1,23 @@
 import { Stage, OrbitControls } from '@react-three/drei';
 
 interface IWeeScene {
+  currentScene: string;
   children: JSX.Element;
 }
 
-function Scene({ children }: IWeeScene) {
+function Scene({ currentScene = 'default', children }: IWeeScene) {
   return (
     <>
-      <Stage
-        adjustCamera={1.25}
-        intensity={0.65}
-        shadows="contact"
-        environment="city"
-      >
-        {children}
-      </Stage>
+      {currentScene === 'dark' && (
+        <Stage adjustCamera={1.25} intensity={0.65} shadows="contact">
+          {children}
+        </Stage>
+      )}
+      {currentScene === 'light' && (
+        <Stage adjustCamera={1.25} intensity={0.65} shadows="contact">
+          {children}
+        </Stage>
+      )}
       <OrbitControls />
     </>
   );

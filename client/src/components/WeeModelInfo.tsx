@@ -1,14 +1,19 @@
 import { IWeeObjectInfo } from './utils/WeeTypes.js';
 import { PopoverPicker } from './utils/PopoverPicker.jsx';
 
-function WeeModelInfo({ category, model, color, setColor }: IWeeObjectInfo) {
+function WeeModelInfo({
+  scene = 'Default',
+  model,
+  color,
+  setScene,
+  setColor,
+}: IWeeObjectInfo) {
   if (!model) return <DisplayLoading />;
 
   const dateFmt = new Date(model.date).toLocaleDateString('de-DE') ?? '';
   const description = model.description ?? '';
   const author = model.author ?? '';
   const source = model.source ?? '';
-  const modelCategory = category ?? '';
 
   return (
     <div className="object-info">
@@ -28,13 +33,18 @@ function WeeModelInfo({ category, model, color, setColor }: IWeeObjectInfo) {
           )}
         </p>
       </div>
-      <div className="category">
-        {' '}
-        <p>{modelCategory}</p>
+      <div className="controls">
+        <p onClick={handleSceneClick} className="scene-type">
+          {scene}
+        </p>
         <PopoverPicker color={color} onChange={setColor} />
       </div>{' '}
     </div>
   );
+
+  function handleSceneClick() {
+    setScene((current) => (current === 'light' ? 'dark' : 'light'));
+  }
 }
 
 function DisplayLoading() {

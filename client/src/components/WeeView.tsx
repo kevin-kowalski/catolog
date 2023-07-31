@@ -15,7 +15,10 @@ function WeeView() {
     models[modelIndex],
   );
   const [catElements, setCatElements] = useState<string[]>([]);
-  const [currentColor, setCurrentColor] = useState('rgb(40,40,40)');
+  const [currentScene, setCurrentScene] = useState('dark');
+  const lightColor = 'rgb(240, 240, 240)';
+  const darkColor = 'rgb(40, 40, 40)';
+  const [currentColor, setCurrentColor] = useState(darkColor);
 
   useEffect(() => {
     getCategory(activeCategory)
@@ -31,12 +34,17 @@ function WeeView() {
     setCatElements(newCatElements);
   }, [models, modelIndex]);
 
+  useEffect(() => {
+    const color = currentScene === 'light' ? lightColor : darkColor;
+    setCurrentColor(color);
+  }, [currentScene]);
+
   return (
     <>
-      <div className="wee-view">
+      <div className={`wee-view ${currentScene}`}>
         <Canvas shadows>
           <Suspense fallback={<LoadingStatus />}>
-            <WeeScene>
+            <WeeScene currentScene={currentScene}>
               {currentModel && (
                 <WeeModel currentModel={currentModel} color={currentColor} />
               )}
@@ -51,9 +59,10 @@ function WeeView() {
         </button>
       </div>
       <WeeModelInfo
-        category={activeCategory}
+        scene={currentScene}
         model={currentModel}
         color={currentColor}
+        setScene={setCurrentScene}
         setColor={setCurrentColor}
       />
     </>

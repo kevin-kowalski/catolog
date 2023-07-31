@@ -1,5 +1,3 @@
-:root {
-}
 a {
   color: var(--primary);
   text-decoration: none;
@@ -14,6 +12,12 @@ a:hover {
   position: relative;
   margin: 1.5rem 1.5rem 0;
   width: calc(100vw - 3rem);
+}
+.wee-view.dark {
+  background-color: #050505;
+}
+.wee-view.light {
+  background-color: #f0f0f0;
 }
 .btn-nav {
   position: absolute;
@@ -39,6 +43,11 @@ a:hover {
 }
 .nav-next {
   right: 0;
+}
+.wee-view.light .btn-nav {
+  background: rgba(50, 50, 50, 0.3);
+  color: rgba(110, 110, 110, 0.9);
+  transition: background-color 1000ms ease-in;
 }
 
 .object-info {
@@ -70,10 +79,14 @@ a:hover {
 .object-info.loading {
   padding: 3.75rem 2.5rem;
 }
-.category {
+
+.controls {
   margin-left: auto;
 }
-
+.scene-type {
+  text-transform: capitalize;
+  cursor: pointer;
+}
 .picker {
   position: relative;
   margin: 0.5rem 0 0;

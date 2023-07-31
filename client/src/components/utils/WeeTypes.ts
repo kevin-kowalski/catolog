@@ -17,9 +17,10 @@ export type numdecimal = {
 };
 
 export interface IWeeObjectInfo {
-  category: string;
+  scene: string;
   model: IElement;
   color: string;
+  setScene: Dispatch<SetStateAction<string>>;
   setColor: Dispatch<SetStateAction<string>>;
 }
 
