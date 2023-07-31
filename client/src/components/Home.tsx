@@ -14,17 +14,19 @@ function Home() {
 
   return (
     <div className="home">
-      <h1>Wee Three</h1>
-      <div className="models">
-        {modelList && (
-          <p>
-            featuring a catalogue of whopping {modelList.length} items in the
-            database
-          </p>
-        )}
-        <Link to={`wee`}>Enter</Link>
-        {modelList && <p>to view them all</p>}
-      </div>
+      <section>
+        <h1>wee three</h1>
+        <div className="models">
+          {modelList && (
+            <p>
+              featuring a gallery of whopping <br />
+              {modelList.length} items in the database
+            </p>
+          )}
+          <Link to={`wee`}>enter</Link>
+          {modelList && <p>to view them all</p>}
+        </div>
+      </section>
     </div>
   );
 }
