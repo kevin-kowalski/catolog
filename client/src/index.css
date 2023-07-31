@@ -78,15 +78,14 @@ a:hover {
   position: relative;
   margin: 0.5rem 0 0;
 }
-
 .swatch {
   width: 28px;
   height: 28px;
   border-radius: 8px;
   border: 2px solid var(--bgColorDarker);
   cursor: pointer;
+  margin-left: auto;
 }
-
 .popover {
   position: absolute;
   bottom: calc(100% + 2px);
