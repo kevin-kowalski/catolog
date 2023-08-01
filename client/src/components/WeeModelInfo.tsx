@@ -34,16 +34,18 @@ function WeeModelInfo({
         </p>
       </div>
       <div className="controls">
-        <p onClick={handleSceneClick} className="scene-type">
-          {scene}
-        </p>
+        <div className="set-env">
+          <button onClick={() => handleClick('dark')}>Dark</button>
+          <button onClick={() => handleClick('light')}>Light</button>
+          <button onClick={() => handleClick('glass')}>Glass</button>
+        </div>
         <PopoverPicker color={color} onChange={setColor} />
-      </div>{' '}
+      </div>
     </div>
   );
 
-  function handleSceneClick() {
-    setScene((current) => (current === 'light' ? 'dark' : 'light'));
+  function handleClick(mode: string) {
+    setScene(mode);
   }
 }
 

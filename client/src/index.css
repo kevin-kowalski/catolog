@@ -139,6 +139,18 @@ h1 {
 .controls {
   margin-left: auto;
 }
+.set-env button {
+  margin-left: 0.5rem;
+  border: 0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: var(--textGrey);
+  background-color: #3a3a3a;
+}
+.set-env button:hover {
+  cursor: pointer;
+  background-color: #515151;
+}
 .scene-type {
   text-transform: capitalize;
   cursor: pointer;
