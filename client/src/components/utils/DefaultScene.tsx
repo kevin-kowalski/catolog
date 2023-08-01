@@ -1,13 +1,18 @@
 import { Environment, MeshReflectorMaterial } from '@react-three/drei';
+import { Vector3 } from 'three';
 
-function DefaultScene() {
+interface IDefaultScene {
+  groundPos?: Vector3;
+}
+
+function DefaultScene({ groundPos = [0, -0.575, 0] }: IDefaultScene) {
   return (
     <>
       <BasicLights />
       <Environment preset="city" />
       <color attach="background" args={['#151515']} />
-      <fog attach="fog" args={['#212123', 3, 40]} />
-      <group position={[0, -0.575, 0]}>
+
+      <group position={groundPos}>
         <ReflectiveGround />
       </group>
     </>
@@ -18,7 +23,7 @@ function BasicLights() {
   return (
     <group>
       <spotLight position={[0, 10, 0]} intensity={0.3} />
-      <directionalLight position={[-50, 0, -40]} intensity={0.5} />
+      <directionalLight position={[-50, 0, -40]} intensity={0.6} />
     </group>
   );
 }
@@ -26,7 +31,7 @@ function BasicLights() {
 function ReflectiveGround() {
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[20, 20]} />
+      <planeGeometry args={[25, 25]} />
       <MeshReflectorMaterial
         blur={[200, 100]}
         resolution={256}

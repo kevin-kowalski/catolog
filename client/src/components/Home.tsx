@@ -25,6 +25,7 @@ function Home() {
                 >
                   <meshStandardMaterial color={'rgb(30, 220, 30))'} />
                 </mesh>
+                <fog attach="fog" args={['#212123', 3, 40]} />
                 <DefaultScene />
                 <HtmlContent />
                 <OrbitControls autoRotate />

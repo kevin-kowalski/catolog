@@ -17,7 +17,7 @@ function WeeView() {
   const [catElements, setCatElements] = useState<string[]>([]);
   const [currentScene, setCurrentScene] = useState('dark');
   const lightColor = 'rgb(240, 240, 240)';
-  const darkColor = 'rgb(35, 155, 35)';
+  const darkColor = 'rgb(32, 188, 45)';
   const [currentColor, setCurrentColor] = useState(darkColor);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function WeeView() {
   return (
     <>
       <div className={`wee-view ${currentScene}`}>
-        <Canvas shadows>
+        <Canvas dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
           <Suspense fallback={<LoadingStatus />}>
             <WeeScene currentScene={currentScene}>
               {currentModel && (
