@@ -51,7 +51,11 @@ function WeeView() {
           <Suspense fallback={<LoadingStatus />}>
             <WeeScene currentScene={currentScene}>
               {currentModel && (
-                <WeeModel currentModel={currentModel} color={currentColor} />
+                <WeeModel
+                  currentModel={currentModel}
+                  color={currentColor}
+                  curEnv={currentScene}
+                />
               )}
             </WeeScene>
           </Suspense>

@@ -2,7 +2,7 @@ import { IWeeObjectInfo } from './utils/WeeTypes.js';
 import { PopoverPicker } from './utils/PopoverPicker.jsx';
 
 function WeeModelInfo({
-  scene = 'Default',
+  scene = 'dark',
   model,
   color,
   setScene,
@@ -39,7 +39,9 @@ function WeeModelInfo({
           <button onClick={() => handleClick('light')}>Light</button>
           <button onClick={() => handleClick('glass')}>Glass</button>
         </div>
-        <PopoverPicker color={color} onChange={setColor} />
+        {scene !== 'glass' && (
+          <PopoverPicker color={color} onChange={setColor} />
+        )}
       </div>
     </div>
   );
