@@ -17,7 +17,7 @@ function WeeView() {
   const [catElements, setCatElements] = useState<string[]>([]);
   const [currentScene, setCurrentScene] = useState('dark');
   const lightColor = 'rgb(240, 240, 240)';
-  const darkColor = 'rgb(40, 40, 40)';
+  const darkColor = 'rgb(35, 155, 35)';
   const [currentColor, setCurrentColor] = useState(darkColor);
 
   useEffect(() => {
