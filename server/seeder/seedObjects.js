@@ -62,7 +62,7 @@ const defaultObjects = [
     category: 'Default',
     source:
       'https://www.turbosquid.com/3d-models/3d-free-bust-head-base-mesh-model-1832518',
-    scale: 3.5,
+    scale: 3,
     date: 1690800144064,
   }),
   new WeeObj({
@@ -72,7 +72,7 @@ const defaultObjects = [
     glb: 'cat.glb',
     category: 'Default',
     source: 'https://free3d.com/3d-model/cat-v1--522281.html',
-    scale: 1,
+    scale: 2,
     date: 1690829240292,
   }),
 ];

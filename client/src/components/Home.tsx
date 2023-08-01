@@ -20,7 +20,7 @@ function Home() {
                   castShadow
                   geometry={model}
                   scale={1.05}
-                  position={[0, 0.7, 0]}
+                  position={[0, 0.275, 0]}
                   rotation={[0.25, 0, 0]}
                 >
                   <meshStandardMaterial color={'rgb(30, 220, 30))'} />
