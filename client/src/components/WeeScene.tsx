@@ -1,4 +1,4 @@
-import { Stage, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import DefaultScene from './utils/DefaultScene';
 import PlainScene from './utils/PlainScene';
 
@@ -26,7 +26,6 @@ function Scene({ currentScene = 'default', children }: IWeeScene) {
           <PlainScene />
         </>
       )}
-      {/* <OrbitControls autoRotate camera={{ position: [0, 2, 10], fov: 30 }} /> */}
       <OrbitControls autoRotate target={[0, -0.1, 0]} />
     </>
   );
