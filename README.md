@@ -15,6 +15,7 @@ To add example data to the DB you can run 'node seeder/seedObjects.js' in the se
 ## Starting
 
 client/ folder npm run dev
+
 server/ folder nodemon
 
 
