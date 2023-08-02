@@ -14,9 +14,9 @@ To populate example data to the DB you can run `node seeder/seedObjects.js` in t
 
 ### Starting
 
-in the `client` folder `npm run dev`
+In the `client` folder `npm run dev`
 
-in the `server` folder `nodemon`
+In the `server` folder `nodemon`
 
 
 
