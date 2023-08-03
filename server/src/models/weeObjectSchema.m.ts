@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// Schema for the 3d objects
 const weeObjectSchema = new mongoose.Schema({
   title: String,
   author: String,
@@ -11,6 +12,7 @@ const weeObjectSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
 });
 
+// Create model from schema
 const WeeObject = mongoose.model('WeeObject', weeObjectSchema);
 
 export default WeeObject;
