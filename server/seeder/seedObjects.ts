@@ -1,9 +1,14 @@
 import mongoose from 'mongoose';
 import path from 'path';
 import dotenv from 'dotenv';
+
+// Load environment variables from .env file
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+// Import the WeeObject model from the schema file
 import WeeObject from '../src/models/weeObjectSchema.m';
 
+// Create an array of default objects
 const defaultObjects = [
   new WeeObject({
     title: 'Default Cube',
@@ -78,12 +83,18 @@ const defaultObjects = [
   }),
 ];
 
+// Function to connect to the database and populate it with default objects
 async function run () {
   try {
+    // Connect to the MongoDB database using the DB_URL from the environment variables
     await mongoose.connect(String(process.env.DB_URL));
     console.log('>> Connected to database');
+
+    // Loop through each default object and save it to the database
     for (let index = 0; index < defaultObjects.length; index++) {
       await defaultObjects[index].save();
+
+      // If it's the last default object, log a success message and disconnect from the database
       if (index === defaultObjects.length - 1) {
         console.log('>> Database successfully populated');
         mongoose.disconnect();
@@ -95,4 +106,5 @@ async function run () {
   }
 }
 
+// Run the function to populate the database
 run();
