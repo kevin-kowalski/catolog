@@ -5,7 +5,9 @@ interface IDefaultScene {
   groundPos?: Vector3;
 }
 
-function DefaultScene({ groundPos = [0, -0.575, 0] }: IDefaultScene) {
+const defaultGroundPos = new Vector3(0, -0.575, 0);
+
+function DefaultScene({ groundPos = defaultGroundPos }: IDefaultScene) {
   return (
     <>
       <BasicLights />

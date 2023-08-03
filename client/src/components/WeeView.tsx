@@ -4,7 +4,7 @@ import WeeScene from './WeeScene';
 import WeeModel from './WeeModel';
 import WeeModelInfo from './WeeModelInfo';
 import LoadingStatus from './utils/LoadingStatus';
-import { getCategory } from '../apiService';
+import { getCategory } from '../services/apiService';
 import { IElement } from './utils/WeeTypes';
 
 function WeeView() {
