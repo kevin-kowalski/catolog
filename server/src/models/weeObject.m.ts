@@ -1,22 +1,20 @@
-'use strict';
+import WeeObject from './weeObjectSchema.m';
 
-const WeeObj = require('./weeobjects_schema.js');
-
-exports.getOne = async (name) => {
+export const getOne = async (name: string) => {
   try {
-    const weeObj = await WeeObj.findOne({
+    const weeObject = await WeeObject.findOne({
       title: { $regex: name, $options: 'i' },
     });
-    if (!weeObj) throw new Error('No object found');
-    return weeObj;
+    if (!weeObject) throw new Error('No object found');
+    return weeObject;
   } catch (err) {
     console.error(err);
   }
 };
 
-exports.getCategory = async (name) => {
+export const getCategory = async (name: string) => {
   try {
-    const categoryObjects = await WeeObj.find({
+    const categoryObjects = await WeeObject.find({
       category: { $regex: name, $options: 'i' },
     }).exec();
     if (!categoryObjects) throw new Error('No objects found');
@@ -26,9 +24,9 @@ exports.getCategory = async (name) => {
   }
 };
 
-exports.getAll = async () => {
+export const getAll = async () => {
   try {
-    const allObjects = await WeeObj.find({});
+    const allObjects = await WeeObject.find({});
     if (!allObjects) throw new Error('No objects found');
     return allObjects;
   } catch (err) {
