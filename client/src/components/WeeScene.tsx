@@ -2,6 +2,7 @@ import { OrbitControls } from '@react-three/drei';
 import DefaultScene from './utils/DefaultScene';
 import PlainScene from './utils/PlainScene';
 import GlassScene from './utils/PlainScene';
+import { Vector3 } from 'three';
 
 interface IWeeScene {
   currentScene: string;
@@ -16,7 +17,7 @@ function Scene({ currentScene = 'default', children }: IWeeScene) {
           {children}
           <color attach="background" args={['#151515']} />
           <fog attach="fog" args={['#212123', 3, 48]} />
-          <DefaultScene groundPos={[0, -1.49, 0]} />
+          <DefaultScene groundPos={new Vector3(0, -1.49, 0)} />
         </>
       )}
       {currentScene === 'light' && (
