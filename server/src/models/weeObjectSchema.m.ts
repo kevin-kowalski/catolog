@@ -1,7 +1,6 @@
-'use strict';
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const weeObjSchema = new mongoose.Schema({
+const weeObjectSchema = new mongoose.Schema({
   title: String,
   author: String,
   description: String,
@@ -12,6 +11,6 @@ const weeObjSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
 });
 
-const WeeObj = mongoose.model('WeeObj', weeObjSchema);
+const WeeObject = mongoose.model('WeeObject', weeObjectSchema);
 
-module.exports = WeeObj;
+export default WeeObject;
