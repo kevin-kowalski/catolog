@@ -10,7 +10,7 @@ const PORT = 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use('/', router);
+app.use(router);
 
 // Function to connect to the database and start the server
 const run = async () => {
@@ -23,3 +23,5 @@ const run = async () => {
 
 // Run the function to start the server
 run();
+
+export default app;
