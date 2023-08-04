@@ -109,9 +109,59 @@ describe('Model', () => {
   });
 });
 
-describe('Router', () => {
+describe('Router, Controller', () => {
 
-})
+  beforeAll(async () => {
+    await WeeObject.insertMany(mockObjectsData);
+  });
+
+  afterAll(async () => {
+    await WeeObject.deleteMany();
+  });
+
+  describe('GET all models', () => {
+  
+    it('should respond 200 with array', async () => {
+      try {
+        const response = await request(app).get('/models')
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toBeInstanceOf(Array);
+      } catch(err) {
+        throw(err);
+      }
+    });
+  
+  });
+  
+  describe('GET one model', () => {
+  
+    it('should respond 200 with object', async () => {
+      try {
+        const response = await request(app).get('/models/:title');
+        expect(response.statusCode).toBe(200);
+        expect(typeof response.body).toBe('object');
+      } catch(err) {
+        throw(err);
+      }
+    });
+  });
+  
+  describe('GET all models of one category', () => {
+  
+    it('should respond 200 with array', async () => {
+      try {
+        const response = await request(app).get('/models/category/:category')
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toBeInstanceOf(Array);
+      } catch(err) {
+        throw(err);
+      }
+    })
+  });
+
+}) 
+
+
 
 
 // TEST BAD PATH
