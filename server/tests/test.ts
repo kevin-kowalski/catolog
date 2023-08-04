@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../src/index';
-// import { defaultObjects } from '../seeder/seedObjects';
 import connectDb from '../src/models/index.m';
+import mongoose from 'mongoose';
 import WeeObject from '../src/models/weeObjectSchema.m';
 import * as modelFunctions from '../src/models/weeObject.m';
 
@@ -24,12 +24,11 @@ describe('Server', () => {
   })
 });
 
-// describe('Test database connection', () => {
-//   it('should connect to the database', async () => {
-//     const dbConnectPromise = await connectDb()
-//     console.log(dbConnectPromise);
-//   });
-// });
+describe('Test database connection', () => {
+  it('should establish a connection to the MongoDB database', () => {
+    expect(mongoose.connection.readyState).toBe(1);
+  })
+});
 
 describe('Database', () => {
   afterAll(async () => {
