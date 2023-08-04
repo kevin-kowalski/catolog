@@ -20,7 +20,6 @@ export const getOne = async (title: string) => {
   }
 };
 
-
 /**
  * Retrieves objects belonging to a specific category,
  * and returns them as an array

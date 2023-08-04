@@ -9,8 +9,8 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 import WeeObject from '../src/models/weeObjectSchema.m';
 
 // Create an array of default objects
-const defaultObjects = [
-  new WeeObject({
+export const defaultObjects = [
+  {
     title: 'Default Cube',
     author: 'Unknown Artist',
     description: 'The famous default cube',
@@ -19,8 +19,8 @@ const defaultObjects = [
     source: '',
     scale: 1.5,
     date: 1690448981121,
-  }),
-  new WeeObject({
+  },
+  {
     title: 'Wired Icosphere',
     author: 'Artist Unknown',
     description: 'Wireframe icosphere',
@@ -29,8 +29,8 @@ const defaultObjects = [
     source: '',
     scale: 1.5,
     date: 1690547882136,
-  }),
-  new WeeObject({
+  },
+  {
     title: 'Default Torus',
     author: 'Artist Unknown',
     description: 'Default torus shape',
@@ -39,8 +39,8 @@ const defaultObjects = [
     source: '',
     scale: 2,
     date: 1690620720422,
-  }),
-  new WeeObject({
+  },
+  {
     title: 'Rubber Duck',
     author: 'printable_models',
     description: "It's a duck",
@@ -49,8 +49,8 @@ const defaultObjects = [
     source: 'https://free3d.com/3d-model/rubber-duck-v1--614347.html',
     scale: 1,
     date: 1690620720422,
-  }),
-  new WeeObject({
+  },
+  {
     title: 'Knot',
     author: 'Unknown',
     description: '3D Knot',
@@ -59,8 +59,8 @@ const defaultObjects = [
     source: '',
     scale: 1,
     date: 1690651481963,
-  }),
-  new WeeObject({
+  },
+  {
     title: 'Head',
     author: 'allpolovinkina',
     description: 'Head - low poly version',
@@ -70,8 +70,8 @@ const defaultObjects = [
       'https://www.turbosquid.com/3d-models/3d-free-bust-head-base-mesh-model-1832518',
     scale: 3,
     date: 1690800144064,
-  }),
-  new WeeObject({
+  },
+  {
     title: 'Cat',
     author: 'printable_models',
     description: 'Cat',
@@ -80,26 +80,22 @@ const defaultObjects = [
     source: 'https://free3d.com/3d-model/cat-v1--522281.html',
     scale: 2,
     date: 1690829240292,
-  }),
+  },
 ];
 
 // Function to connect to the database and populate it with default objects
-async function run () {
+async function seedDb () {
   try {
     // Connect to the MongoDB database using the DB_URL from the environment variables
     await mongoose.connect(String(process.env.DB_URL));
     console.log('>> Connected to database');
 
-    // Loop through each default object and save it to the database
-    for (let index = 0; index < defaultObjects.length; index++) {
-      await defaultObjects[index].save();
+    // Insert default objects into database
+    await WeeObject.insertMany(defaultObjects);
+    console.log('>> Database successfully populated');
 
-      // If it's the last default object, log a success message and disconnect from the database
-      if (index === defaultObjects.length - 1) {
-        console.log('>> Database successfully populated');
-        mongoose.disconnect();
-      }
-    }
+    // Disconnect from database
+    mongoose.disconnect();
   } catch (err) {
     console.log(err);
     process.exit(1);
@@ -107,4 +103,6 @@ async function run () {
 }
 
 // Run the function to populate the database
-run();
+seedDb();
+
+export default seedDb;

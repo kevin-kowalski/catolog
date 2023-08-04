@@ -1,16 +1,20 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-// Load environment variables from .env file
-dotenv.config();
+// Set the NODE_ENV variable to 'development' by default
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+// Load environment variables from the appropriate .env file
+const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+console.log(envFile);
+
+dotenv.config({ path: envFile });
 
 // Retrieve the database URL from the environment variables
-const url = process.env.DB_URL as string;
+const connectionString = process.env.DB_URL as string;
 
-// Create an object that contains the Mongoose instance and the database URL
-const db = {
-  mongoose,
-  url,
-};
+async function connectDb () {
+  return await mongoose.connect(connectionString);
+}
 
-export default db;
+export default connectDb;
