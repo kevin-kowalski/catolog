@@ -7,30 +7,34 @@ import * as modelFunctions from '../src/models/weeObject.m';
 
 import { mockObjectData, mockObjectsData } from './mocks';
 
-beforeAll(async () => {
-});
-
 afterAll(async () => {
+  mongoose.disconnect();
 });
 
 describe('Server', () => {
+
   it('should return 404, when accessing an unknown endpoint', async () => {
     const response = await request(app).get('/unknown');
     expect(response.status).toBe(404);
   });
+
   it('should return 200, when accessing /models endpoint', async () => {
     const response = await request(app).get('/models');
     expect(response.statusCode).toBe(200);
   })
+
 });
 
 describe('Test database connection', () => {
+
   it('should establish a connection to the MongoDB database', () => {
     expect(mongoose.connection.readyState).toBe(1);
   })
+
 });
 
 describe('Database', () => {
+
   afterAll(async () => {
     await WeeObject.deleteOne({ title: 'Default Test Cube' });
     await WeeObject.deleteMany({ category: 'Dog'});
@@ -65,6 +69,7 @@ describe('Database', () => {
       throw err;
     }
   })
+
 });
 
 describe('Model', () => {
@@ -107,6 +112,7 @@ describe('Model', () => {
       throw err;
     }
   });
+
 });
 
 describe('Router, Controller', () => {
@@ -120,7 +126,6 @@ describe('Router, Controller', () => {
   });
 
   describe('GET all models', () => {
-  
     it('should respond 200 with array', async () => {
       try {
         const response = await request(app).get('/models')
@@ -130,14 +135,12 @@ describe('Router, Controller', () => {
         throw(err);
       }
     });
-  
   });
-  
+
   describe('GET one model', () => {
-  
     it('should respond 200 with object', async () => {
       try {
-        const response = await request(app).get('/models/:title');
+        const response = await request(app).get('/models/' + mockObjectsData[0].title);
         expect(response.statusCode).toBe(200);
         expect(typeof response.body).toBe('object');
       } catch(err) {
@@ -145,23 +148,17 @@ describe('Router, Controller', () => {
       }
     });
   });
-  
+
   describe('GET all models of one category', () => {
-  
     it('should respond 200 with array', async () => {
       try {
-        const response = await request(app).get('/models/category/:category')
+        const response = await request(app).get('/models/category/' + mockObjectsData[0].category);
         expect(response.statusCode).toBe(200);
         expect(response.body).toBeInstanceOf(Array);
       } catch(err) {
         throw(err);
       }
-    })
+    });
   });
 
-}) 
-
-
-
-
-// TEST BAD PATH
+});
