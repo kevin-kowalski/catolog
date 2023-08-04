@@ -35,7 +35,7 @@ function WeeModelInfo({ currentScene = 'dark', currentModel, currentObjectColor,
     {currentModel && (
       <div className="object-info">
         <div className="details">
-          <h3>{currentModel.title}</h3>
+          <h3 className='object-title'>{currentModel.title}</h3>
           <p>
             {description} <span className="date">({dateFmt})</span>
           </p>
