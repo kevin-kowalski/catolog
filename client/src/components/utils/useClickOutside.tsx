@@ -1,12 +1,9 @@
 import { RefObject, useEffect } from 'react';
-
-type ClickOutsideHandler = (event: MouseEvent | TouchEvent) => void;
+import { ClickOutsideHandler } from './WeeTypes';
 
 // Improved version of https://usehooks.com/useOnClickOutside/
-const useClickOutside = (
-  ref: RefObject<HTMLDivElement>,
-  handler: ClickOutsideHandler,
-) => {
+const useClickOutside = (ref: RefObject<HTMLDivElement>, handler: ClickOutsideHandler) => {
+
   useEffect(() => {
     let startedInside: boolean | null = false;
     let startedWhenMounted: HTMLDivElement | null | boolean = false;
@@ -35,6 +32,7 @@ const useClickOutside = (
       document.removeEventListener('click', listener);
     };
   }, [ref, handler]);
+
 };
 
 export default useClickOutside;

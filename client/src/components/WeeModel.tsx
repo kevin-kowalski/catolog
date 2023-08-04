@@ -1,26 +1,35 @@
 import * as THREE from 'three';
 import { useGLTF, MeshTransmissionMaterial } from '@react-three/drei';
-import { IElement } from './utils/WeeTypes';
+import { IWeeModel } from './utils/WeeTypes';
 
-export interface IWeeModel {
-  currentModel: IElement;
-  color?: string;
-  curEnv?: string;
-}
+function WeeModel({ currentModel, currentObjectColor = '#282828', currentScene = 'dark' }: IWeeModel) {
 
-function WeeModel({
-  currentModel,
-  color = '#282828',
-  curEnv = 'dark',
-}: IWeeModel) {
+  // Constants
   const { scene } = useGLTF(currentModel.glb);
   const model = setupModel(scene);
   const geometry = model.geometry;
   const modelScale = currentModel.scale.$numberDecimal ?? 1;
 
+  /**
+   * Setup helper function
+   */
+
+  function setupModel(data: THREE.Group) {
+    let model = null;
+    const child = data.children[0];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    model = child.isMesh && child;
+    return model;
+  }
+
+  /**
+   * Render component
+   */
+
   return (
     <>
-      {geometry && curEnv === 'glass' && (
+      {geometry && currentScene === 'glass' && (
         <mesh
           castShadow
           geometry={geometry}
@@ -37,27 +46,18 @@ function WeeModel({
           />
         </mesh>
       )}
-      {geometry && curEnv !== 'glass' && (
+      {geometry && currentScene !== 'glass' && (
         <mesh
           castShadow
           geometry={geometry}
           scale={modelScale}
           position={[0, 0, 0]}
         >
-          <meshStandardMaterial color={color} />
+          <meshStandardMaterial color={currentObjectColor} />
         </mesh>
       )}
     </>
   );
-}
-
-function setupModel(data: THREE.Group) {
-  let model = null;
-  const child = data.children[0];
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  model = child.isMesh && child;
-  return model;
 }
 
 export default WeeModel;
