@@ -7,6 +7,7 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // Import the WeeObject model from the schema file
 import WeeObject from '../src/models/weeObjectSchema.m';
+import WeeCategory from '../src/models/weeCategorySchema.m';
 
 // Create an array of default objects
 export const defaultObjects = [
@@ -83,6 +84,19 @@ export const defaultObjects = [
   },
 ];
 
+// Create an array of default objects
+export const defaultCategories = [
+  {
+    title: 'Default'
+  },
+  {
+    title: 'Interior'
+  },
+  {
+    title: 'Clothing'
+  }
+];
+
 // Function to connect to the database and populate it with default objects
 async function seedDb () {
   try {
@@ -90,9 +104,18 @@ async function seedDb () {
     await mongoose.connect(String(process.env.DB_URL));
     console.log('>> Connected to database');
 
+    // Reset database
+    await WeeObject.deleteMany();
+    await WeeCategory.deleteMany();
+    console.log('>> Database successfully reset');
+
     // Insert default objects into database
     await WeeObject.insertMany(defaultObjects);
-    console.log('>> Database successfully populated');
+    console.log('>> Database successfully populated with objects');
+
+    // Insert default categories into database
+    await WeeCategory.insertMany(defaultCategories);
+    console.log('>> Database successfully populated with categories');
 
     // Disconnect from database
     mongoose.disconnect();
