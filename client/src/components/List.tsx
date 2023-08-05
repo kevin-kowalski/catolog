@@ -8,9 +8,11 @@ function List ({ models }: { models: IElement[]}) {
    */
 
   return (<>
-    {models.map((model) => (
-      <Single model={model} />
-    ))}
+    <div className="list">
+      {models.map((model) => (
+        <Single key={model._id} model={model} />
+      ))}
+    </div>
   </>);
 }
 

@@ -13,7 +13,7 @@ function Single ( {model}: { model: IElement} ) {
    */
 
   return (<>
-    <div className={`wee-view ${'light'}`}>
+    <div className="single">
 
       <Canvas dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
         <Suspense fallback={<LoadingStatus />}>
@@ -29,15 +29,14 @@ function Single ( {model}: { model: IElement} ) {
         </Suspense>
       </Canvas>
 
+      <WeeModelInfo
+        currentScene={'light'}
+        currentModel={model}
+        currentObjectColor={'rgb(28, 226, 29)'}
+        setCurrentScene={() => {}}
+        setCurrentObjectColor={() => {}}
+      />
     </div>
-
-    <WeeModelInfo
-      currentScene={'light'}
-      currentModel={model}
-      currentObjectColor={'rgb(28, 226, 29)'}
-      setCurrentScene={() => {}}
-      setCurrentObjectColor={() => {}}
-    />
   </>);
 }
 

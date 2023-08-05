@@ -1,6 +1,12 @@
 import React from "react";
+import { ICategory } from "./utils/WeeTypes";
 
-function SecondaryNavigation ({ collection, setPredicate }: { collection: string[], setPredicate: React.Dispatch<React.SetStateAction<string>> }) {
+function SecondaryNavigation ({ collection, setPredicate }: { collection: ICategory[], setPredicate: React.Dispatch<React.SetStateAction<string>> }) {
+
+  const collectionWithAll = [{
+    _id: 'all',
+    title: 'All'
+  }, ...collection];
 
   /**
    * Handler function
@@ -18,9 +24,11 @@ function SecondaryNavigation ({ collection, setPredicate }: { collection: string
   */
 
   return (<>
-    {collection.map((item: string) => (
-      <div className="nav-item" key={item} data-value={item.toLowerCase()} onClick={handleClick}>{item}</div>
-    ))}
+    <div className="secondary-navigation">
+      {collectionWithAll.map((item: ICategory) => (
+        <div className="nav-item" key={item._id} data-value={item.title.toLowerCase()} onClick={handleClick}>{item.title}</div>
+      ))}
+    </div>
   </>);
 }
 

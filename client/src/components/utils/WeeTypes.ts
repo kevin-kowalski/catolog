@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { Vector3 } from 'three';
 
 export interface IElement {
+  _id: string;
   title: string;
   author: string;
   description: string;
@@ -12,6 +13,11 @@ export interface IElement {
   scale: numdecimal;
   date: number;
   ypos?: numdecimal;
+}
+
+export interface ICategory {
+  _id: string;
+  title: string;
 }
 
 export type numdecimal = {

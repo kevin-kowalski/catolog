@@ -1,5 +1,4 @@
-import Home from '../components/Home';
-import '../App.css';
+import App from "../App";
 
 export default function Root() {
 
@@ -8,8 +7,6 @@ export default function Root() {
    */
 
   return (
-    <div className="app-container">
-      <Home />
-    </div>
+    <App />
   );
 }

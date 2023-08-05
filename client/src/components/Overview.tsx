@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IElement } from "./utils/WeeTypes";
+import { ICategory, IElement } from "./utils/WeeTypes";
 import { getAll, getCategories, getCategory } from "../services/apiService";
 import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
@@ -7,8 +7,8 @@ import SecondaryNavigation from "./SecondaryNavigation";
 function Overview () {
 
   // State variables
-  const [categories, setCategories] = useState<string[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<string>('');
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [currentCategory, setCurrentCategory] = useState<string>('all');
   const [models, setModels] = useState<IElement[]>([]);
 
   // Retrieve all categories and set the categories
@@ -27,7 +27,7 @@ function Overview () {
         });
     }
     else {
-      getCategory()
+      getCategory(currentCategory)
         .then((models) => {
           setModels(models);
         });
@@ -39,8 +39,10 @@ function Overview () {
    */
 
   return (<>
-    <SecondaryNavigation collection={categories} setPredicate={setCurrentCategory} />
-    <List models={models}/>
+    <div className="overview">
+      <SecondaryNavigation collection={categories} setPredicate={setCurrentCategory} />
+      <List models={models}/>
+    </div>
   </>);
 }
 
