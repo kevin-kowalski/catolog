@@ -1,14 +1,14 @@
 import { OrbitControls } from '@react-three/drei';
-import DefaultScene from './utils/DefaultScene';
+import ReflectiveScene from './utils/ReflectiveScene';
 import PlainScene from './utils/PlainScene';
-import GlassScene from './utils/PlainScene';
+import { IWeeScene } from './utils/WeeTypes';
 
-interface IWeeScene {
-  currentScene: string;
-  children: JSX.Element;
-}
+function WeeScene({ currentScene = 'default', children }: IWeeScene) {
 
-function Scene({ currentScene = 'default', children }: IWeeScene) {
+  /**
+   * Render Component
+   */
+
   return (
     <>
       {currentScene === 'dark' && (
@@ -16,7 +16,7 @@ function Scene({ currentScene = 'default', children }: IWeeScene) {
           {children}
           <color attach="background" args={['#151515']} />
           <fog attach="fog" args={['#212123', 3, 48]} />
-          <DefaultScene groundPos={[0, -1.49, 0]} />
+          <ReflectiveScene />
         </>
       )}
       {currentScene === 'light' && (
@@ -32,7 +32,7 @@ function Scene({ currentScene = 'default', children }: IWeeScene) {
           {children}
           <color attach="background" args={['#151515']} />
           <fog attach="fog" args={['#212123', 3, 48]} />
-          <GlassScene />
+          <PlainScene />
         </>
       )}
       <OrbitControls autoRotate target={[0, -0.1, 0]} />
@@ -40,4 +40,4 @@ function Scene({ currentScene = 'default', children }: IWeeScene) {
   );
 }
 
-export default Scene;
+export default WeeScene;

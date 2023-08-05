@@ -1,31 +1,48 @@
 import { GLTF } from 'three-stdlib';
 import { Dispatch, SetStateAction } from 'react';
+import { Vector3 } from 'three';
 
 export interface IElement {
   title: string;
   author: string;
-  source: string;
   description: string;
   glb: string;
+  category: string;
+  source: string;
   scale: numdecimal;
-  ypos: numdecimal;
   date: number;
+  ypos?: numdecimal;
 }
 
 export type numdecimal = {
   $numberDecimal: number;
 };
 
+export interface IWeeScene {
+  currentScene: string;
+  children: JSX.Element;
+}
+
+export interface IDefaultScene {
+  groundPos?: Vector3;
+}
+
+export interface IWeeModel {
+  currentModel: IElement;
+  currentObjectColor?: string;
+  currentScene?: string;
+}
+
 export interface IWeeObjectInfo {
-  scene: string;
-  model: IElement;
-  color: string;
-  setScene: Dispatch<SetStateAction<string>>;
-  setColor: Dispatch<SetStateAction<string>>;
+  currentScene: string;
+  currentModel: IElement;
+  currentObjectColor: string;
+  setCurrentScene: Dispatch<SetStateAction<string>>;
+  setCurrentObjectColor: Dispatch<SetStateAction<string>>;
 }
 
 export interface IPopoverPicker {
-  color: string;
+  currentObjectColor: string;
   onChange: Dispatch<SetStateAction<string>>;
 }
 
@@ -37,3 +54,5 @@ export type GLTFResult = GLTF & {
     Material: THREE.MeshStandardMaterial;
   };
 };
+
+export type ClickOutsideHandler = (event: MouseEvent | TouchEvent) => void;

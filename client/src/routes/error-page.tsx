@@ -2,10 +2,17 @@ import { useRouteError } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 export default function ErrorPage() {
+
+  // useRouteError
   const error = useRouteError();
 
+  // Constants
   const errStatus = (error as { statusText?: string })?.statusText ?? '';
   const errMessage = (error as Error)?.message ?? '';
+
+  /**
+   * Render component
+   */
 
   return (
     <div id="error-page">

@@ -1,8 +1,17 @@
 import { Html, useProgress } from '@react-three/drei';
 
 function LoadingStatus() {
+
+  // useProgress
   const { progress } = useProgress();
-  return <Html center>{progress} % loaded</Html>;
+
+  /**
+   * Render component
+   */
+
+  return (<>
+    <Html center>{progress} % loaded</Html>
+  </>)
 }
 
 export default LoadingStatus;
