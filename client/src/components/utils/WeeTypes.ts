@@ -5,12 +5,13 @@ import { Vector3 } from 'three';
 export interface IElement {
   title: string;
   author: string;
-  source: string;
   description: string;
   glb: string;
+  category: string;
+  source: string;
   scale: numdecimal;
-  ypos: numdecimal;
   date: number;
+  ypos?: numdecimal;
 }
 
 export type numdecimal = {
