@@ -58,7 +58,7 @@ function WeeModelInfo({ currentScene = 'dark', currentModel, currentObjectColor,
           </div>
           {currentScene !== 'glass' && (
             <PopoverPicker currentObjectColor={currentObjectColor} onChange={setCurrentObjectColor} />
-            )}
+          )}
         </div>
       </div>
     )}
