@@ -25,13 +25,13 @@ export async function getCategory(title: string) {
   }
 }
 
-// Retrieve the object with the specified 
+// Retrieve the object with the specified
 // title from the /models/:title route
 export async function getModel(id: string | undefined) {
   try {
     const response = await fetch(`${baseUrl}/models/${id}`);
     console.log(response);
-    
+
     const weeObject = await response.json();
     return weeObject;
   } catch (err) {
@@ -39,14 +39,26 @@ export async function getModel(id: string | undefined) {
   }
 }
 
-
-
 // Retrieve all categories from the /categories route
 export async function getCategories() {
   try {
     const response = await fetch(`${baseUrl}/categories`);
     const categories : Category[] = await response.json();
     return categories;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// Log in
+export async function logIn(user: {email: string, password: string}) {
+  try {
+    const response = await fetch(`${baseUrl}/login`, {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify(user)
+    });
+    return response.json();
   } catch (err) {
     console.log(err);
   }
