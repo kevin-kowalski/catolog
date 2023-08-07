@@ -3,11 +3,11 @@ import WeeObject from './weeObjectSchema.m';
 /**
  * Retrieves a single object based on its name, and returns it.
  */
-export const getOne = async (title: string) => {
+export const getOne = async (id: string) => {
   try {
     // Find a WeeObject with a title that matches the provided name (case-insensitive)
     const weeObject = await WeeObject.findOne({
-      title: { $regex: title, $options: 'i' },
+      _id: id
     });
 
     // If no object is found, throw an error

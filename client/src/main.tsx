@@ -5,12 +5,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
 import './index.css';
 import App from './App';
+import Single from './components/Single';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: '/models/:modelId',
+    element: <Single model={null}/>,
   }
 ]);
 
