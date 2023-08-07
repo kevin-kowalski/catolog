@@ -9,6 +9,9 @@ const router = express.Router();
 router.get('/models', weeObjectController.getAll);
 router.get('/models/:id', weeObjectController.getObject);
 router.get('/models/category/:category', weeObjectController.getCategory);
+router.post('/model', weeObjectController.postOne);
+
 router.get('/categories', weeCategoryController.getAll);
+router.post('/category', weeCategoryController.postOne);
 
 export default router;

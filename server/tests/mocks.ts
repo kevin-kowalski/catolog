@@ -9,6 +9,15 @@ export const mockObjectData = {
   date: 1690448981121,
 };
 
+export const mockObject = {
+  title: 'Default Post Test Cube',
+  author: 'Unknown Artist',
+  glb: 'default_cube-transformed.glb',
+  category: 'Dog',
+  source: '',
+  scale: 1.5,
+};
+
 export const mockObjectsData = [
   {
     title: 'Default Test Torus',
@@ -53,3 +62,7 @@ export const mockCategories = [
     title: 'Clothing'
   }
 ];
+
+export const mockCategory = {
+  title: 'Post Test'
+};
