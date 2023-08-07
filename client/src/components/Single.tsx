@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import Info from "./Info";
 import { ModelData } from "./utils/Types";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import LoadingStatus from "./utils/LoadingStatus";
 import Scene from "./Scene";
 import Model from "./Model";
@@ -9,29 +9,18 @@ import { getModel } from "../services/apiService";
 import { useParams } from "react-router-dom";
 
 function Single ( {model}: { model: ModelData | null} ) {
-  
+
   // State variable
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [localModel, setLocalModel] = useState<ModelData | null>(null);
+  const { modelId } = useParams();
 
   if (!model && !localModel) {
-    const params = useParams();
-    const modelId = params.modelId;
-    console.log(modelId);
-    
     if (modelId) {
       getModel(modelId)
         .then((modelData) => setLocalModel(modelData));
     }
   }
-
-  // useEffect(() => {
-  //   if (!model) {
-  //     const params = useParams();
-  //     getModel(params.modelId)
-  //       .then((modelData) => setLocalModel(modelData));
-  //   }
-  // }, []);
 
   /**
    * Handler functions

@@ -9,7 +9,6 @@ function Info({ currentModel }: InfoProps) {
   const dateFmt = new Date(currentModel?.date).toLocaleDateString('de-DE') ?? '';
   const description = currentModel?.description ?? '';
   const author = currentModel?.author ?? '';
-  const source = currentModel?.source ?? '';
 
   /**
    * Render component
@@ -29,15 +28,6 @@ function Info({ currentModel }: InfoProps) {
             {description} <span className="date">({dateFmt})</span>
           </p>
           <p>{author}</p>
-          <p className="source">
-            {source ? (
-              <a href={source} target="_blank">
-                {source}
-              </a>
-            ) : (
-              ''
-              )}
-          </p>
         </div>
       </div>
     )}
