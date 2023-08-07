@@ -5,7 +5,7 @@ import WeeObject from '../src/models/weeObjectSchema.m';
 import * as objectModelFunctions from '../src/models/weeObject.m';
 import * as categoryModelFunctions from '../src/models/weeCategory.m';
 
-import { mockObjectData, mockObjectsData, mockCategories } from './mocks';
+import { mockObjectData, mockObjectsData, mockCategories, mockObject, mockCategory } from './mocks';
 import WeeCategory from '../src/models/weeCategorySchema.m';
 
 afterAll(async () => {
@@ -141,52 +141,78 @@ describe('Router, Controller', () => {
     await WeeCategory.deleteMany();
   });
 
-  describe('GET all models', () => {
-    it('should respond 200 with array', async () => {
-      try {
-        const response = await request(app).get('/models')
-        expect(response.statusCode).toBe(200);
-        expect(response.body).toBeInstanceOf(Array);
-      } catch(err) {
-        throw(err);
-      }
+  describe('Models', () => {
+
+    describe('GET', () => {
+      it('should get all models, and respond with 200 and array', async () => {
+        try {
+          const response = await request(app).get('/models')
+          expect(response.statusCode).toBe(200);
+          expect(response.body).toBeInstanceOf(Array);
+        } catch(err) {
+          throw(err);
+        }
+      });
+
+      it('should get one model, and respond with 200 and object', async () => {
+        try {
+          const response = await request(app).get('/models/' + mockObjectsData[0].title);
+          expect(response.statusCode).toBe(200);
+          expect(typeof response.body).toBe('object');
+        } catch(err) {
+          throw(err);
+        }
+      });
+
+      it('should get all models of specified category, and respond with 200 and array', async () => {
+        try {
+          const response = await request(app).get('/models/category/' + mockObjectsData[0].category);
+          expect(response.statusCode).toBe(200);
+          expect(response.body).toBeInstanceOf(Array);
+        } catch(err) {
+          throw(err);
+        }
+      });
     });
+
+    describe('POST', () => {
+      it('should post one model, and respond with 200 and model', async () => {
+        try {
+          const response = await request(app).post('/model').send(mockObject);
+          expect(response.statusCode).toBe(200);
+          expect(typeof response.body).toBe('object');
+          expect(response.body.title).toBe(mockObject.title);
+        } catch (err) {
+          throw(err);
+        }
+      });
+    })
+
   });
 
-  describe('GET one model', () => {
-    it('should respond 200 with object', async () => {
-      try {
-        const response = await request(app).get('/models/' + mockObjectsData[0].title);
+  describe('Categories', () => {
+
+    describe('GET', () => {
+      it('should get all categories, and respond with 200 and array', async () => {
+        try {
+          const response = await request(app).get('/categories')
+          expect(response.statusCode).toBe(200);
+          expect(response.body).toBeInstanceOf(Array);
+        } catch(err) {
+          throw(err);
+        }
+      });
+    });
+
+    describe('POST', () => {
+      it('should post one category, and respond with 200 and category', async () => {
+        const response = await request(app).post('/category').send(mockCategory);
         expect(response.statusCode).toBe(200);
         expect(typeof response.body).toBe('object');
-      } catch(err) {
-        throw(err);
-      }
-    });
-  });
+        expect(response.body.title).toBe(mockCategory.title);
+      })
+    })
 
-  describe('GET all models of one category', () => {
-    it('should respond 200 with array', async () => {
-      try {
-        const response = await request(app).get('/models/category/' + mockObjectsData[0].category);
-        expect(response.statusCode).toBe(200);
-        expect(response.body).toBeInstanceOf(Array);
-      } catch(err) {
-        throw(err);
-      }
-    });
-  });
-
-  describe('GET all categories', () => {
-    it('should respond 200 with array', async () => {
-      try {
-        const response = await request(app).get('/categories')
-        expect(response.statusCode).toBe(200);
-        expect(response.body).toBeInstanceOf(Array);
-      } catch(err) {
-        throw(err);
-      }
-    });
-  });
+  })
 
 });

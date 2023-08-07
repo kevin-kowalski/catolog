@@ -1,3 +1,4 @@
+import { Object } from '../types';
 import WeeObject from './weeObjectSchema.m';
 
 /**
@@ -54,6 +55,18 @@ export const getAll = async () => {
 
     // Return all retrieved objects
     return allObjects;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+/**
+ * Creates one object, and returns it
+ */
+export const postOne = async (object: Object) => {
+  try {
+    const response = await WeeObject.create(object);
+    return response;
   } catch (err) {
     console.error(err);
   }

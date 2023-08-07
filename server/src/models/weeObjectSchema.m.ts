@@ -9,7 +9,7 @@ const weeObjectSchema = new mongoose.Schema({
   source: String,
   category: String,
   scale: mongoose.Types.Decimal128,
-  date: { type: Date, default: Date.now },
+  date: { type: Date, default: Date.now() },
 });
 
 // Create model from schema
