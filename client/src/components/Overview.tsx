@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Category, ModelData } from "./utils/WeeTypes";
+import { Category, ModelData } from "./utils/Types";
 import { getAll, getCategories, getCategory } from "../services/apiService";
 import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";

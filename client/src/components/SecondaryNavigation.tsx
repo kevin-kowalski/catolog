@@ -1,5 +1,5 @@
 import React from "react";
-import { Category, SecondaryNavigationProps } from "./utils/WeeTypes";
+import { Category, SecondaryNavigationProps } from "./utils/Types";
 
 function SecondaryNavigation ({ collection, setPredicate }: SecondaryNavigationProps) {
 

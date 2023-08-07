@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { useGLTF, MeshTransmissionMaterial } from '@react-three/drei';
-import { ModelProps } from './utils/WeeTypes';
+import { useGLTF } from '@react-three/drei';
+import { ModelProps } from './utils/Types';
 
-function Model({ currentModel, currentObjectColor = '#282828', currentScene = 'dark' }: ModelProps) {
+function Model({ currentModel, currentObjectColor }: ModelProps) {
 
   // Constants
   const { scene } = useGLTF(currentModel.glb);
@@ -27,37 +27,16 @@ function Model({ currentModel, currentObjectColor = '#282828', currentScene = 'd
    * Render component
    */
 
-  return (
-    <>
-      {geometry && currentScene === 'glass' && (
-        <mesh
-          castShadow
-          geometry={geometry}
-          scale={modelScale}
-          position={[0, 0, 0]}
-        >
-          <MeshTransmissionMaterial
-            distortionScale={0.5}
-            temporalDistortion={0.0}
-            samples={6}
-            resolution={64}
-            thickness={-1}
-            anisotropy={0.25}
-          />
-        </mesh>
-      )}
-      {geometry && currentScene !== 'glass' && (
-        <mesh
-          castShadow
-          geometry={geometry}
-          scale={modelScale}
-          position={[0, 0, 0]}
-        >
-          <meshStandardMaterial color={currentObjectColor} />
-        </mesh>
-      )}
-    </>
-  );
+  return (<>
+    <mesh
+      castShadow
+      geometry={geometry}
+      scale={modelScale}
+      position={[0, 0, 0]}
+    >
+      <meshStandardMaterial color={currentObjectColor} />
+    </mesh>
+  </>);
 }
 
 export default Model;

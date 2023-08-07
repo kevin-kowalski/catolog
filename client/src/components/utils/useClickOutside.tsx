@@ -1,5 +1,5 @@
 import { RefObject, useEffect } from 'react';
-import { ClickOutsideHandler } from './WeeTypes';
+import { ClickOutsideHandler } from './Types';
 
 // Improved version of https://usehooks.com/useOnClickOutside/
 const useClickOutside = (ref: RefObject<HTMLDivElement>, handler: ClickOutsideHandler) => {

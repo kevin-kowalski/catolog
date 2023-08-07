@@ -28,8 +28,8 @@ export interface SecondaryNavigationProps {
 }
 
 export interface SceneProps {
-  currentScene: string;
   children: JSX.Element;
+  isHovered?: boolean;
 }
 
 export interface ModelProps {
@@ -39,11 +39,11 @@ export interface ModelProps {
 }
 
 export interface InfoProps {
-  currentScene: string;
+  currentScene?: string;
   currentModel: ModelData;
-  currentObjectColor: string;
-  setCurrentScene: Dispatch<SetStateAction<string>>;
-  setCurrentObjectColor: Dispatch<SetStateAction<string>>;
+  currentObjectColor?: string;
+  setCurrentScene?: Dispatch<SetStateAction<string>>;
+  setCurrentObjectColor?: Dispatch<SetStateAction<string>>;
 }
 
 export interface PopoverPickerProps {

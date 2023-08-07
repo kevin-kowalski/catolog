@@ -1,41 +1,49 @@
 import { Canvas } from "@react-three/fiber";
 import Info from "./Info";
-import { ModelData } from "./utils/WeeTypes";
-import { Suspense } from "react";
+import { ModelData } from "./utils/Types";
+import { Suspense, useState } from "react";
 import LoadingStatus from "./utils/LoadingStatus";
 import Scene from "./Scene";
 import Model from "./Model";
 
 function Single ( {model}: { model: ModelData} ) {
 
+  // State variable
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
+  /**
+   * Handler functions
+   */
+
+  // When the user hovers over the component
+  function handleHover (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const target = event.target as HTMLDivElement;
+    if (target) {
+      setIsHovered(!isHovered);
+    }
+  }
+
   /**
    * Render component
    */
 
   return (<>
-    <div className="single">
+    <div onMouseOver={handleHover} onMouseOut={handleHover} className="single">
 
       <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
         <Suspense fallback={<LoadingStatus />}>
-          <Scene currentScene={'light'}>
+          <Scene isHovered={isHovered}>
             {model && (
               <Model
                 currentModel={model}
                 currentObjectColor={'rgb(28, 226, 29)'}
-                currentScene={'light'}
               />
             )}
           </Scene>
         </Suspense>
       </Canvas>
 
-      <Info
-        currentScene={'light'}
-        currentModel={model}
-        currentObjectColor={'rgb(28, 226, 29)'}
-        setCurrentScene={() => {}}
-        setCurrentObjectColor={() => {}}
-      />
+      <Info currentModel={model} />
     </div>
   </>);
 }

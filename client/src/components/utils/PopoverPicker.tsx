@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import useClickOutside from './useClickOutside';
-import { PopoverPickerProps } from './WeeTypes';
+import { PopoverPickerProps } from './Types';
 
 export const PopoverPicker = ({ currentObjectColor, onChange }: PopoverPickerProps) => {
 

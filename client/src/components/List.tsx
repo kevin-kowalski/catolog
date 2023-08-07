@@ -1,5 +1,5 @@
 import Single from "./Single";
-import { ModelData } from "./utils/WeeTypes";
+import { ModelData } from "./utils/Types";
 
 function List ({ models }: { models: ModelData[]}) {
 

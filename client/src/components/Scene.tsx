@@ -1,9 +1,8 @@
 import { OrbitControls } from '@react-three/drei';
-// import ReflectiveScene from './utils/ReflectiveScene';
 import PlainScene from './utils/PlainScene';
-import { SceneProps } from './utils/WeeTypes';
+import { SceneProps } from './utils/Types';
 
-function Scene({ children }: SceneProps) {
+function Scene({ children, isHovered }: SceneProps) {
 
   /**
    * Render Component
@@ -13,7 +12,7 @@ function Scene({ children }: SceneProps) {
     {children}
     <color attach="background" args={['#fff']} />
     <PlainScene />
-    <OrbitControls target={[0, -0.1, 0]} />
+    <OrbitControls autoRotate={isHovered} target={[0, -0.1, 0]} />
   </>);
 }
 
