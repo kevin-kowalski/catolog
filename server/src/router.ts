@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Routes
 router.get('/models', weeObjectController.getAll);
-router.get('/models/:id', weeObjectController.getObject);
+router.get('/models/:id', weeObjectController.getOne);
 router.get('/models/category/:category', weeObjectController.getCategory);
 router.post('/model', weeObjectController.postOne);
 
