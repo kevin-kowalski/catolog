@@ -1,15 +1,37 @@
 import { Canvas } from "@react-three/fiber";
 import Info from "./Info";
 import { ModelData } from "./utils/Types";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import LoadingStatus from "./utils/LoadingStatus";
 import Scene from "./Scene";
 import Model from "./Model";
+import { getModel } from "../services/apiService";
+import { useParams } from "react-router-dom";
 
-function Single ( {model}: { model: ModelData} ) {
-
+function Single ( {model}: { model: ModelData | null} ) {
+  
   // State variable
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [localModel, setLocalModel] = useState<ModelData | null>(null);
+
+  if (!model && !localModel) {
+    const params = useParams();
+    const modelId = params.modelId;
+    console.log(modelId);
+    
+    if (modelId) {
+      getModel(modelId)
+        .then((modelData) => setLocalModel(modelData));
+    }
+  }
+
+  // useEffect(() => {
+  //   if (!model) {
+  //     const params = useParams();
+  //     getModel(params.modelId)
+  //       .then((modelData) => setLocalModel(modelData));
+  //   }
+  // }, []);
 
   /**
    * Handler functions
@@ -33,17 +55,26 @@ function Single ( {model}: { model: ModelData} ) {
       <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
         <Suspense fallback={<LoadingStatus />}>
           <Scene isHovered={isHovered}>
-            {model && (
-              <Model
+            <>
+              {localModel && (
+                <Model currentModel={localModel} currentObjectColor={'rgb(28, 226, 29)'} />
+              )}
+              {model && (
+                <Model
                 currentModel={model}
                 currentObjectColor={'rgb(28, 226, 29)'}
-              />
-            )}
+                />
+              )}
+            </>
           </Scene>
         </Suspense>
       </Canvas>
-
-      <Info currentModel={model} />
+        {localModel && (
+          <Info currentModel={localModel}/>
+        )}
+        {model && (
+          <Info currentModel={model!} />
+        )}
     </div>
   </>);
 }

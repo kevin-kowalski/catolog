@@ -2,22 +2,22 @@ import { Request, Response } from 'express';
 import * as weeObjects from '../models/weeObject.m';
 
 /**
- * Controller function for retrieving a single object by its title.
- * It expects the object title to be provided as a request parameter.
+ * Controller function for retrieving a single object by its id.
+ * It expects the object id to be provided as a request parameter.
  */
 export async function getOne (req: Request, res: Response) {
   try {
-    // Retrieve the object’s title from the parameters
-    const objectName = req.params.title;
+    // Retrieve the object’s id from the parameters
+    const objectId = req.params.id;
 
-    // Check if the object title is provided
-    if (!objectName) {
+    // Check if the object id is provided
+    if (!objectId) {
       res.status(400);
-      res.send('No object title provided in data.');
+      res.send('No object id provided in data.');
     }
 
     // Retrieve the specific object using the weeObjects model's getOne function
-    const weeObject = await weeObjects.getOne(objectName);
+    const weeObject = await weeObjects.getOne(objectId);
 
     // Send the retrieved object as the response
     res.send(weeObject);

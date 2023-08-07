@@ -14,7 +14,7 @@ function Overview () {
   // Retrieve all categories and set the categories
   // state variable to them
   useEffect(() => {
-    getCategories().then((categories) => setCategories(categories));
+    getCategories().then((categories) => setCategories(categories!));
   }, []);
 
   // When the currentCategory state variable is updated,
@@ -23,13 +23,13 @@ function Overview () {
     if (currentCategory === 'all') {
       getAll()
         .then((models) => {
-          setModels(models);
+          setModels(models!);
         });
     }
     else {
       getCategory(currentCategory)
         .then((models) => {
-          setModels(models);
+          setModels(models!);
         });
     }
   }, [currentCategory]);
