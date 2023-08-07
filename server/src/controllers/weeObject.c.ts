@@ -25,7 +25,7 @@ export async function getObject(req: Request, res: Response) {
     res.status(500);
     console.error(err);
   }
-}
+};
 
 /**
  * Controller function for retrieving objects belonging to a specific category.
@@ -51,7 +51,7 @@ export async function getCategory(req: Request, res: Response) {
     res.status(500);
     console.error(err);
   }
-}
+};
 
 /**
  * Controller function for retrieving all objects.
@@ -67,4 +67,4 @@ export async function getAll(req: Request, res: Response) {
     res.status(500);
     console.error(err);
   }
-}
+};

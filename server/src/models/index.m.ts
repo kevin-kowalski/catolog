@@ -6,7 +6,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Load environment variables from the appropriate .env file
 const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
-console.log(envFile);
 
 dotenv.config({ path: envFile });
 

@@ -41,3 +41,15 @@ export const mockObjectsData = [
     date: 1690651481963,
   },
 ]
+
+export const mockCategories = [
+  {
+    title: 'Default'
+  },
+  {
+    title: 'Interior'
+  },
+  {
+    title: 'Clothing'
+  }
+];

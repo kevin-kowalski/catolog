@@ -1,7 +1,6 @@
-import { IWeeObjectInfo } from './utils/WeeTypes.js';
-import { PopoverPicker } from './utils/PopoverPicker.jsx';
+import { InfoProps } from './utils/Types.js';
 
-function WeeModelInfo({ currentScene = 'dark', currentModel, currentObjectColor, setCurrentScene, setCurrentObjectColor }: IWeeObjectInfo) {
+function Info({ currentModel }: InfoProps) {
 
   /**
    * Constants
@@ -11,16 +10,6 @@ function WeeModelInfo({ currentScene = 'dark', currentModel, currentObjectColor,
   const description = currentModel?.description ?? '';
   const author = currentModel?.author ?? '';
   const source = currentModel?.source ?? '';
-
-  /**
-   * Handler
-   */
-
-  // When the user clicks one of the buttons,
-  // set the specified scene
-  function handleClick(sceneName: string) {
-    setCurrentScene(sceneName);
-  }
 
   /**
    * Render component
@@ -50,19 +39,9 @@ function WeeModelInfo({ currentScene = 'dark', currentModel, currentObjectColor,
               )}
           </p>
         </div>
-        <div className="controls">
-          <div className="set-env">
-            <button onClick={() => handleClick('dark')}>Dark</button>
-            <button onClick={() => handleClick('light')}>Light</button>
-            <button onClick={() => handleClick('glass')}>Glass</button>
-          </div>
-          {currentScene !== 'glass' && (
-            <PopoverPicker currentObjectColor={currentObjectColor} onChange={setCurrentObjectColor} />
-          )}
-        </div>
       </div>
     )}
   </>);
 }
 
-export default WeeModelInfo;
+export default Info;

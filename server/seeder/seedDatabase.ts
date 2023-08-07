@@ -7,6 +7,7 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // Import the WeeObject model from the schema file
 import WeeObject from '../src/models/weeObjectSchema.m';
+import WeeCategory from '../src/models/weeCategorySchema.m';
 
 // Create an array of default objects
 export const defaultObjects = [
@@ -45,7 +46,7 @@ export const defaultObjects = [
     author: 'printable_models',
     description: "It's a duck",
     glb: 'rubber_duck.glb',
-    category: 'Default',
+    category: 'Interior',
     source: 'https://free3d.com/3d-model/rubber-duck-v1--614347.html',
     scale: 1,
     date: 1690620720422,
@@ -55,7 +56,7 @@ export const defaultObjects = [
     author: 'Unknown',
     description: '3D Knot',
     glb: 'knot.glb',
-    category: 'Default',
+    category: 'Clothing',
     source: '',
     scale: 1,
     date: 1690651481963,
@@ -65,7 +66,7 @@ export const defaultObjects = [
     author: 'allpolovinkina',
     description: 'Head - low poly version',
     glb: 'head_lowpoly.glb',
-    category: 'Default',
+    category: 'Clothing',
     source:
       'https://www.turbosquid.com/3d-models/3d-free-bust-head-base-mesh-model-1832518',
     scale: 3,
@@ -76,11 +77,24 @@ export const defaultObjects = [
     author: 'printable_models',
     description: 'Cat',
     glb: 'cat.glb',
-    category: 'Default',
+    category: 'Interior',
     source: 'https://free3d.com/3d-model/cat-v1--522281.html',
     scale: 2,
     date: 1690829240292,
   },
+];
+
+// Create an array of default objects
+export const defaultCategories = [
+  {
+    title: 'Default'
+  },
+  {
+    title: 'Interior'
+  },
+  {
+    title: 'Clothing'
+  }
 ];
 
 // Function to connect to the database and populate it with default objects
@@ -90,9 +104,18 @@ async function seedDb () {
     await mongoose.connect(String(process.env.DB_URL));
     console.log('>> Connected to database');
 
+    // Reset database
+    await WeeObject.deleteMany();
+    await WeeCategory.deleteMany();
+    console.log('>> Database successfully reset');
+
     // Insert default objects into database
     await WeeObject.insertMany(defaultObjects);
-    console.log('>> Database successfully populated');
+    console.log('>> Database successfully populated with objects');
+
+    // Insert default categories into database
+    await WeeCategory.insertMany(defaultCategories);
+    console.log('>> Database successfully populated with categories');
 
     // Disconnect from database
     mongoose.disconnect();
