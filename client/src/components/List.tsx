@@ -1,7 +1,7 @@
 import Single from "./Single";
-import { IElement } from "./utils/WeeTypes";
+import { ModelData } from "./utils/WeeTypes";
 
-function List ({ models }: { models: IElement[]}) {
+function List ({ models }: { models: ModelData[]}) {
 
   /**
    * Render component

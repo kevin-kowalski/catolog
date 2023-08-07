@@ -1,7 +1,7 @@
 import React from "react";
-import { ICategory } from "./utils/WeeTypes";
+import { Category, SecondaryNavigationProps } from "./utils/WeeTypes";
 
-function SecondaryNavigation ({ collection, setPredicate }: { collection: ICategory[], setPredicate: React.Dispatch<React.SetStateAction<string>> }) {
+function SecondaryNavigation ({ collection, setPredicate }: SecondaryNavigationProps) {
 
   const collectionWithAll = [{
     _id: 'all',
@@ -25,7 +25,7 @@ function SecondaryNavigation ({ collection, setPredicate }: { collection: ICateg
 
   return (<>
     <div className="secondary-navigation">
-      {collectionWithAll.map((item: ICategory) => (
+      {collectionWithAll.map((item: Category) => (
         <div className="nav-item" key={item._id} data-value={item.title.toLowerCase()} onClick={handleClick}>{item.title}</div>
       ))}
     </div>

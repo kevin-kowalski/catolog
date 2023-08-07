@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ICategory, IElement } from "./utils/WeeTypes";
+import { Category, ModelData } from "./utils/WeeTypes";
 import { getAll, getCategories, getCategory } from "../services/apiService";
 import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
@@ -7,9 +7,9 @@ import SecondaryNavigation from "./SecondaryNavigation";
 function Overview () {
 
   // State variables
-  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>('all');
-  const [models, setModels] = useState<IElement[]>([]);
+  const [models, setModels] = useState<ModelData[]>([]);
 
   // Retrieve all categories and set the categories
   // state variable to them

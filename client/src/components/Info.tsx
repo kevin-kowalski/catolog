@@ -1,7 +1,7 @@
-import { IWeeObjectInfo } from './utils/WeeTypes.js';
-import { PopoverPicker } from './utils/PopoverPicker.jsx';
+import { InfoProps } from './utils/WeeTypes.js';
+import { PopoverPicker } from './utils/PopoverPicker.js';
 
-function WeeModelInfo({ currentScene = 'dark', currentModel, currentObjectColor, setCurrentScene, setCurrentObjectColor }: IWeeObjectInfo) {
+function Info({ currentScene = 'dark', currentModel, currentObjectColor, setCurrentScene, setCurrentObjectColor }: InfoProps) {
 
   /**
    * Constants
@@ -65,4 +65,4 @@ function WeeModelInfo({ currentScene = 'dark', currentModel, currentObjectColor,
   </>);
 }
 
-export default WeeModelInfo;
+export default Info;

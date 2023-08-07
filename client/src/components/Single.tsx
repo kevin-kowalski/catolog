@@ -1,12 +1,12 @@
 import { Canvas } from "@react-three/fiber";
-import WeeModelInfo from "./WeeModelInfo";
-import { IElement } from "./utils/WeeTypes";
+import Info from "./Info";
+import { ModelData } from "./utils/WeeTypes";
 import { Suspense } from "react";
 import LoadingStatus from "./utils/LoadingStatus";
 import Scene from "./Scene";
 import Model from "./Model";
 
-function Single ( {model}: { model: IElement} ) {
+function Single ( {model}: { model: ModelData} ) {
 
   /**
    * Render component
@@ -29,7 +29,7 @@ function Single ( {model}: { model: IElement} ) {
         </Suspense>
       </Canvas>
 
-      <WeeModelInfo
+      <Info
         currentScene={'light'}
         currentModel={model}
         currentObjectColor={'rgb(28, 226, 29)'}

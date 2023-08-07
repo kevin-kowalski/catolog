@@ -1,9 +1,9 @@
 import { OrbitControls } from '@react-three/drei';
 // import ReflectiveScene from './utils/ReflectiveScene';
 import PlainScene from './utils/PlainScene';
-import { IWeeScene } from './utils/WeeTypes';
+import { SceneProps } from './utils/WeeTypes';
 
-function Scene({ children }: IWeeScene) {
+function Scene({ children }: SceneProps) {
 
   /**
    * Render Component

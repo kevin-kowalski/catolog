@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { useGLTF, MeshTransmissionMaterial } from '@react-three/drei';
-import { IWeeModel } from './utils/WeeTypes';
+import { ModelProps } from './utils/WeeTypes';
 
-function Model({ currentModel, currentObjectColor = '#282828', currentScene = 'dark' }: IWeeModel) {
+function Model({ currentModel, currentObjectColor = '#282828', currentScene = 'dark' }: ModelProps) {
 
   // Constants
   const { scene } = useGLTF(currentModel.glb);

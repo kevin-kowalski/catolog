@@ -1,8 +1,10 @@
-import { GLTF } from 'three-stdlib';
 import { Dispatch, SetStateAction } from 'react';
-import { Vector3 } from 'three';
 
-export interface IElement {
+export type NumDecimal = {
+  $numberDecimal: number;
+};
+
+export interface ModelData {
   _id: string;
   title: string;
   author: string;
@@ -10,55 +12,43 @@ export interface IElement {
   glb: string;
   category: string;
   source: string;
-  scale: numdecimal;
+  scale: NumDecimal;
   date: number;
-  ypos?: numdecimal;
+  ypos?: NumDecimal;
 }
 
-export interface ICategory {
+export interface Category {
   _id: string;
   title: string;
 }
 
-export type numdecimal = {
-  $numberDecimal: number;
-};
+export interface SecondaryNavigationProps {
+  collection: Category[],
+  setPredicate: React.Dispatch<React.SetStateAction<string>>
+}
 
-export interface IWeeScene {
+export interface SceneProps {
   currentScene: string;
   children: JSX.Element;
 }
 
-export interface IDefaultScene {
-  groundPos?: Vector3;
-}
-
-export interface IWeeModel {
-  currentModel: IElement;
+export interface ModelProps {
+  currentModel: ModelData;
   currentObjectColor?: string;
   currentScene?: string;
 }
 
-export interface IWeeObjectInfo {
+export interface InfoProps {
   currentScene: string;
-  currentModel: IElement;
+  currentModel: ModelData;
   currentObjectColor: string;
   setCurrentScene: Dispatch<SetStateAction<string>>;
   setCurrentObjectColor: Dispatch<SetStateAction<string>>;
 }
 
-export interface IPopoverPicker {
+export interface PopoverPickerProps {
   currentObjectColor: string;
   onChange: Dispatch<SetStateAction<string>>;
 }
-
-export type GLTFResult = GLTF & {
-  nodes: {
-    Cube: THREE.Mesh;
-  };
-  materials: {
-    Material: THREE.MeshStandardMaterial;
-  };
-};
 
 export type ClickOutsideHandler = (event: MouseEvent | TouchEvent) => void;
