@@ -3,8 +3,8 @@ import WeeModelInfo from "./WeeModelInfo";
 import { IElement } from "./utils/WeeTypes";
 import { Suspense } from "react";
 import LoadingStatus from "./utils/LoadingStatus";
-import WeeScene from "./WeeScene";
-import WeeModel from "./WeeModel";
+import Scene from "./Scene";
+import Model from "./Model";
 
 function Single ( {model}: { model: IElement} ) {
 
@@ -15,17 +15,17 @@ function Single ( {model}: { model: IElement} ) {
   return (<>
     <div className="single">
 
-      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
+      <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
         <Suspense fallback={<LoadingStatus />}>
-          <WeeScene currentScene={'light'}>
+          <Scene currentScene={'light'}>
             {model && (
-              <WeeModel
+              <Model
                 currentModel={model}
                 currentObjectColor={'rgb(28, 226, 29)'}
                 currentScene={'light'}
               />
             )}
-          </WeeScene>
+          </Scene>
         </Suspense>
       </Canvas>
 
