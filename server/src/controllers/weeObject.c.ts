@@ -5,7 +5,7 @@ import * as weeObjects from '../models/weeObject.m';
  * Controller function for retrieving a single object by its title.
  * It expects the object title to be provided as a request parameter.
  */
-export async function getObject(req: Request, res: Response) {
+export async function getOne (req: Request, res: Response) {
   try {
     // Retrieve the object’s title from the parameters
     const objectName = req.params.title;
@@ -31,7 +31,7 @@ export async function getObject(req: Request, res: Response) {
  * Controller function for retrieving objects belonging to a specific category.
  * It expects the category name to be provided as a request parameter.
  */
-export async function getCategory(req: Request, res: Response) {
+export async function getCategory (req: Request, res: Response) {
   try {
     // Retrieve the category’s name from the parameters
     const categoryName = req.params.category;
@@ -56,13 +56,40 @@ export async function getCategory(req: Request, res: Response) {
 /**
  * Controller function for retrieving all objects.
  */
-export async function getAll(req: Request, res: Response) {
+export async function getAll (req: Request, res: Response) {
   try {
     // Retrieve all objects using the weeObjects model's getAll function
     const allWeeObjects = await weeObjects.getAll();
 
     // Send all retrieved objects as the response
     res.send(allWeeObjects);
+  } catch (err) {
+    res.status(500);
+    console.error(err);
+  }
+};
+
+/**
+ * Controller function for posting one object.
+ */
+export async function postOne (req: Request, res: Response) {
+  try {
+    const object = req.body;
+
+    // Ensure all required properties were given
+    if (!object.title || !object.author || !object.glb || !object.scale) {
+      res.status(400);
+      res.send({
+        error: true,
+        message: 'Object is missing properties'
+      });
+    }
+
+    // Create object in database using the weeObjects model’s postOne function
+    const dbResponse = await weeObjects.postOne(object);
+
+    // Send the response from the database
+    res.send(dbResponse);
   } catch (err) {
     res.status(500);
     console.error(err);

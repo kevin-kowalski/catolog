@@ -1,3 +1,4 @@
+import { Category } from "../types";
 import WeeCategory from "./weeCategorySchema.m";
 
 /**
@@ -13,6 +14,18 @@ export const getAll = async () => {
 
     // Return all retrieved objects
     return allCategories;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+/**
+ * Creates one category, and returns it
+ */
+export const postOne = async (category: Category) => {
+  try {
+    const response = await WeeCategory.create(category);
+    return response;
   } catch (err) {
     console.error(err);
   }
