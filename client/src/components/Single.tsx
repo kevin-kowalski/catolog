@@ -46,7 +46,8 @@ function Single ( {model}: { model: ModelData | null} ) {
           <Scene isHovered={isHovered}>
             <>
               {localModel && (
-                <Model currentModel={localModel} currentObjectColor={'rgb(28, 226, 29)'} />
+                <Model currentModel={localModel} 
+                currentObjectColor={'rgb(28, 226, 29)'} />
               )}
               {model && (
                 <Model

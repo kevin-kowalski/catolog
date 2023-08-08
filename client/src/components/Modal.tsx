@@ -1,8 +1,6 @@
 import { useState, ChangeEvent, FormEvent} from "react";
 import { ModalProps } from "./utils/Types";
 import Checklist from "./Checklist";
-import { mod } from "three/examples/jsm/nodes/Nodes.js";
-
 
 function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
 
@@ -49,7 +47,6 @@ function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
 
           <div className="modal-collection-1">
             <form onSubmit={handleSubmitCollection}>
-              {/* <label htmlFor="myInput">Collection:</label> */}
               <input type="text" id="myInput" value={inputValue} onChange={handleChangeCollection} placeholder="Collection"/>
               <button type="submit">Next</button>
             </form>
@@ -59,7 +56,7 @@ function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
         {showSecondConfiguratorCollection && (
           <div className="modal-collection-2">
             <button onClick={handlePreviousButtonClickCollection}>back</button>
-            <Checklist models={allModels} setModelsToPost={setModelsToPost} setCategoryToPost={setCategoryToPost} categoryToPost={categoryToPost}></Checklist>
+            <Checklist models={allModels} setModelsToPost={setModelsToPost} setCategoryToPost={setCategoryToPost} categoryToPost={categoryToPost} setModalIsOpen={setModalIsOpen}></Checklist>
           </div>
         )}
       </div>

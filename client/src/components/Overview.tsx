@@ -30,7 +30,6 @@ function Overview () {
         .then((models) => {
           setModels(models!);
           setAllModels(models);
-          console.log(models)
         });
     }
     else {

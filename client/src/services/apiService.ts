@@ -72,7 +72,7 @@ export function postModel(model : ModelData) {
     })
   })
     .then(res => res.json)
-    .then(res => console.log('I just posted:', res))
+    .then(res => console.log('I just posted the model:', res))
     .catch(error => console.log(error))
 }
 

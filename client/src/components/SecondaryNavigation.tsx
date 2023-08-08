@@ -1,7 +1,8 @@
 import React from "react";
 import { Category, SecondaryNavigationProps } from "./utils/Types";
-
+import { Link } from "react-router-dom";
 function SecondaryNavigation ({ collection, setPredicate, setModalIsOpen, setDialogue }: SecondaryNavigationProps) {
+
 
   const collectionWithAll = [{
     _id: 'all',
@@ -17,6 +18,8 @@ function SecondaryNavigation ({ collection, setPredicate, setModalIsOpen, setDia
   function handleClick (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const predicate = event.currentTarget.dataset.value as string;
     setPredicate(predicate);
+    console.log('predicate', predicate)
+
     // go to collection route fehlt noch 
   }
 
@@ -32,7 +35,9 @@ function SecondaryNavigation ({ collection, setPredicate, setModalIsOpen, setDia
   return (<>
     <div className="secondary-navigation">
       {collectionWithAll.map((item: Category) => (
-        <div className="nav-item" key={item._id} data-value={item.title.toLowerCase()} onClick={handleClick}>{item.title}</div>
+        <Link key={item._id} to={`/category/${item.title}`}>
+          <div key={item._id} className="nav-item" data-value={item.title.toLowerCase()} onClick={handleClick}>{item.title}</div>
+        </Link>
       ))}
       <button onClick={handleButtonClick}>Add collection</button>
     </div>
