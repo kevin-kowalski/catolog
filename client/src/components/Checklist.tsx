@@ -2,7 +2,7 @@ import { FormEvent } from "react";
 import Single from "./Single";
 import { ChecklistProps, ModelData } from "./utils/Types";
 
-function Checklist ({ models, setModelsToPost }: ChecklistProps) {
+function Checklist ({ models, setModelsToPost, setCategoryToPost, categoryToPost }: ChecklistProps) {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) :void {
     event.preventDefault();
@@ -10,12 +10,12 @@ function Checklist ({ models, setModelsToPost }: ChecklistProps) {
     const checkedItems = Array.from(form.elements).filter((element) => element instanceof HTMLInputElement && element.type === 'checkbox' && element.checked)
     // .map((element) => models.find((model) => model._id === element._id))
     const checkedItemIds = checkedItems.map((item) => item.id);
-    console.log(checkedItemIds);
-    
+    setModelsToPost(checkedItemIds)
+    //post: in die catgegorie die models reinposten
+    // put : ändere Models mit neuen Kategorien
+    // auf die collections route dieser collection gehen 
+    // seite im useffect aktualisieren, sodass kategorien aktuell sind 
 
-    // console.log('Checked items:', checkedItems)
-    //setModelsToPost(_id von checked Models) string[]
-    //post 
   }
 
 

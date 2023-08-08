@@ -17,6 +17,7 @@ function SecondaryNavigation ({ collection, setPredicate, setModalIsOpen, setDia
   function handleClick (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const predicate = event.currentTarget.dataset.value as string;
     setPredicate(predicate);
+    // go to collection route fehlt noch 
   }
 
   function handleButtonClick () {

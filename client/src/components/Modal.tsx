@@ -70,6 +70,10 @@ function Modal ({dialogue, setModalIsOpen, models}: ModalProps) {
       <button onClick={() => setModalIsOpen(false)}>Cancel</button>
 
         <form action="submit">
+          {/* handlesubmit: 
+              - data posten
+              - seite im useffect aktualisieren
+              - zur collection route umleiten */}
 
           <div>
             <label htmlFor="title">Title:</label>
