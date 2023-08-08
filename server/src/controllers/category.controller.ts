@@ -24,10 +24,10 @@ export async function getAll(req: Request, res: Response) {
  */
 export async function postOne (req: Request, res: Response) {
   try {
-    const category = req.body;
+    const categoryData = req.body;
 
     // Ensure all required properties were given
-    if (!category.title) {
+    if (!categoryData.title) {
       res.status(400);
       res.send({
         message: 'Category is missing properties'
@@ -36,7 +36,7 @@ export async function postOne (req: Request, res: Response) {
     }
 
     // Ensure that the category does not already exist
-    const existingCategory = await category.getOne(category.title);
+    const existingCategory = await category.getOne(categoryData.title);
 
     if (existingCategory) {
       res.status(400);
@@ -48,20 +48,27 @@ export async function postOne (req: Request, res: Response) {
 
     // If the models property is undefined,
     // set its value to an empty array
-    if (!category.models) {
-      category.models = [];
+    if (!categoryData.models) {
+      categoryData.models = [];
     }
 
     // Else if the models property was given,
     // loop through the array, and update each model’s
     // categories array
-    else if (category.models.length > 0) {
-      updateCategoriesOfModels(category);
+    else if (categoryData.models.length > 0) {
+      const response = updateCategoriesOfModels(categoryData);
+      if (!response) {
+        res.status(400);
+        res.send({
+          message: 'One or more models were not found'
+        });
+        return;
+      }
     }
 
     // Create category in database using the
     // Category model’s postOne function
-    const dbResponse = await category.postOne(category);
+    const dbResponse = await category.postOne(categoryData);
 
     // Send the response from the database
     res.send(dbResponse);
@@ -75,10 +82,14 @@ export async function postOne (req: Request, res: Response) {
  * Helper function
  */
 
-// Update all models’ categories array, using the model
+// Update all models’ categories array, using the "object"
 // model’s findOneAndUpdateCategories function
-function updateCategoriesOfModels (category: CategoryType) {
+function updateCategoriesOfModels (category: CategoryType): boolean | null {
   for (let modelId of category.models) {
-    findOneAndUpdateCategories(modelId, category.title);
+    const dbResponse = findOneAndUpdateCategories(modelId, category.title);
+    if (!dbResponse) {
+      return null;
+    }
   }
+  return true;
 };
