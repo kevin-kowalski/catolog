@@ -9,7 +9,6 @@ const router = express.Router();
 // Routes
 router.post('/register', authController.register);
 router.post('/login', authController.login);
-router.post('/logout', authController.logout);
 
 router.get('/models', weeObjectController.getAll);
 router.get('/models/:id', weeObjectController.getOne);
