@@ -31,6 +31,17 @@ export interface SecondaryNavigationProps {
 
 export interface ModalProps {
   dialogue: string;
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  models: ModelData[]
+
+}
+
+export interface ChecklistProps {
+  setModelsToPost: Dispatch<SetStateAction<string[]>>
+  models: ModelData[]
+  setCategoryToPost: Dispatch<SetStateAction<string>>
+  categoryToPost: String
+
 }
 
 export interface SceneProps {
