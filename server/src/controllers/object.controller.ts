@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import * as weeObjects from '../models/weeObject.m';
+import * as objects from '../models/object.model';
+import { ObjectType } from '../types';
+import { findOneAndUpdateModelIds } from '../models/category.model';
 
 /**
  * Controller function for retrieving a single object by its id.
@@ -16,11 +18,11 @@ export async function getOne (req: Request, res: Response) {
       res.send('No object id provided in data.');
     }
 
-    // Retrieve the specific object using the weeObjects model's getOne function
-    const weeObject = await weeObjects.getOne(objectId);
+    // Retrieve the specific object using the Objects model's getOne function
+    const object = await objects.getOne(objectId);
 
     // Send the retrieved object as the response
-    res.send(weeObject);
+    res.send(object);
   } catch (err) {
     res.status(500);
     console.error(err);
@@ -42,8 +44,8 @@ export async function getByCategory (req: Request, res: Response) {
       res.send('No category name provided in data.');
     }
 
-    // Retrieve objects belonging to the specified category using the weeObjects model's getCategory function
-    const categoryObjects = await weeObjects.getByCategory(categoryName);
+    // Retrieve objects belonging to the specified category using the Objects model's getCategory function
+    const categoryObjects = await objects.getByCategory(categoryName);
 
     // Send the retrieved objects as the response
     res.send(categoryObjects);
@@ -58,11 +60,11 @@ export async function getByCategory (req: Request, res: Response) {
  */
 export async function getAll (req: Request, res: Response) {
   try {
-    // Retrieve all objects using the weeObjects model's getAll function
-    const allWeeObjects = await weeObjects.getAll();
+    // Retrieve all objects using the Objects model's getAll function
+    const allObjects = await objects.getAll();
 
     // Send all retrieved objects as the response
-    res.send(allWeeObjects);
+    res.send(allObjects);
   } catch (err) {
     res.status(500);
     console.error(err);
@@ -77,7 +79,7 @@ export async function postOne (req: Request, res: Response) {
     const object = req.body;
 
     // Ensure all required properties were given
-    if (!object.title || !object.author || !object.glb || !object.scale) {
+    if (!object.title || !object.glb) {
       res.status(400);
       res.send({
         error: true,
@@ -85,8 +87,23 @@ export async function postOne (req: Request, res: Response) {
       });
     }
 
-    // Create object in database using the weeObjects model’s postOne function
-    const dbResponse = await weeObjects.postOne(object);
+    // If the categories property is undefined,
+    // set its value to an empty array
+    if (!object.categories) {
+      object.categories = [];
+    }
+
+    // Create object in database using the objects model’s postOne function
+    const dbResponse = await objects.postOne(object);
+
+    // If the categories property was given,
+    // and there is at least one category in it,
+    // add the model’s id to all category’s models array
+    if (object.categories.length > 0) {
+      // Add the newly created document’s id to the object
+      object._id = dbResponse._id;
+      updateModelIdsOfCategories(object);
+    }
 
     // Send the response from the database
     res.send(dbResponse);
@@ -95,3 +112,15 @@ export async function postOne (req: Request, res: Response) {
     console.error(err);
   }
 };
+
+/**
+ * Helper function
+ */
+
+// Update all categories’ models array, using the model
+// model’s findOneAndUpdateCategories function
+function updateModelIdsOfCategories (object: ObjectType) {
+  for (let categoryName of object.categories) {
+    findOneAndUpdateModelIds(categoryName, object._id);
+  }
+}

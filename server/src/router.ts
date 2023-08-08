@@ -1,6 +1,6 @@
 import express from 'express';
-import * as weeObjectController from './controllers/weeObject.c';
-import * as weeCategoryController from './controllers/weeCategory.c';
+import * as objectController from './controllers/object.controller';
+import * as categoryController from './controllers/category.controller';
 import * as authController from './controllers/auth.controller';
 
 // Set up router
@@ -10,12 +10,12 @@ const router = express.Router();
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 
-router.get('/models', weeObjectController.getAll);
-router.get('/models/:id', weeObjectController.getOne);
-router.get('/models/category/:category', weeObjectController.getByCategory);
-router.post('/model', weeObjectController.postOne);
+router.get('/models', objectController.getAll);
+router.get('/models/:id', objectController.getOne);
+router.get('/models/category/:category', objectController.getByCategory);
+router.post('/model', objectController.postOne);
 
-router.get('/categories', weeCategoryController.getAll);
-router.post('/category', weeCategoryController.postOne);
+router.get('/categories', categoryController.getAll);
+router.post('/category', categoryController.postOne);
 
 export default router;

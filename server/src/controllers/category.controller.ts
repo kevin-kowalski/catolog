@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
-import * as weeCategory from '../models/weeCategory.m';
-import { findOneAndUpdateCategories } from '../models/weeObject.m';
-import { Category } from '../types';
+import * as category from '../models/category.model';
+import { findOneAndUpdateCategories } from '../models/object.model';
+import { CategoryType } from '../types';
 
 /**
  * Controller function for retrieving all categories.
  */
 export async function getAll(req: Request, res: Response) {
   try {
-    // Retrieve all categories using the weeCategory model's getAll function
-    const allWeeCategories = await weeCategory.getAll();
+    // Retrieve all categories using the Category model's getAll function
+    const allCategories = await category.getAll();
 
     // Send all retrieved categories as the response
-    res.send(allWeeCategories);
+    res.send(allCategories);
   } catch (err) {
     res.status(500);
     console.error(err);
@@ -36,11 +36,9 @@ export async function postOne (req: Request, res: Response) {
     }
 
     // Ensure that the category does not already exist
-    const existingCategory = await weeCategory.getOne(category.title);
-    console.log(existingCategory);
-    console.log(existingCategory.length);
+    const existingCategory = await category.getOne(category.title);
 
-    if (existingCategory.length > 0) {
+    if (existingCategory) {
       res.status(400);
       res.send({
         message: 'Category already exists'
@@ -48,13 +46,13 @@ export async function postOne (req: Request, res: Response) {
       return;
     }
 
-    // If no models exist in the category, add an empty
-    // array as the value of the models property
+    // If the models property is undefined,
+    // set its value to an empty array
     if (!category.models) {
       category.models = [];
     }
 
-    // Else if it includes a non-empty models array,
+    // Else if the models property was given,
     // loop through the array, and update each model’s
     // categories array
     else if (category.models.length > 0) {
@@ -62,8 +60,8 @@ export async function postOne (req: Request, res: Response) {
     }
 
     // Create category in database using the
-    // weeCategory model’s postOne function
-    const dbResponse = await weeCategory.postOne(category);
+    // Category model’s postOne function
+    const dbResponse = await category.postOne(category);
 
     // Send the response from the database
     res.send(dbResponse);
@@ -79,7 +77,7 @@ export async function postOne (req: Request, res: Response) {
 
 // Update all models’ categories array, using the model
 // model’s findOneAndUpdateCategories function
-function updateCategoriesOfModels (category: Category) {
+function updateCategoriesOfModels (category: CategoryType) {
   for (let modelId of category.models) {
     findOneAndUpdateCategories(modelId, category.title);
   }

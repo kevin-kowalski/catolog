@@ -1,4 +1,4 @@
-export interface Object {
+export interface ObjectType {
   title: string;
   author: string;
   description: string;
@@ -7,14 +7,15 @@ export interface Object {
   categories: string[];
   scale: number;
   date: number;
+  _id?: string;
 }
 
-export interface Category {
+export interface CategoryType {
   title: string;
   models: string[];
 }
 
-export interface User {
+export interface UserType {
   email: string;
   password: string;
 }
