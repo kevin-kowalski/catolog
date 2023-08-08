@@ -1,7 +1,7 @@
 import React from "react";
 import { Category, SecondaryNavigationProps } from "./utils/Types";
 
-function SecondaryNavigation ({ collection, setPredicate }: SecondaryNavigationProps) {
+function SecondaryNavigation ({ collection, setPredicate, setModalIsOpen, setDialogue }: SecondaryNavigationProps) {
 
   const collectionWithAll = [{
     _id: 'all',
@@ -17,6 +17,12 @@ function SecondaryNavigation ({ collection, setPredicate }: SecondaryNavigationP
   function handleClick (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const predicate = event.currentTarget.dataset.value as string;
     setPredicate(predicate);
+    // go to collection route fehlt noch 
+  }
+
+  function handleButtonClick () {
+    setDialogue('collection')
+    setModalIsOpen(true)
   }
 
   /**
@@ -28,6 +34,7 @@ function SecondaryNavigation ({ collection, setPredicate }: SecondaryNavigationP
       {collectionWithAll.map((item: Category) => (
         <div className="nav-item" key={item._id} data-value={item.title.toLowerCase()} onClick={handleClick}>{item.title}</div>
       ))}
+      <button onClick={handleButtonClick}>Add collection</button>
     </div>
   </>);
 }

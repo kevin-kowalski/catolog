@@ -25,6 +25,12 @@ export interface Category {
 export interface SecondaryNavigationProps {
   collection: Category[],
   setPredicate: React.Dispatch<React.SetStateAction<string>>
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setDialogue: React.Dispatch<React.SetStateAction<string>>
+}
+
+export interface ModalProps {
+  dialogue: string;
 }
 
 export interface SceneProps {

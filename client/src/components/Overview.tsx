@@ -3,6 +3,7 @@ import { Category, ModelData } from "./utils/Types";
 import { getAll, getCategories, getCategory } from "../services/apiService";
 import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
+import Modal from "./Modal";
 
 function Overview () {
 
@@ -10,6 +11,9 @@ function Overview () {
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>('all');
   const [models, setModels] = useState<ModelData[]>([]);
+
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
+  const [dialogue, setDialogue] = useState<string>('')
 
   // Retrieve all categories and set the categories
   // state variable to them
@@ -34,15 +38,26 @@ function Overview () {
     }
   }, [currentCategory]);
 
+  // Handler Functions 
+
+  function handleButtonClick () {
+    setDialogue('object')
+    setModalIsOpen(true)
+  }
+
   /**
    * Render component
    */
 
   return (<>
+    <button onClick={handleButtonClick}>Add Item</button>
     <div className="overview">
-      <SecondaryNavigation collection={categories} setPredicate={setCurrentCategory} />
+      <SecondaryNavigation collection={categories} setPredicate={setCurrentCategory} setModalIsOpen={setModalIsOpen} setDialogue={setDialogue}/>
       <List models={models}/>
     </div>
+    {modalIsOpen && (
+      <Modal dialogue={dialogue} setModalIsOpen={setModalIsOpen} models={models}/>
+    )}
   </>);
 }
 

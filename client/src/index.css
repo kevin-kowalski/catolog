@@ -49,3 +49,9 @@ a {
   width: 100%;
   aspect-ratio: 1;
 }
+
+.modal{
+  background-color: white;
+  position: absolute;
+  inset: 0; 
+}
