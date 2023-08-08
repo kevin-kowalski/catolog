@@ -19,7 +19,7 @@ export async function register(req: Request, res: Response): Promise<void> {
   try {
     const { email, password } = req.body;
 
-    // Try to retrieve user from database
+    // Try to retrieve user from database by email
     const existingUser = await findUserByEmail(email);
 
     // Ensure user exists
@@ -72,9 +72,4 @@ export async function login(req: Request, res: Response): Promise<void> {
     res.status(500);
     res.send({ message: 'Internal server error' });
   }
-}
-
-export function logout(req: Request, res: Response): void {
-  res.status(200);
-  res.send({ message: 'Logout successful' });
 }
