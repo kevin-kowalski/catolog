@@ -1,12 +1,12 @@
 import request from 'supertest';
 import app from '../src/index';
 import mongoose from 'mongoose';
-import WeeObject from '../src/models/weeObjectSchema.m';
-import * as objectModelFunctions from '../src/models/weeObject.m';
-import * as categoryModelFunctions from '../src/models/weeCategory.m';
+import { WObject } from '../src/models/object.schema';
+import * as objectModelFunctions from '../src/models/object.model';
+import * as categoryModelFunctions from '../src/models/category.model';
 
 import { mockObjectData, mockObjectsData, mockCategories, mockObject, mockCategory } from './mocks';
-import WeeCategory from '../src/models/weeCategorySchema.m';
+import { Category } from '../src/models/category.schema';
 
 afterAll(async () => {
   mongoose.disconnect();
@@ -37,14 +37,14 @@ describe('Test database connection', () => {
 describe('Database', () => {
 
   afterAll(async () => {
-    await WeeObject.deleteOne({ title: 'Default Test Cube' });
-    await WeeObject.deleteMany({ category: 'Dog'});
-    await WeeObject.deleteMany({ category: 'Duck'});
+    await WObject.deleteOne({ title: 'Default Test Cube' });
+    await WObject.deleteMany({ category: 'Dog'});
+    await WObject.deleteMany({ category: 'Duck'});
   });
 
   it('should add object to database without errors', async () => {
     try {
-      const mockWeeObject = new WeeObject(mockObjectData);
+      const mockWeeObject = new WObject(mockObjectData);
       await mockWeeObject.save();
     } catch (err) {
       throw err;
@@ -53,7 +53,7 @@ describe('Database', () => {
 
   it('should retrieve an object from database without errors', async () => {
     try {
-      const weeObject = await WeeObject.findOne({ title: mockObjectData.title });
+      const weeObject = await WObject.findOne({ title: mockObjectData.title });
       expect(weeObject).toBeDefined();
       expect(weeObject?.title).toBe(mockObjectData.title);
     } catch (err) {
@@ -63,9 +63,9 @@ describe('Database', () => {
 
   it('should retrieve only objects of specific category', async () => {
     try {
-      await WeeObject.insertMany(mockObjectsData);
-      const dogWeeObjects = await WeeObject.find({ category: 'Dog' });
-      expect(dogWeeObjects.every((object) => object.category === 'Dog')).toBe(true);
+      await WObject.insertMany(mockObjectsData);
+      const dogWeeObjects = await WObject.find({ category: 'Dog' });
+      expect(dogWeeObjects.every((object) => object.categories.includes('Dog'))).toBe(true);
     } catch (err) {
       throw err;
     }
@@ -76,13 +76,13 @@ describe('Database', () => {
 describe('Model', () => {
 
   beforeAll(async () => {
-    await WeeObject.insertMany(mockObjectsData);
-    await WeeCategory.insertMany(mockCategories);
+    await WObject.insertMany(mockObjectsData);
+    await Category.insertMany(mockCategories);
   });
 
   afterAll(async () => {
-    await WeeObject.deleteMany();
-    await WeeCategory.deleteMany();
+    await WObject.deleteMany();
+    await Category.deleteMany();
   });
 
   it('should retrieve a single object based on its name, and return it', async () => {
@@ -99,7 +99,7 @@ describe('Model', () => {
     try {
       const weeObjects = await objectModelFunctions.getByCategory(mockObjectsData[0].category);
       expect(weeObjects).toBeDefined();
-      expect(weeObjects!.every((object) => object.category === mockObjectsData[0].category)).toBe(true);
+      expect(weeObjects!.every((object) => object.categories.includes(mockObjectsData[0].category))).toBe(true);
     } catch (err) {
       throw err;
     }
@@ -132,13 +132,13 @@ describe('Model', () => {
 describe('Router, Controller', () => {
 
   beforeAll(async () => {
-    await WeeObject.insertMany(mockObjectsData);
-    await WeeCategory.insertMany(mockCategories);
+    await WObject.insertMany(mockObjectsData);
+    await Category.insertMany(mockCategories);
   });
 
   afterAll(async () => {
-    await WeeObject.deleteMany();
-    await WeeCategory.deleteMany();
+    await WObject.deleteMany();
+    await Category.deleteMany();
   });
 
   describe('Models', () => {

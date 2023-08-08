@@ -5,9 +5,9 @@ import dotenv from 'dotenv';
 // Load environment variables from .env file
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-// Import the WeeObject model from the schema file
-import WeeObject from '../src/models/weeObjectSchema.m';
-import WeeCategory from '../src/models/weeCategorySchema.m';
+// Import the Object model from the schema file
+import { WObject } from '../src/models/object.schema';
+import { Category } from '../src/models/category.schema';
 
 // Create an array of default objects
 export const defaultObjects = [
@@ -108,16 +108,16 @@ async function seedDb () {
     console.log('>> Connected to database');
 
     // Reset database
-    await WeeObject.deleteMany();
-    await WeeCategory.deleteMany();
+    await WObject.deleteMany();
+    await Category.deleteMany();
     console.log('>> Database successfully reset');
 
     // Insert default objects into database
-    await WeeObject.insertMany(defaultObjects);
+    await WObject.insertMany(defaultObjects);
     console.log('>> Database successfully populated with objects');
 
     // Insert default categories into database
-    await WeeCategory.insertMany(defaultCategories);
+    await Category.insertMany(defaultCategories);
     console.log('>> Database successfully populated with categories');
 
     // Disconnect from database
