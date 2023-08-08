@@ -28,8 +28,6 @@ function Overview () {
       getAll()
         .then((models) => {
           setModels(models!);
-          console.log(models);
-
         });
     }
     else {
