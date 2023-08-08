@@ -20,11 +20,40 @@ export const getAll = async () => {
 };
 
 /**
+ * Retrieves one category by name, and returns it
+ */
+export const getOne = async (categoryName: string) => {
+  try {
+    const response = await WeeCategory.find({
+      title: categoryName
+    });
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+/**
  * Creates one category, and returns it
  */
 export const postOne = async (category: Category) => {
   try {
     const response = await WeeCategory.create(category);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+/**
+ * Finds one category by its title,
+ * updates its models array, and returns it
+ */
+export const findOneAndUpdateModels = async (category: Category) => {
+  try {
+    const filter = { title: category.title };
+    const update = { categories: category.models };
+    const response = await WeeCategory.findOneAndUpdate(filter, update);
     return response;
   } catch (err) {
     console.error(err);

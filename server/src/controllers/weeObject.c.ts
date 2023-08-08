@@ -31,7 +31,7 @@ export async function getOne (req: Request, res: Response) {
  * Controller function for retrieving objects belonging to a specific category.
  * It expects the category name to be provided as a request parameter.
  */
-export async function getCategory (req: Request, res: Response) {
+export async function getByCategory (req: Request, res: Response) {
   try {
     // Retrieve the category’s name from the parameters
     const categoryName = req.params.category;
@@ -43,7 +43,7 @@ export async function getCategory (req: Request, res: Response) {
     }
 
     // Retrieve objects belonging to the specified category using the weeObjects model's getCategory function
-    const categoryObjects = await weeObjects.getCategory(categoryName);
+    const categoryObjects = await weeObjects.getByCategory(categoryName);
 
     // Send the retrieved objects as the response
     res.send(categoryObjects);

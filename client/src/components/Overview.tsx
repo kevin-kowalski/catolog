@@ -38,7 +38,7 @@ function Overview () {
     }
   }, [currentCategory]);
 
-  // Handler Functions 
+  // Handler Functions
 
   function handleButtonClick () {
     setDialogue('object')

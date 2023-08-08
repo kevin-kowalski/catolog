@@ -7,7 +7,7 @@ const weeObjectSchema = new mongoose.Schema({
   description: String,
   glb: String,
   source: String,
-  category: String,
+  categories: [String],
   scale: mongoose.Types.Decimal128,
   date: { type: Date, default: Date.now() },
 });

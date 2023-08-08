@@ -97,7 +97,7 @@ describe('Model', () => {
 
   it('should retrieve all objects belonging to a specific category', async () => {
     try {
-      const weeObjects = await objectModelFunctions.getCategory(mockObjectsData[0].category);
+      const weeObjects = await objectModelFunctions.getByCategory(mockObjectsData[0].category);
       expect(weeObjects).toBeDefined();
       expect(weeObjects!.every((object) => object.category === mockObjectsData[0].category)).toBe(true);
     } catch (err) {

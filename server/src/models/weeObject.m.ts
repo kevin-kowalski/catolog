@@ -25,12 +25,12 @@ export const getOne = async (id: string) => {
  * Retrieves objects belonging to a specific category,
  * and returns them as an array
  */
-export const getCategory = async (name: string) => {
+export const getByCategory = async (categoryName: string) => {
   try {
     // Find WeeObjects with a category that matches the provided name (case-insensitive)
     const categoryObjects = await WeeObject.find({
-      category: { $regex: name, $options: 'i' },
-    }).exec();
+      categories: { $regex: new RegExp(categoryName, 'i') }
+    });
 
     // If no objects are found, throw an error
     if (!categoryObjects) throw new Error('No objects found');
@@ -66,6 +66,22 @@ export const getAll = async () => {
 export const postOne = async (object: Object) => {
   try {
     const response = await WeeObject.create(object);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+/**
+ * Finds one object by its title,
+ * updates its categories array, and returns it
+ */
+export const findOneAndUpdateCategories = async (id: string, category: string) => {
+  try {
+    const modelData = await getOne(id);
+    const filter = { _id: id };
+    const update = { categories: [...modelData.categories, category] };
+    const response = await WeeObject.findOneAndUpdate(filter, update);
     return response;
   } catch (err) {
     console.error(err);

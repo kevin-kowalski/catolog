@@ -4,13 +4,14 @@ export interface Object {
   description: string;
   glb: string;
   source: string;
-  category: string;
+  categories: string[];
   scale: number;
   date: number;
 }
 
 export interface Category {
   title: string;
+  models: string[];
 }
 
 export interface User {
