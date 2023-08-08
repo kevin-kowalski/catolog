@@ -10,6 +10,8 @@ import { AuthProvider, RequireAuth } from 'react-auth-kit';
 import LogIn from './components/LogIn';
 import LogOut from './components/LogOut';
 import Register from './components/Register';
+import Overview from './components/Overview';
+import List from './components/List';
 
 const router = createBrowserRouter([
   {
@@ -37,9 +39,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: '/models/:modelId',
+    path: '/model/:modelId',
     element: (<RequireAuth loginPath='/login'>
                 <Single model={null}/>
+              </RequireAuth>),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/category/:categoryName',
+    element: (<RequireAuth loginPath='/login'>
+                {/* <List models={null}/> */}
+                <Overview></Overview>
               </RequireAuth>),
     errorElement: <ErrorPage />,
   }

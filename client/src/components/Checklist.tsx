@@ -1,20 +1,33 @@
 import { FormEvent } from "react";
 import Single from "./Single";
-import { ChecklistProps, ModelData } from "./utils/Types";
+import { ChecklistProps} from "./utils/Types";
+import { postCategory } from "../services/apiService";
+import { useNavigate } from 'react-router-dom'
 
-function Checklist ({ models, setModelsToPost, setCategoryToPost, categoryToPost }: ChecklistProps) {
+function Checklist ({ models, setModelsToPost, categoryToPost, setModalIsOpen}: ChecklistProps) {
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) :void {
+  const navigate = useNavigate()
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) : void {
     event.preventDefault();
+    // The checkedItemIds are filtered out  
     const form = event.currentTarget as HTMLFormElement;
     const checkedItems = Array.from(form.elements).filter((element) => element instanceof HTMLInputElement && element.type === 'checkbox' && element.checked);
     const checkedItemIds = checkedItems.map((item) => item.id);
+
+    // A post request is prepared and then sent to the server 
     setModelsToPost(checkedItemIds);
-    // To do:
-    // post: in die catgegorie die models reinposten
-    // put : ändere Models mit neuen Kategorien
+    let category = {
+      title : categoryToPost,
+      models: checkedItemIds
+    }
+    postCategory(category)
+
     // auf die collections route dieser collection gehen
-    // seite im useffect aktualisieren, sodass kategorien aktuell sind
+
+    const categoryRoute = `/category/${category.title}`;
+    navigate(categoryRoute)
+    setModalIsOpen(false)
   }
 
   /**

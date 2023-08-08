@@ -2,7 +2,7 @@ import Single from "./Single";
 import { ModelData } from "./utils/Types";
 import { Link } from "react-router-dom";
 
-function List ({ models }: { models: ModelData[]}) {
+function List ({ models }: { models: ModelData[] | null}) {
 
   /**
    * Render component
@@ -10,11 +10,11 @@ function List ({ models }: { models: ModelData[]}) {
 
   return (<>
     <div className="list">
-      {models.map((model) => (
-        <Link key={model._id} to={`/models/${model._id}`}>
-          <Single key={model._id} model={model}/>
-        </Link>
-      ))}
+        {models!.map((model) => (
+          <Link key={model._id} to={`/model/${model._id}`}>
+            <Single key={model._id} model={model}/>
+          </Link>
+        ))}
     </div>
   </>);
 }

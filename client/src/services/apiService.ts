@@ -1,3 +1,5 @@
+import { BackendAdjustedCategory, Category, ModelData } from "../components/utils/Types";
+
 const baseUrl = 'http://localhost:3001';
 
 // Retrieve all objects from the /models route
@@ -40,6 +42,38 @@ export async function getCategories() {
   } catch (err) {
     console.log(err);
   }
+}
+
+// Post a newly created category to the database
+export function postCategory(category : object) {
+ fetch(baseUrl + '/category', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(
+    category
+  )
+ })
+  .then(res => res.json)
+  .then(res => console.log('I justed posted the category', res))
+  .catch(error => console.log(error))
+}
+
+// Post a newly created model to the database
+export function postModel(model : ModelData) {
+  fetch(baseUrl + '/model', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }, 
+    body: JSON.stringify({
+      model
+    })
+  })
+    .then(res => res.json)
+    .then(res => console.log('I just posted the model:', res))
+    .catch(error => console.log(error))
 }
 
 // Log in
