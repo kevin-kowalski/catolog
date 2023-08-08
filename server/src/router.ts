@@ -12,7 +12,7 @@ router.post('/login', authController.login);
 
 router.get('/models', weeObjectController.getAll);
 router.get('/models/:id', weeObjectController.getOne);
-router.get('/models/category/:category', weeObjectController.getCategory);
+router.get('/models/category/:category', weeObjectController.getByCategory);
 router.post('/model', weeObjectController.postOne);
 
 router.get('/categories', weeCategoryController.getAll);

@@ -28,6 +28,8 @@ function Overview () {
       getAll()
         .then((models) => {
           setModels(models!);
+          console.log(models);
+
         });
     }
     else {
@@ -38,7 +40,7 @@ function Overview () {
     }
   }, [currentCategory]);
 
-  // Handler Functions 
+  // Handler Functions
 
   function handleButtonClick () {
     setDialogue('object')

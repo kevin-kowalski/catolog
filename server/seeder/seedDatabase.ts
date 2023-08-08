@@ -16,7 +16,7 @@ export const defaultObjects = [
     author: 'Unknown Artist',
     description: 'The famous default cube',
     glb: 'default_cube-transformed.glb',
-    category: 'Default',
+    categories: ['Default'],
     source: '',
     scale: 1.5,
     date: 1690448981121,
@@ -26,7 +26,7 @@ export const defaultObjects = [
     author: 'Artist Unknown',
     description: 'Wireframe icosphere',
     glb: 'default_ico_wired-transformed.glb',
-    category: 'Default',
+    categories: ['Default'],
     source: '',
     scale: 1.5,
     date: 1690547882136,
@@ -36,7 +36,7 @@ export const defaultObjects = [
     author: 'Artist Unknown',
     description: 'Default torus shape',
     glb: 'default_torus-transformed.glb',
-    category: 'Default',
+    categories: ['Default'],
     source: '',
     scale: 2,
     date: 1690620720422,
@@ -46,7 +46,7 @@ export const defaultObjects = [
     author: 'printable_models',
     description: "It's a duck",
     glb: 'rubber_duck.glb',
-    category: 'Interior',
+    categories: ['Interior'],
     source: 'https://free3d.com/3d-model/rubber-duck-v1--614347.html',
     scale: 1,
     date: 1690620720422,
@@ -56,7 +56,7 @@ export const defaultObjects = [
     author: 'Unknown',
     description: '3D Knot',
     glb: 'knot.glb',
-    category: 'Clothing',
+    categories: ['Clothing'],
     source: '',
     scale: 1,
     date: 1690651481963,
@@ -66,7 +66,7 @@ export const defaultObjects = [
     author: 'allpolovinkina',
     description: 'Head - low poly version',
     glb: 'head_lowpoly.glb',
-    category: 'Clothing',
+    categories: ['Clothing'],
     source:
       'https://www.turbosquid.com/3d-models/3d-free-bust-head-base-mesh-model-1832518',
     scale: 3,
@@ -77,7 +77,7 @@ export const defaultObjects = [
     author: 'printable_models',
     description: 'Cat',
     glb: 'cat.glb',
-    category: 'Interior',
+    categories: ['Interior'],
     source: 'https://free3d.com/3d-model/cat-v1--522281.html',
     scale: 2,
     date: 1690829240292,
@@ -87,13 +87,16 @@ export const defaultObjects = [
 // Create an array of default objects
 export const defaultCategories = [
   {
-    title: 'Default'
+    title: 'Default',
+    models: [] as string[]
   },
   {
-    title: 'Interior'
+    title: 'Interior',
+    models: [] as string[]
   },
   {
-    title: 'Clothing'
+    title: 'Clothing',
+    models: [] as string[]
   }
 ];
 
