@@ -34,7 +34,6 @@ function Modal ({dialogue, setModalIsOpen, models}: ModalProps) {
       setShowFirstConfiguratorCollection(true)
     }
     
-  
 
   /**
    * Render component

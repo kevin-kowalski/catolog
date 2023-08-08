@@ -11,6 +11,7 @@ function Overview () {
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>('all');
   const [models, setModels] = useState<ModelData[]>([]);
+  const [allModels, setAllModels] = useState<ModelData[]>()
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   const [dialogue, setDialogue] = useState<string>('')
@@ -28,6 +29,7 @@ function Overview () {
       getAll()
         .then((models) => {
           setModels(models!);
+          setAllModels(models);
         });
     }
     else {
@@ -56,7 +58,7 @@ function Overview () {
       <List models={models}/>
     </div>
     {modalIsOpen && (
-      <Modal dialogue={dialogue} setModalIsOpen={setModalIsOpen} models={models}/>
+      <Modal dialogue={dialogue} setModalIsOpen={setModalIsOpen} models={allModels!}/>
     )}
   </>);
 }
