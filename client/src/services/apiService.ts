@@ -1,13 +1,10 @@
-import { Category, ModelData } from "../components/utils/Types";
-
 const baseUrl = 'http://localhost:3001';
 
 // Retrieve all objects from the /models route
 export async function getAll() {
   try {
     const response = await fetch(`${baseUrl}/models`);
-    const allWeeObjects : ModelData[] = await response.json();
-    return allWeeObjects;
+    return await response.json();
   } catch (err) {
     console.log(err);
   }
@@ -18,8 +15,7 @@ export async function getAll() {
 export async function getCategory(title: string) {
   try {
     const response = await fetch(`${baseUrl}/models/category/${title}`);
-    const categoryWeeObjects : ModelData[] = await response.json();
-    return categoryWeeObjects;
+    return await response.json();
   } catch (err) {
     console.log(err);
   }
@@ -30,10 +26,7 @@ export async function getCategory(title: string) {
 export async function getModel(id: string | undefined) {
   try {
     const response = await fetch(`${baseUrl}/models/${id}`);
-    console.log(response);
-
-    const weeObject = await response.json();
-    return weeObject;
+    return await response.json();
   } catch (err) {
     console.log(err)
   }
@@ -43,8 +36,7 @@ export async function getModel(id: string | undefined) {
 export async function getCategories() {
   try {
     const response = await fetch(`${baseUrl}/categories`);
-    const categories : Category[] = await response.json();
-    return categories;
+    return await response.json();
   } catch (err) {
     console.log(err);
   }
@@ -55,10 +47,30 @@ export async function logIn(user: {email: string, password: string}) {
   try {
     const response = await fetch(`${baseUrl}/login`, {
       method: 'POST',
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(user)
     });
-    return response.json();
+
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// Register
+export async function register(user: {email: string, password: string}) {
+  try {
+    const response = await fetch(`${baseUrl}/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    return await response.json();
   } catch (err) {
     console.log(err);
   }
