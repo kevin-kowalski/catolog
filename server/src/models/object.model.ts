@@ -10,7 +10,7 @@ export const getAll = async (): Promise<WObjectDocument[] | null> => {
     const allObjects = await WObject.find({});
 
     // If no objects are found, throw an error
-    if (!allObjects) throw new Error('No objects found');
+    if (!allObjects) console.log('No objects found');
 
     // Return all retrieved objects
     return allObjects;
@@ -30,7 +30,7 @@ export const getOne = async (id: string): Promise<WObjectDocument | null> => {
     });
 
     // If no object is found, throw an error
-    if (!object) throw new Error('No object found');
+    if (!object) console.log('No object found');
 
     // Return the retrieved object
     return object;
@@ -79,6 +79,11 @@ export const postOne = async (object: ObjectType): Promise<WObjectDocument | nul
 export const findOneAndUpdateCategories = async (id: string, category: string): Promise<WObjectDocument | null> => {
   try {
     const modelData = await getOne(id);
+
+    if (!modelData) {
+      return null;
+    }
+
     const filter = { _id: id };
     const update = { categories: [...modelData.categories, category] };
     const response = await WObject.findOneAndUpdate(filter, update);
