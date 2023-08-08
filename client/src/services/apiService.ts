@@ -1,4 +1,4 @@
-import { Category, ModelData } from "../components/utils/Types";
+import { BackendAdjustedCategory, Category, ModelData } from "../components/utils/Types";
 
 const baseUrl = 'http://localhost:3001';
 
@@ -45,15 +45,15 @@ export async function getCategories() {
 }
 
 // Post a newly created category to the database
-export function postCategory(category : Category) {
+export function postCategory(category : object) {
  fetch(baseUrl + '/category', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({
+  body: JSON.stringify(
     category
-  })
+  )
  })
   .then(res => res.json)
   .then(res => console.log('I justed posted the category', res))

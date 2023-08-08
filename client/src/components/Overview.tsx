@@ -20,7 +20,7 @@ function Overview () {
   // state variable to them
   useEffect(() => {
     getCategories().then((categories) => setCategories(categories!));
-  }, []);
+  }, [categories]);
 
   // When the currentCategory state variable is updated,
   // retrieve all models belonging to this category.
@@ -30,6 +30,7 @@ function Overview () {
         .then((models) => {
           setModels(models!);
           setAllModels(models);
+          console.log(models)
         });
     }
     else {
@@ -58,7 +59,7 @@ function Overview () {
       <List models={models}/>
     </div>
     {modalIsOpen && (
-      <Modal dialogue={dialogue} setModalIsOpen={setModalIsOpen} models={allModels!}/>
+      <Modal dialogue={dialogue} setModalIsOpen={setModalIsOpen} allModels={allModels!}/>
     )}
   </>);
 }
