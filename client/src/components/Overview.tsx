@@ -56,7 +56,7 @@ function Overview () {
       <List models={models}/>
     </div>
     {modalIsOpen && (
-      <Modal dialogue={dialogue} setModalIsOpen={setModalIsOpen} setPredicate={setCurrentCategory}/>
+      <Modal dialogue={dialogue} setModalIsOpen={setModalIsOpen} models={models}/>
     )}
   </>);
 }

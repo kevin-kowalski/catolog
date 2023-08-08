@@ -1,53 +1,40 @@
 import { useState, ChangeEvent, FormEvent} from "react";
 import { ModalProps } from "./utils/Types";
+import Checklist from "./Checklist";
+import { mod } from "three/examples/jsm/nodes/Nodes.js";
 
 
-function Modal ({dialogue, setModalIsOpen, setPredicate}: ModalProps) {
+function Modal ({dialogue, setModalIsOpen, models}: ModalProps) {
 
   // State Variables
   const [inputValue, setInputValue] = useState<string>('')
 
-  const [showFirstConfiguratorObject, setShowFirstConfiguratorObject] = useState<boolean>(true)
-  const [showSecondConfiguratorObject, setShowSecondConfiguratorObject] = useState<boolean>(false)
- 
   const [showFirstConfiguratorCollection, setShowFirstConfiguratorCollection] = useState<boolean>(true)
   const [showSecondConfiguratorCollection, setShowSecondConfiguratorCollection] = useState<boolean>(false)
 
+  const [categoryToPost, setCategoryToPost] = useState<string>('')
+  const [modelsToPost, setModelsToPost] = useState<string[]>([])
+
   // Handler Functions
 
-    function handleChange (event: ChangeEvent<HTMLInputElement>) {
+    function handleChangeCollection (event: ChangeEvent<HTMLInputElement>) {
       setInputValue(event.target.value)
     }
 
-    function handleSubmit (event: FormEvent) {
+    function handleSubmitCollection (event: FormEvent) {
       event.preventDefault();
       console.log('Form submitted:', inputValue);
-      setInputValue('');
+      setCategoryToPost(inputValue)
       setShowFirstConfiguratorCollection(false)
       setShowSecondConfiguratorCollection(true)
-      // post New Category
-      // setLocalCategory
-    }
-
-    function handleNextButtonClickCollection () {
-      //setShowFirstConfiguratorCollection(false)
-      //setShowSecondConfiguratorCollection(true)
     }
     
     function handlePreviousButtonClickCollection () {
-      //setShowFirstConfiguratorCollection(true)
-      //setShowSecondConfiguratorCollection(false)
-    }
-
-    function handleNextButtonClickObject () {
-      //setShowFirstConfiguratorObject(false)
-      //setShowSecondConfiguratorObject(true)
+      setShowSecondConfiguratorCollection(false)
+      setShowFirstConfiguratorCollection(true)
     }
     
-    function handlePreviousButtonClickObject () {
-      //setShowFirstConfiguratorObject(false)
-      //setShowSecondConfiguratorObject(true)
-    }
+  
 
   /**
    * Render component
@@ -62,32 +49,58 @@ function Modal ({dialogue, setModalIsOpen, setPredicate}: ModalProps) {
         {showFirstConfiguratorCollection  && (
 
           <div className="modal-collection-1">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitCollection}>
               {/* <label htmlFor="myInput">Collection:</label> */}
-              <input type="text" id="myInput" value={inputValue} onChange={handleChange} placeholder="Collection"/>
+              <input type="text" id="myInput" value={inputValue} onChange={handleChangeCollection} placeholder="Collection"/>
               <button type="submit">Next</button>
             </form>
           </div>
 
         )}
         {showSecondConfiguratorCollection && (
-          <button>Hello</button>
+          <div className="modal-collection-2">
+            <button onClick={handlePreviousButtonClickCollection}>back</button>
+            <Checklist models={models} setModelsToPost={setModelsToPost} setCategoryToPost={setCategoryToPost} categoryToPost={categoryToPost}></Checklist>
+          </div>
         )}
       </div>
     )}
     {dialogue === 'object' && (
-      <div> 
+      <div className="modal-object"> 
       <button onClick={() => setModalIsOpen(false)}>Cancel</button>
 
         <form action="submit">
-         <label htmlFor="country">Select a country</label>
-          <select id="country" name="country">
-            <option value="usa">USA</option>
-            <option value="canada">Canada</option>
-          </select>
+
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input id="title"/>
+          </div>
+
+          <div>
+            <label htmlFor="author">Author:</label>
+            <input id="author"/>
+          </div>
+
+          <div>
+            <label htmlFor="glb">Media:</label>
+            <input id="glb"/>
+          </div>
+
+          <div>
+            <label htmlFor="scale">Scale:</label>
+            <input id="scale"/>
+          </div>
+
+          <div>
+            <label htmlFor="collection">Collection:</label>
+            <select id="collection" name="collection">
+              <option value="my collection">my collection</option>
+            </select>
+          </div>
+          <button type="submit">Create</button>
         </form>
 
-    </div>
+      </div>
     )}
     </div>
   </>);
