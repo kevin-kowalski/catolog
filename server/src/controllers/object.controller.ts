@@ -141,3 +141,5 @@ export async function deleteOne (req: Request, res: Response) {
     res.send(err);
   }
 };
+
+// the object must also be deleted from the models array in the category

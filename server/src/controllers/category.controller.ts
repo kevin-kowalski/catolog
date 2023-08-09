@@ -109,3 +109,5 @@ export async function deleteOne (req: Request, res: Response) {
     res.send(err);
   }
 };
+
+// the category must also be deleted from the category array in the models 

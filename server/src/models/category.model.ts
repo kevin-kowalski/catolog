@@ -61,6 +61,9 @@ export const findOneAndUpdateModelIds = async (categoryName: string, id: string)
   }
 };
 
+/**
+ * Deletes one category, and returns it
+ */
 export async function deleteOne (id: string) {
   try {
     const response = await Category.deleteOne({
