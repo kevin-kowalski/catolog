@@ -2,8 +2,9 @@ import { useState, ChangeEvent, FormEvent} from "react";
 import { ModalProps, ModelData, NumDecimal } from "./utils/Types";
 import Checklist from "./Checklist";
 import { postModel } from "../services/apiService";
+import { Category } from "./utils/Types";
 
-function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
+function Modal ({dialogue, setModalIsOpen, allModels, collection}: ModalProps) {
 
   // State Variables
   const [inputValue, setInputValue] = useState<string>('')
@@ -51,7 +52,7 @@ function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
 
       console.log(obj)
 
-      postModel(obj)
+      // postModel(obj)
     }
 
   /**
@@ -87,11 +88,7 @@ function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
       <button onClick={() => setModalIsOpen(false)}>Cancel</button>
 
         <form onSubmit={handleSubmitObject}>
-          {/* handlesubmit: 
-              - data posten
-              - seite im useffect aktualisieren
-              - zur collection route umleiten */}
-
+      
           <div>
             <label htmlFor="title">Title:</label>
             <input id="title"/>
@@ -115,7 +112,12 @@ function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
           <div>
             <label htmlFor="collection">Collection:</label>
             <select id="collection" name="collection">
-              <option value="my collection">my collection</option>
+            { collection.map((item: Category) => {
+              return(
+              <option key={item._id} value={item.title}>{item.title}</option>
+              )
+            })
+            }
             </select>
           </div>
           <button type="submit">Create</button>
