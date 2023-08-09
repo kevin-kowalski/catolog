@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import Info from "./Info";
-import { ModelData } from "./types/types";
+import { ModelData } from "../types/types";
 import { Suspense, useEffect, useState } from "react";
 import LoadingStatus from "./fiber/LoadingStatus";
 import Scene from "./Scene";

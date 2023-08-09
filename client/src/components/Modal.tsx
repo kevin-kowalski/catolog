@@ -1,8 +1,8 @@
 import { useState, ChangeEvent, FormEvent, useEffect} from "react";
-import { ModalProps, ModelData, NumDecimal } from "./types/types";
+import { ModalProps, ModelData, NumDecimal } from "../types/types";
 import Checklist from "./Checklist";
 import { getAll, postModel } from "../services/apiService";
-import { Category } from "./types/types";
+import { Category } from "../types/types";
 import { useNavigate } from "react-router-dom";
 
 function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {

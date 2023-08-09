@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import Single from "./Single";
-import { ChecklistProps} from "./types/types";
+import { ChecklistProps} from "../types/types";
 import { postCategory } from "../services/apiService";
 import { useNavigate } from 'react-router-dom'
 

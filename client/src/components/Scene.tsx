@@ -1,6 +1,6 @@
 import { OrbitControls } from '@react-three/drei';
 import PlainScene from './fiber/PlainScene';
-import { SceneProps } from './types/types';
+import { SceneProps } from '../types/types';
 
 function Scene({ children, isHovered }: SceneProps) {
 

@@ -1,4 +1,4 @@
-import { Category, ModelData } from "../components/types/types";
+import { Category, ModelData } from "../types/types";
 
 const baseUrl = 'http://localhost:3001';
 
@@ -71,7 +71,7 @@ export async function postModel(model : ModelData): Promise<ModelData | undefine
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(
-        model
+        {...model, scale: model.scale?.$numberDecimal}
       )
     })
     return await response.json()
