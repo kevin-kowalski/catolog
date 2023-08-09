@@ -5,21 +5,27 @@ export type NumDecimal = {
 };
 
 export interface ModelData {
-  _id: string;
+  _id?: string;
   title: string;
-  author: string;
-  description: string;
+  author?: string;
+  description?: string;
   glb: string;
-  category: string;
-  source: string;
-  scale: NumDecimal;
-  date: number;
+  categories?: string[];
+  source?: string;
+  scale?: number;
+  date?: number;
   ypos?: NumDecimal;
 }
 
 export interface Category {
   _id: string;
   title: string;
+  models: string[];
+}
+
+export interface BackendAdjustedCategory { 
+  title: String;
+  categories: string[];
 }
 
 export interface SecondaryNavigationProps {
@@ -32,7 +38,7 @@ export interface SecondaryNavigationProps {
 export interface ModalProps {
   dialogue: string;
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  models: ModelData[]
+  allModels: ModelData[]
 
 }
 
@@ -41,7 +47,7 @@ export interface ChecklistProps {
   models: ModelData[]
   setCategoryToPost: Dispatch<SetStateAction<string>>
   categoryToPost: String
-
+  setModalIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export interface SceneProps {
