@@ -20,7 +20,7 @@ export interface ModelData {
 export interface Category {
   _id: string;
   title: string;
-  models: string[];
+  models?: string[];
 }
 
 export interface BackendAdjustedCategory {
@@ -29,10 +29,9 @@ export interface BackendAdjustedCategory {
 }
 
 export interface SecondaryNavigationProps {
-  collection: Category[],
-  setPredicate: React.Dispatch<React.SetStateAction<string>>
-  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setDialogue: React.Dispatch<React.SetStateAction<string>>
+  collection: Category[];
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setDialogue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface ModalProps {
