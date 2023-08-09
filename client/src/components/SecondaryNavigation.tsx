@@ -1,4 +1,4 @@
-import { Category, SecondaryNavigationProps } from "./types/types";
+import { Category, SecondaryNavigationProps } from "../types/types";
 import { Link } from "react-router-dom";
 function SecondaryNavigation ({ collection, setModalIsOpen, setDialogue }: SecondaryNavigationProps) {
 

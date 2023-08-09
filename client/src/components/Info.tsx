@@ -1,4 +1,4 @@
-import { InfoProps } from './types/types.js';
+import { InfoProps } from '../types/types.js';
 
 function Info({ currentModel }: InfoProps) {
 

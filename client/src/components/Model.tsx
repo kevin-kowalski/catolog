@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
-import { ModelProps } from './types/types';
+import { ModelProps } from '../types/types';
 
 function Model({ currentModel, currentObjectColor }: ModelProps) {
 

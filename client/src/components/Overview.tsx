@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Category, ModelData } from "./types/types";
+import { Category, ModelData } from "../types/types";
 import { getAll, getCategories, getCategory } from "../services/apiService";
 import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
