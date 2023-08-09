@@ -1,15 +1,21 @@
 import { FormEvent } from "react";
 import Single from "./Single";
-import { ChecklistProps} from "./utils/Types";
+import { ChecklistProps} from "./types/types";
 import { postCategory } from "../services/apiService";
 import { useNavigate } from 'react-router-dom'
 
 function Checklist ({ models, categoryToPost, setModalIsOpen}: ChecklistProps) {
 
+  /* Hook */
+
   const navigate = useNavigate()
 
+  /* Handler function */
+
+  // When the user clicks on submit
   function handleSubmit(event: FormEvent<HTMLFormElement>) : void {
     event.preventDefault();
+
     // The checkedItemIds are filtered out
     const form = event.currentTarget as HTMLFormElement;
     const checkedItems = Array.from(form.elements).filter((element) => element instanceof HTMLInputElement && element.type === 'checkbox' && element.checked);
@@ -22,16 +28,13 @@ function Checklist ({ models, categoryToPost, setModalIsOpen}: ChecklistProps) {
     }
     postCategory(category)
 
-    // auf die collections route dieser collection gehen
-
+    // Redirect to the category route
     const categoryRoute = `/category/${category.title}`;
     navigate(categoryRoute)
     setModalIsOpen(false)
   }
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     <form onSubmit={handleSubmit}>

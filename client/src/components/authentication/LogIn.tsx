@@ -1,34 +1,40 @@
 import { useState } from "react";
+import { useSignIn } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
-import { register } from "../services/apiService";
+import { logIn } from "../../services/apiService";
 
-function Register () {
+function LogIn () {
 
-  /**
-   * State variables
-   */
+  /* State variables */
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
 
+  const signIn = useSignIn();
   const navigate = useNavigate();
 
-  /**
-   * Handler functions
-   */
+  /* Handler functions */
 
   // When the user submits the log-in form
   async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
-      const response = await register({ email, password });
+      const response = await logIn({ email, password });
 
-      // If the registration was successful,
-      // redirect the user to the login page,
+      // If the log in attempt was successful,
+      // use the token in the server response
+      // to sign the user in,
+      // and redirect the user to the root,
       // otherwise show the error message
-      if (response.user) {
-        navigate('/login');
+      if (response.token) {
+        signIn({
+          token: response.token,
+          expiresIn: 3600,
+          tokenType: 'Bearer',
+          authState: { email }
+        });
+        navigate('/');
       } else {
         setError(response.message);
       }
@@ -52,21 +58,20 @@ function Register () {
     setPassword(passwordValue);
   }
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
-    <h1>Register</h1>
+    <h1>Log in</h1>
     <form onSubmit={handleSubmit}>
       <input type="email" value={email} onChange={handleChangeEmail}></input>
       <input type="password" value={password} onChange={handleChangePassword}></input>
-      <button type="submit">Register</button>
+      <button type="submit">Log in</button>
     </form>
     {error && (
       <p>Error: {error}</p>
     )}
   </>)
+
 }
 
-export default Register;
+export default LogIn;

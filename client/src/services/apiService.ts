@@ -1,4 +1,4 @@
-import { Category, ModelData } from "../components/utils/Types";
+import { Category, ModelData } from "../components/types/types";
 
 const baseUrl = 'http://localhost:3001';
 
@@ -55,7 +55,7 @@ export async function postCategory(category : object) {
       body: JSON.stringify(
         category
       )
-    }) 
+    })
     return await response.json()
   } catch (err) {
     console.log(err)

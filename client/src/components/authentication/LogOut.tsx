@@ -3,16 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 function LogOut () {
 
-  /**
-   * Hooks
-   */
+  /* Hooks */
 
   const signOut = useSignOut();
   const navigate = useNavigate();
 
-  /**
-   * Handler function
-   */
+  /* Handler function */
 
   // When the user clicks the log out button,
   // sign him out, using the singOut function
@@ -21,9 +17,7 @@ function LogOut () {
     navigate('/login');
   }
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     <h1>Log out</h1>

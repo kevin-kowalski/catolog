@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import Root from './routes/root';
 import ErrorPage from './components/ErrorPage';
 import './index.css';
 import App from './App';
 import Single from './components/Single';
 import { AuthProvider, RequireAuth } from 'react-auth-kit';
-import LogIn from './components/LogIn';
-import LogOut from './components/LogOut';
-import Register from './components/Register';
+import LogIn from './components/authentication/LogIn';
+import LogOut from './components/authentication/LogOut';
+import Register from './components/authentication/Register';
 import Overview from './components/Overview';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (<RequireAuth loginPath='/login'>
+    element: (<RequireAuth loginPath='/authentication/login'>
                 <App />
               </RequireAuth>),
     errorElement: <ErrorPage />,
@@ -32,21 +31,21 @@ const router = createBrowserRouter([
   },
   {
     path: '/logout',
-    element: (<RequireAuth loginPath='/login'>
+    element: (<RequireAuth loginPath='/authentication/login'>
                 <LogOut />
               </RequireAuth>),
     errorElement: <ErrorPage />,
   },
   {
     path: '/model/:modelId',
-    element: (<RequireAuth loginPath='/login'>
+    element: (<RequireAuth loginPath='/authentication/login'>
                 <Single model={null}/>
               </RequireAuth>),
     errorElement: <ErrorPage />,
   },
   {
     path: '/category/:categoryName',
-    element: (<RequireAuth loginPath='/login'>
+    element: (<RequireAuth loginPath='/authentication/login'>
                 {/* <List models={null}/> */}
                 <Overview></Overview>
               </RequireAuth>),

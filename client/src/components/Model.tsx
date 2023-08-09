@@ -1,18 +1,16 @@
 import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
-import { ModelProps } from './utils/Types';
+import { ModelProps } from './types/types';
 
 function Model({ currentModel, currentObjectColor }: ModelProps) {
 
-  // Constants
+  /* Constants */
   const { scene } = useGLTF('../' + currentModel.glb);
   const model = setupModel(scene);
   const geometry = model.geometry;
-  const modelScale = currentModel.scale.$numberDecimal ?? 1;
+  const modelScale = currentModel.scale?.$numberDecimal ?? 1;
 
-  /**
-   * Setup helper function
-   */
+  /* Setup helper function */
 
   function setupModel(data: THREE.Group) {
     let model = null;
@@ -23,9 +21,7 @@ function Model({ currentModel, currentObjectColor }: ModelProps) {
     return model;
   }
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     <mesh

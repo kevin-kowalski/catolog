@@ -2,9 +2,7 @@ import Overview from './components/Overview';
 
 function App() {
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (
     <div className="app-container">

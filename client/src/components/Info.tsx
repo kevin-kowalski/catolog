@@ -1,18 +1,15 @@
-import { InfoProps } from './utils/Types.js';
+import { InfoProps } from './types/types.js';
 
 function Info({ currentModel }: InfoProps) {
 
-  /**
-   * Constants
-   */
+  /* Constants */
 
-  const dateFmt = new Date(currentModel?.date).toLocaleDateString('de-DE') ?? '';
+  const dateOptions: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const dateFmt = new Date(currentModel.date!).toLocaleDateString(undefined, dateOptions) ?? '';
   const description = currentModel?.description ?? '';
   const author = currentModel?.author ?? '';
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     {!currentModel && (
