@@ -1,3 +1,7 @@
+
+
+/* BASICS */
+
 html,
 body {
   margin: 0;
@@ -14,24 +18,10 @@ a {
   text-decoration: none;
 }
 
+/* BASICS */
+
 .object-info {
   display: flex;
-}
-
-.picker {
-  position: relative;
-}
-.swatch {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.popover {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  right: 0;
-  border-radius: 9px;
 }
 
 .overview{
@@ -53,5 +43,5 @@ a {
 .modal{
   background-color: white;
   position: absolute;
-  inset: 0; 
+  inset: 0;
 }
