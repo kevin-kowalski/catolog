@@ -11,7 +11,6 @@ import LogIn from './components/LogIn';
 import LogOut from './components/LogOut';
 import Register from './components/Register';
 import Overview from './components/Overview';
-import List from './components/List';
 
 const router = createBrowserRouter([
   {
