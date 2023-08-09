@@ -132,4 +132,17 @@ describe('Button Functionality', () => {
         .should('exist')
         .should('be.visible');
   });
+  
+  it('should open the modal component when the "add item" button is clicked', () => {
+    cy.visit('localhost:5173/login');
+    cy.get('input[type="email"]').type('your@username10.com');
+    cy.get('input[type="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/');
+    cy.wait(4000); 
+    cy.get('button').contains('Add Item').click(); // Replace 'a' with the appropriate selector for your link
+    cy.get('button').contains('Create')
+        .should('exist')
+        .should('be.visible');
+  });
 });
