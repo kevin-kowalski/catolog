@@ -15,7 +15,7 @@ function Search ({ setQuery }: SearchProps) {
   /* Render component */
 
   return (<>
-    <input type="search" placeholder="Search 🔎" onChange={handleChange} />
+    <input type="search" placeholder="Search" onChange={handleChange} />
   </>);
 }
 

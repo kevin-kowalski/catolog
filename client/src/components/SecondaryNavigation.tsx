@@ -9,7 +9,7 @@ function SecondaryNavigation ({ collection, setModalIsOpen, setDialogue }: Secon
 
   /* Handler function */
 
-  function handleButtonClick () {
+  function handleClick () {
     setDialogue('collection')
     setModalIsOpen(true)
   }
@@ -18,12 +18,15 @@ function SecondaryNavigation ({ collection, setModalIsOpen, setDialogue }: Secon
 
   return (<>
     <div className="secondary-navigation">
-      {collectionWithAll.map((item: Category) => (
-        <Link key={item._id} to={`/category/${item.title}`}>
-          <div key={item._id} className="nav-item" data-value={item.title.toLowerCase()} >{item.title}</div>
-        </Link>
-      ))}
-      <button onClick={handleButtonClick}>Add collection</button>
+      <div className="link-list">
+        <div className="link-list-title">Collections</div>
+        {collectionWithAll.map((item: Category) => (
+          <Link key={item._id} to={`/category/${item.title}`}>
+            <div key={item._id} className="nav-item" data-value={item.title.toLowerCase()} >{item.title}</div>
+          </Link>
+        ))}
+      </div>
+      <div className="button add add-collection" onClick={handleClick}>Add collection</div>
     </div>
   </>);
 }

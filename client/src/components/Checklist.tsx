@@ -37,24 +37,26 @@ function Checklist ({ models, categoryToPost, setModalIsOpen}: ChecklistProps) {
   /* Render component */
 
   return (<>
-    <form onSubmit={handleSubmit}>
-      <div className="list">
-        {models.map((model) => (
-            <div key={model._id} className="checkbox-container">
-              <label htmlFor={model._id}>
-              <input
-                type="checkbox"
-                className="checkbox"
-                id={model._id}
-                value={model._id}
-              />
-              <Single model={model}/>
-              </label>
-            </div>
-        ))}
-      </div>
-      <button type="submit">Create Collection</button>
-    </form>
+    <div className="checklist">
+      <form onSubmit={handleSubmit}>
+        <div className="list">
+          {models.map((model) => (
+              <div key={model._id} className="checkbox-container">
+                <label htmlFor={model._id}>
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  id={model._id}
+                  value={model._id}
+                />
+                <Single model={model}/>
+                </label>
+              </div>
+          ))}
+        </div>
+        <button className="button primary" type="submit">Create Collection</button>
+      </form>
+    </div>
   </>);
 }
 

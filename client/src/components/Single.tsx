@@ -45,7 +45,7 @@ function Single ( {model}: { model: ModelData | null} ) {
   /* Render component */
 
   return (<>
-    <div onMouseOver={handleHover} onMouseOut={handleHover} className="single">
+    <div className="single" onMouseOver={handleHover} onMouseOut={handleHover} >
 
       <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
         <Suspense fallback={<LoadingStatus />}>
@@ -65,12 +65,12 @@ function Single ( {model}: { model: ModelData | null} ) {
           </Scene>
         </Suspense>
       </Canvas>
-        {localModel && (
-          <Info currentModel={localModel}/>
-        )}
-        {model && (
-          <Info currentModel={model!} />
-        )}
+      {localModel && (
+        <Info currentModel={localModel}/>
+      )}
+      {model && (
+        <Info currentModel={model!} />
+      )}
     </div>
   </>);
 }

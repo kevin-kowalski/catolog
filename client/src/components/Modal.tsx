@@ -76,69 +76,59 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
   /* Render component */
 
   return (<>
-    <div className="modal">
+    <div className="modal-wrapper">
     {dialogue ==='collection' && (
-      <div className="modal-collection">
-        <button onClick={() => setModalIsOpen(false)}>Cancel</button>
+      <div className="modal modal-collection">
 
         {showFirstConfiguratorCollection  && (
 
-          <div className="modal-collection-1">
+          <>
+            <h3 className="heading">Add a new collection</h3>
             <form onSubmit={handleSubmitCollection}>
-              <input type="text" id="myInput" value={inputValue} onChange={handleChangeCollection} placeholder="Collection"/>
-              <button type="submit">Next</button>
+              <label htmlFor="title">Title</label>
+              <input type="text" id="title" value={inputValue} onChange={handleChangeCollection} autoComplete="off"/>
+              <div className="button-group">
+                <button className="button danger" onClick={() => setModalIsOpen(false)}>Cancel</button>
+                <button className="button primary" type="submit">Next</button>
+              </div>
             </form>
-          </div>
+          </>
 
         )}
         {showSecondConfiguratorCollection && (
-          <div className="modal-collection-2">
-            <button onClick={handlePreviousButtonClickCollection}>back</button>
+          <>
+            <button onClick={handlePreviousButtonClickCollection}>Back</button>
             <Checklist models={allModels!} setCategoryToPost={setCategoryToPost} categoryToPost={categoryToPost} setModalIsOpen={setModalIsOpen}></Checklist>
-          </div>
+          </>
         )}
       </div>
     )}
     {dialogue === 'object' && (
-      <div className="modal-object">
-      <button onClick={() => setModalIsOpen(false)}>Cancel</button>
-
+      <div className="modal modal-object">
+        <h3 className="heading">Add a new item</h3>
         <form onSubmit={handleSubmitObject}>
-
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input id="title"/>
-          </div>
-
-          <div>
-            <label htmlFor="author">Author:</label>
-            <input id="author"/>
-          </div>
-
-          <div>
-            <label htmlFor="glb">Media:</label>
-            <input id="glb"/>
-          </div>
-
-          <div>
-            <label htmlFor="scale">Scale:</label>
-            <input id="scale"/>
-          </div>
-
-          <div>
-            <label htmlFor="collection">Collection:</label>
-            <select id="collection" name="collection" multiple>
-            { collection.map((item: Category) => {
-              return(
+          <label htmlFor="title">Title:</label>
+          <input id="title" autoComplete="off"/>
+          <label htmlFor="author">Author:</label>
+          <input id="author" autoComplete="off"/>
+          <label htmlFor="glb">Media:</label>
+          <input id="glb" autoComplete="off" />
+          <label htmlFor="scale">Scale:</label>
+          <input id="scale" autoComplete="off"/>
+          <label htmlFor="collection">Collection:</label>
+          <select id="collection" name="collection" multiple>
+          { collection.map((item: Category) => {
+            return(
               <option key={item._id} value={item.title}>{item.title}</option>
               )
             })
-            }
-            </select>
+          }
+          </select>
+          <div className="button-group">
+            <button className="button danger" onClick={() => setModalIsOpen(false)}>Cancel</button>
+            <button className="button primary" type="submit">Create</button>
           </div>
-          <button type="submit">Create</button>
         </form>
-
       </div>
     )}
     </div>
