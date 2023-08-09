@@ -1,25 +1,20 @@
-import { Category, SecondaryNavigationProps } from "./utils/Types";
+import { Category, SecondaryNavigationProps } from "./types/types";
 import { Link } from "react-router-dom";
 function SecondaryNavigation ({ collection, setModalIsOpen, setDialogue }: SecondaryNavigationProps) {
-
 
   const collectionWithAll = [{
     _id: 'all',
     title: 'All'
   }, ...collection];
 
-  /**
-   * Handler function
-   */
+  /* Handler function */
 
   function handleButtonClick () {
     setDialogue('collection')
     setModalIsOpen(true)
   }
 
-  /**
-  * Render component
-  */
+  /* Render component */
 
   return (<>
     <div className="secondary-navigation">

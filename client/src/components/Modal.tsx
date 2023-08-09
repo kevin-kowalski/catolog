@@ -1,13 +1,14 @@
 import { useState, ChangeEvent, FormEvent, useEffect} from "react";
-import { ModalProps, ModelData } from "./utils/Types";
+import { ModalProps, ModelData, NumDecimal } from "./types/types";
 import Checklist from "./Checklist";
 import { getAll, postModel } from "../services/apiService";
-import { Category } from "./utils/Types";
+import { Category } from "./types/types";
 import { useNavigate } from "react-router-dom";
 
 function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
 
-  // State Variables
+  /* State Variables */
+
   const [inputValue, setInputValue] = useState<string>('')
   const [allModels, setAllModels] = useState<ModelData[] | null>(null);
 
@@ -18,9 +19,7 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
 
   const navigate = useNavigate()
 
-  /**
-   * Use effect
-   */
+  /* Use effect */
 
   // When the component loads, get all models through the API service
   useEffect(() => {
@@ -31,7 +30,7 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
       });
   }, []);
 
-  // Handler Functions
+  /* Handler Functions */
 
   function handleChangeCollection (event: ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value)
@@ -55,7 +54,7 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
     const title: string = (document.getElementById('title') as HTMLInputElement).value;
     const author: string = (document.getElementById('author') as HTMLInputElement).value;
     const glb: string = (document.getElementById('glb') as HTMLInputElement).value;
-    const scale: number = Number((document.getElementById('scale') as HTMLInputElement).value);
+    const scale: NumDecimal = { $numberDecimal: Number((document.getElementById('scale') as HTMLInputElement).value) };
     const categories: string[] = Array.from((document.getElementById('collection') as HTMLSelectElement).selectedOptions, option => option.value);
 
     const obj : ModelData = {
@@ -67,15 +66,14 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
     };
 
     const addedModel = await postModel(obj);
-    let objectId = addedModel?._id;
+    const objectId = addedModel?._id;
     setModalIsOpen(false);
-    let objectRoute = `model/${objectId}`;
+
+    const objectRoute = `model/${objectId}`;
     navigate(objectRoute);
   }
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     <div className="modal">

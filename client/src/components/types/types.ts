@@ -7,13 +7,13 @@ export type NumDecimal = {
 export interface ModelData {
   _id?: string;
   title: string;
-  author?: string;
-  description?: string;
+  author?: string | undefined;
+  description?: string | undefined;
   glb: string;
   categories?: string[];
-  source?: string;
-  scale?: number;
-  date?: number;
+  source?: string | undefined;
+  scale?: NumDecimal | undefined;
+  date?: string | number | Date;
   ypos?: NumDecimal;
 }
 

@@ -7,9 +7,7 @@ const defaultPosition = new Vector3(0, -1.5, 0);
 
 function PlainScene() {
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (
     <>

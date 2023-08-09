@@ -1,12 +1,10 @@
 import Single from "./Single";
-import { ModelData } from "./utils/Types";
+import { ModelData } from "./types/types";
 import { Link } from "react-router-dom";
 
 function List ({ models }: { models: ModelData[] | null}) {
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     <div className="list">

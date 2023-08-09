@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Category, ModelData } from "./utils/Types";
+import { Category, ModelData } from "./types/types";
 import { getAll, getCategories, getCategory } from "../services/apiService";
 import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
@@ -9,7 +9,8 @@ import { useParams } from "react-router-dom";
 
 function Overview () {
 
-  // State variables
+  /* State variables */
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [models, setModels] = useState<ModelData[]>([]);
 
@@ -18,12 +19,11 @@ function Overview () {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   const [dialogue, setDialogue] = useState<string>('')
 
-  // Hooks
+  /* Hooks */
+
   const params = useParams();
 
-  /**
-   * Use effects
-   */
+  /* Use effects */
 
   // When the component loads, or
   // When a filter is set through the Search component,
@@ -39,9 +39,7 @@ function Overview () {
     getCategories().then((categories) => setCategories(categories!));
   }, []);
 
-  /**
-   * Helper function
-   */
+  /* Helper function */
 
   // Get and set the models according to the current category
   async function setCurrentCategoryModels () {
@@ -77,18 +75,14 @@ function Overview () {
     return modelsData.filter((model) => regex.test(model.title));
   }
 
-  /**
-   * Handler function
-   */
+  /* Handler function */
 
   function handleButtonClick () {
     setDialogue('object')
     setModalIsOpen(true)
   }
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     <button onClick={handleButtonClick}>Add Item</button>

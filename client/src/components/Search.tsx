@@ -1,11 +1,9 @@
 import React from "react";
-import { SearchProps } from "./utils/Types";
+import { SearchProps } from "./types/types";
 
 function Search ({ setQuery }: SearchProps) {
 
-  /**
-   * Handler function
-   */
+  /* Handler function */
 
   // When the user types in the search input use the passed down
   // setFilter method to set the filter to the input’s value
@@ -14,9 +12,7 @@ function Search ({ setQuery }: SearchProps) {
     setQuery(query);
   }
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (<>
     <input type="search" placeholder="Search 🔎" onChange={handleChange} />
