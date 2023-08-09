@@ -14,8 +14,11 @@ router.get('/models', objectController.getAll);
 router.get('/models/:id', objectController.getOne);
 router.get('/models/category/:category', objectController.getByCategory);
 router.post('/model', objectController.postOne);
+router.delete('/model/:id', objectController.deleteOne)
 
 router.get('/categories', categoryController.getAll);
 router.post('/category', categoryController.postOne);
+router.delete('/category/:id', categoryController.deleteOne)
+
 
 export default router;

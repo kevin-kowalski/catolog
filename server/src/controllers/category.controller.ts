@@ -93,3 +93,19 @@ function updateCategoriesOfModels (category: CategoryType): boolean | null {
   }
   return true;
 };
+
+/**
+ * Controller function for deleting one category.
+ */
+export async function deleteOne (req: Request, res: Response) {
+  try {
+    const categoryId  = req.params.id
+    console.log(categoryId)
+    const response = await category.deleteOne(categoryId)
+    res.status(200),
+    res.send(response);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import * as objects from '../models/object.model';
 import { ObjectType } from '../types';
 import { findOneAndUpdateModelIds } from '../models/category.model';
+import { WObject } from '../models/object.schema';
 
 /**
  * Controller function for retrieving a single object by its id.
@@ -124,3 +125,19 @@ function updateModelIdsOfCategories (object: ObjectType) {
     findOneAndUpdateModelIds(categoryName, object._id);
   }
 }
+
+/**
+ * Controller function for deleting one object.
+ */
+export async function deleteOne (req: Request, res: Response) {
+  try {
+    const objectId  = req.params.id
+    console.log(objectId)
+    const response = await objects.deleteOne(objectId)
+    res.status(200),
+    res.send(response);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
