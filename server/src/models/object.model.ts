@@ -15,7 +15,7 @@ export const getAll = async (): Promise<WObjectDocument[] | null> => {
     // Return all retrieved objects
     return allObjects;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
@@ -35,7 +35,7 @@ export const getOne = async (id: string): Promise<WObjectDocument | null> => {
     // Return the retrieved object
     return object;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
@@ -56,7 +56,7 @@ export const getByCategory = async (categoryName: string): Promise<WObjectDocume
     // Return the retrieved objects
     return categoryObjects;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
@@ -68,7 +68,7 @@ export const postOne = async (object: ObjectType): Promise<WObjectDocument | nul
     const response = await WObject.create(object);
     return response;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
@@ -89,6 +89,6 @@ export const findOneAndUpdateCategories = async (id: string, category: string): 
     const response = await WObject.findOneAndUpdate(filter, update);
     return response;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };

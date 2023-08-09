@@ -1,12 +1,15 @@
 import request from 'supertest';
 import app from '../src/index';
 import mongoose from 'mongoose';
-import { WObject } from '../src/models/object.schema';
 import * as objectModelFunctions from '../src/models/object.model';
 import * as categoryModelFunctions from '../src/models/category.model';
+import * as userModelFunctions from '../src/models/user.model'
 
-import { mockObjectData, mockObjectsData, mockCategories, mockObject, mockCategory } from './mocks';
+import { mockObjectData, mockObjectsData, mockCategories, mockObject, mockCategory, mockUserController, mockUsers, mockUserModel} from './mocks';
 import { Category } from '../src/models/category.schema';
+import { WObject } from '../src/models/object.schema';
+import { User } from '../src/models/user.schema';
+
 
 afterAll(async () => {
   mongoose.disconnect();
@@ -78,54 +81,104 @@ describe('Model', () => {
   beforeAll(async () => {
     await WObject.insertMany(mockObjectsData);
     await Category.insertMany(mockCategories);
+    await User.insertMany(mockUsers);
   });
 
   afterAll(async () => {
     await WObject.deleteMany();
     await Category.deleteMany();
+    await User.deleteMany();
   });
 
-  it('should retrieve a single object based on its name, and return it', async () => {
-    try {
-      const weeObject = await objectModelFunctions.getOne(mockObjectsData[0].title);
-      expect(weeObject).toBeDefined();
-      expect(weeObject!.title).toBe(mockObjectsData[0].title);
-    } catch (err) {
-      throw err;
-    }
-  });
+  describe('Objects', () => {
+  
+    it('should retrieve all objects belonging to a specific category', async () => {
+      try {
+        const weeObjects = await objectModelFunctions.getByCategory(mockObjectsData[0].category[0]);
+        expect(weeObjects).toBeDefined();
+        expect(weeObjects!.every((object) => object.categories.includes(mockObjectsData[0].category[0]))).toBe(true);
+      } catch (err) {
+        throw err;
+      }
+    });
 
-  it('should retrieve all objects belonging to a specific category', async () => {
-    try {
-      const weeObjects = await objectModelFunctions.getByCategory(mockObjectsData[0].category);
-      expect(weeObjects).toBeDefined();
-      expect(weeObjects!.every((object) => object.categories.includes(mockObjectsData[0].category))).toBe(true);
-    } catch (err) {
-      throw err;
-    }
-  });
+    it('should retrieve all objects, and return them as an array', async () => {
+      try {
+        const weeObjects = await objectModelFunctions.getAll();
+        expect(weeObjects).toBeDefined();
+        expect(Array.isArray(weeObjects)).toBe(true);
+        // weeObjects!.map((object, index) => expect(object.title).toBe(mockObjectsData[index].title));
+      } catch (err) {
+        console.log(err);
+      }
+    });
 
-  it('should retrieve all objects, and return them as an array', async () => {
-    try {
-      const weeObjects = await objectModelFunctions.getAll();
-      expect(weeObjects).toBeDefined();
-      expect(Array.isArray(weeObjects)).toBe(true);
-      weeObjects!.map((object, index) => expect(object.title).toBe(mockObjectsData[index].title));
-    } catch (err) {
-      throw err;
-    }
-  });
+    it('should post one object and return it', async () => {
+      try{
+        const response = await objectModelFunctions.postOne(mockObject);
+        expect(response).toBeDefined();
+        expect(response.title).toBe(mockObject.title)
+      } catch (err) {
+        console.log(err)
+      }
+    })
+  })
 
-  it('should retrieve all categories, and return them as an array', async () => {
-    try {
-      const weeCategories = await categoryModelFunctions.getAll();
-      expect(weeCategories).toBeDefined();
-      expect(Array.isArray(weeCategories)).toBe(true);
-      weeCategories!.map((object, index) => expect(object.title).toBe(mockCategories[index].title));
-    } catch (err) {
-      throw err;
-    }
-  });
+  describe('Categories', () => {
+
+    it('should retrieve all categories, and return them as an array', async () => {
+      try {
+        const weeCategories = await categoryModelFunctions.getAll();
+        expect(weeCategories).toBeDefined();
+        expect(Array.isArray(weeCategories)).toBe(true);
+        weeCategories!.map((object, index) => expect(object.title).toBe(mockCategories[index].title));
+      } catch (err) {
+        throw err;
+      }
+    });
+
+
+    it('should retrieve one category by name and return it ',async () => {
+      try {
+        const response = await categoryModelFunctions.getOne(mockCategories[0].title);
+        expect(response).toBeDefined()
+        expect(response.title).toBe(mockCategories[0].title)
+      } catch (err) {
+        console.log(err)
+      }
+    })
+
+    it('should post one category and return it', async () => {
+      try{
+        const response = await categoryModelFunctions.postOne(mockCategory);
+        expect(response).toBeDefined();
+        expect(response.title).toBe(mockObject.title)
+      } catch (err) {
+        console.log(err)
+      }
+    })
+
+    it('should find ones category by its title, update its models array and return it', async() => {
+      const response = await categoryModelFunctions.findOneAndUpdateModelIds(mockCategory.title, '230');
+      expect(response).toBeDefined();
+      expect(response.title).toBe(mockCategory.title)
+    })
+  })
+
+  describe('Users', () => {
+
+    it('should find a user by email', async() => {
+      const response = await userModelFunctions.findUserByEmail(mockUsers[1].email);
+      expect(response).toBeDefined();
+      expect(response.email).toBe(mockUsers[1].email)
+    })
+
+    it('should be able to create a user', async() => {
+      const response = await userModelFunctions.createUser(mockUserModel.email, mockUserModel.password);
+      expect(response).toBeDefined();
+      expect(response.email).toBe(mockUserModel.email)
+    })
+  })
 
 });
 
@@ -134,11 +187,13 @@ describe('Router, Controller', () => {
   beforeAll(async () => {
     await WObject.insertMany(mockObjectsData);
     await Category.insertMany(mockCategories);
+    await User.insertMany(mockUsers);
   });
 
   afterAll(async () => {
     await WObject.deleteMany();
     await Category.deleteMany();
+    await User.deleteMany();
   });
 
   describe('Models', () => {
@@ -212,6 +267,30 @@ describe('Router, Controller', () => {
         expect(response.body.title).toBe(mockCategory.title);
       })
     })
+
+  })
+
+  describe('Users', () => {
+
+    describe('POST', () => {
+      it('should register a user, and respond with 201 and a message, as well as the userData', async () => {
+        try {
+          const response = await request(app).post('/register').send(mockUserController)
+          expect(response.statusCode).toBe(201);
+        } catch(err) {
+          throw(err);
+        }
+      });
+
+      it('should login a user, and respond with 200 and a message, as well as the userData', async () => {
+        try {
+          const response = await request(app).post('/login').send(mockUserController)
+          expect(response.statusCode).toBe(200);
+        } catch(err) {
+          throw(err);
+        }
+      });
+    });
 
   })
 

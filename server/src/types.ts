@@ -1,12 +1,12 @@
 export interface ObjectType {
   title: string;
-  author: string;
-  description: string;
+  author?: string;
+  description?: string;
   glb: string;
-  source: string;
-  categories: string[];
-  scale: number;
-  date: number;
+  source?: string;
+  categories?: string[];
+  scale?: number;
+  date?: number;
   _id?: string;
 }
 
