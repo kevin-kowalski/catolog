@@ -3,6 +3,7 @@ import { ModalProps, ModelData } from "./utils/Types";
 import Checklist from "./Checklist";
 import { getAll, postModel } from "../services/apiService";
 import { Category } from "./utils/Types";
+import { useNavigate } from "react-router-dom";
 
 function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
 
@@ -15,6 +16,8 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
 
   const [categoryToPost, setCategoryToPost] = useState<string>('')
 
+  const navigate = useNavigate()
+
   /**
    * Use effect
    */
@@ -22,47 +25,53 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
   // When the component loads, get all models through the API service
   useEffect(() => {
     getAll()
-      .then((allModelData) => setAllModels(allModelData));
+      .then((allModelData) => {
+        if (allModelData)
+          setAllModels(allModelData);
+      });
   }, []);
 
   // Handler Functions
 
-    function handleChangeCollection (event: ChangeEvent<HTMLInputElement>) {
-      setInputValue(event.target.value)
-    }
+  function handleChangeCollection (event: ChangeEvent<HTMLInputElement>) {
+    setInputValue(event.target.value)
+  }
 
-    function handleSubmitCollection (event: FormEvent) {
-      event.preventDefault();
-      console.log('Form submitted:', inputValue);
-      setCategoryToPost(inputValue)
-      setShowFirstConfiguratorCollection(false)
-      setShowSecondConfiguratorCollection(true)
-    }
+  function handleSubmitCollection (event: FormEvent) {
+    event.preventDefault();
+    console.log('Form submitted:', inputValue);
+    setCategoryToPost(inputValue)
+    setShowFirstConfiguratorCollection(false)
+    setShowSecondConfiguratorCollection(true)
+  }
 
-    function handlePreviousButtonClickCollection () {
-      setShowSecondConfiguratorCollection(false)
-      setShowFirstConfiguratorCollection(true)
-    }
+  function handlePreviousButtonClickCollection () {
+    setShowSecondConfiguratorCollection(false)
+    setShowFirstConfiguratorCollection(true)
+  }
 
-    function handleSubmitObject(event: FormEvent<HTMLFormElement>): void {
-      event.preventDefault();
-      const title: string = (document.getElementById('title') as HTMLInputElement).value;
-      const author: string = (document.getElementById('author') as HTMLInputElement).value;
-      const glb: string = (document.getElementById('glb') as HTMLInputElement).value;
-      const scale: number = Number((document.getElementById('scale') as HTMLInputElement).value);
-      const categories: string[] = Array.from((document.getElementById('collection') as HTMLSelectElement).selectedOptions, option => option.value);
+  async function handleSubmitObject(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const title: string = (document.getElementById('title') as HTMLInputElement).value;
+    const author: string = (document.getElementById('author') as HTMLInputElement).value;
+    const glb: string = (document.getElementById('glb') as HTMLInputElement).value;
+    const scale: number = Number((document.getElementById('scale') as HTMLInputElement).value);
+    const categories: string[] = Array.from((document.getElementById('collection') as HTMLSelectElement).selectedOptions, option => option.value);
 
-      const obj : ModelData = {
-        title,
-        author,
-        glb,
-        scale,
-        categories
-      };
+    const obj : ModelData = {
+      title,
+      author,
+      glb,
+      scale,
+      categories
+    };
 
-      postModel(obj);
-      setModalIsOpen(false);
-    }
+    const addedModel = await postModel(obj);
+    let objectId = addedModel?._id;
+    setModalIsOpen(false);
+    let objectRoute = `model/${objectId}`;
+    navigate(objectRoute);
+  }
 
   /**
    * Render component
