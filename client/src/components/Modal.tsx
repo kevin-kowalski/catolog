@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent} from "react";
-import { ModalProps } from "./utils/Types";
+import { ModalProps, ModelData, NumDecimal } from "./utils/Types";
 import Checklist from "./Checklist";
+import { postModel } from "../services/apiService";
 
 function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
 
@@ -32,6 +33,26 @@ function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
       setShowFirstConfiguratorCollection(true)
     }
     
+    function handleSubmitObject(event: FormEvent<HTMLFormElement>): void {
+      event.preventDefault();
+      const title: string = (event.target as HTMLFormElement).elements.namedItem('title')?.value || '';
+      const author: string = (document.getElementById('author') as HTMLInputElement).value;
+      const glb: string = (document.getElementById('glb') as HTMLInputElement).value;
+      const scale: number = Number((document.getElementById('scale') as HTMLInputElement).value);
+      const categories: string[] = (document.getElementById('collection') as HTMLSelectElement).value;
+
+      const obj : ModelData = {
+        title,
+        author,
+        glb,
+        scale,
+        categories
+      };
+
+      console.log(obj)
+
+      postModel(obj)
+    }
 
   /**
    * Render component
@@ -65,7 +86,7 @@ function Modal ({dialogue, setModalIsOpen, allModels}: ModalProps) {
       <div className="modal-object"> 
       <button onClick={() => setModalIsOpen(false)}>Cancel</button>
 
-        <form action="submit">
+        <form onSubmit={handleSubmitObject}>
           {/* handlesubmit: 
               - data posten
               - seite im useffect aktualisieren

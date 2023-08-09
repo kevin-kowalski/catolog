@@ -67,9 +67,9 @@ export function postModel(model : ModelData) {
     headers: {
       'Content-Type': 'application/json'
     }, 
-    body: JSON.stringify({
+    body: JSON.stringify(
       model
-    })
+    )
   })
     .then(res => res.json)
     .then(res => console.log('I just posted the model:', res))
