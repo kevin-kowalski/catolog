@@ -1,18 +1,29 @@
-import { useState, ChangeEvent, FormEvent} from "react";
+import { useState, ChangeEvent, FormEvent, useEffect} from "react";
 import { ModalProps, ModelData } from "./utils/Types";
 import Checklist from "./Checklist";
-import { postModel } from "../services/apiService";
+import { getAll, postModel } from "../services/apiService";
 import { Category } from "./utils/Types";
 
-function Modal ({dialogue, setModalIsOpen, allModels, collection}: ModalProps) {
+function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
 
   // State Variables
   const [inputValue, setInputValue] = useState<string>('')
+  const [allModels, setAllModels] = useState<ModelData[] | null>(null);
 
   const [showFirstConfiguratorCollection, setShowFirstConfiguratorCollection] = useState<boolean>(true)
   const [showSecondConfiguratorCollection, setShowSecondConfiguratorCollection] = useState<boolean>(false)
 
   const [categoryToPost, setCategoryToPost] = useState<string>('')
+
+  /**
+   * Use effect
+   */
+
+  // When the component loads, get all models through the API service
+  useEffect(() => {
+    getAll()
+      .then((allModelData) => setAllModels(allModelData));
+  }, []);
 
   // Handler Functions
 
@@ -76,7 +87,7 @@ function Modal ({dialogue, setModalIsOpen, allModels, collection}: ModalProps) {
         {showSecondConfiguratorCollection && (
           <div className="modal-collection-2">
             <button onClick={handlePreviousButtonClickCollection}>back</button>
-            <Checklist models={allModels} setCategoryToPost={setCategoryToPost} categoryToPost={categoryToPost} setModalIsOpen={setModalIsOpen}></Checklist>
+            <Checklist models={allModels!} setCategoryToPost={setCategoryToPost} categoryToPost={categoryToPost} setModalIsOpen={setModalIsOpen}></Checklist>
           </div>
         )}
       </div>

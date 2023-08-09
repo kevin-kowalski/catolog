@@ -1,9 +1,9 @@
-import { ModelData } from "../components/utils/Types";
+import { Category, ModelData } from "../components/utils/Types";
 
 const baseUrl = 'http://localhost:3001';
 
 // Retrieve all objects from the /models route
-export async function getAll() {
+export async function getAll(): Promise<ModelData[] | undefined> {
   try {
     const response = await fetch(`${baseUrl}/models`);
     return await response.json();
@@ -14,7 +14,7 @@ export async function getAll() {
 
 // Retrieve all objects of the specified
 // category from the /models/category route
-export async function getCategory(title: string) {
+export async function getCategory(title: string): Promise<ModelData[] | undefined> {
   try {
     const response = await fetch(`${baseUrl}/models/category/${title}`);
     return await response.json();
@@ -25,7 +25,7 @@ export async function getCategory(title: string) {
 
 // Retrieve the object with the specified
 // title from the /models/:title route
-export async function getModel(id: string | undefined) {
+export async function getModel(id: string | undefined): Promise<ModelData | undefined> {
   try {
     const response = await fetch(`${baseUrl}/models/${id}`);
     return await response.json();
@@ -35,7 +35,7 @@ export async function getModel(id: string | undefined) {
 }
 
 // Retrieve all categories from the /categories route
-export async function getCategories() {
+export async function getCategories(): Promise<Category[] | undefined> {
   try {
     const response = await fetch(`${baseUrl}/categories`);
     return await response.json();

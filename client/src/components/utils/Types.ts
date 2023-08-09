@@ -38,7 +38,6 @@ export interface SecondaryNavigationProps {
 export interface ModalProps {
   dialogue: string;
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  allModels: ModelData[];
   collection: Category[];
 }
 
@@ -61,7 +60,7 @@ export interface ModelProps {
 }
 
 export interface SearchProps {
-  setFilter: Dispatch<SetStateAction<string | null>>;
+  setQuery: Dispatch<SetStateAction<string | null>>;
 }
 
 export interface InfoProps {
