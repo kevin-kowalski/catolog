@@ -8,7 +8,6 @@ function Scene({ children, isHovered }: SceneProps) {
 
   return (<>
     {children}
-    <color attach="background" args={['#fff']} />
     <PlainScene />
     <OrbitControls autoRotate={isHovered} target={[0, -0.1, 0]} />
   </>);

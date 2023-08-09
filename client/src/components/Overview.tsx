@@ -5,7 +5,7 @@ import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
 import Modal from "./Modal";
 import Search from "./Search";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Overview () {
 
@@ -85,9 +85,14 @@ function Overview () {
   /* Render component */
 
   return (<>
-    <button onClick={handleButtonClick}>Add Item</button>
-    <Search setQuery={setQuery}/>
-    <div className="overview">
+    <div className="header">
+      <Link to={'/'}><h1 className="page-title button">Catolog</h1></Link>
+      <div className="controls-group">
+        <Search setQuery={setQuery}/>
+        <div className="button add add-item" onClick={handleButtonClick}>Add Item</div>
+      </div>
+    </div>
+    <div className="overview-body">
       <SecondaryNavigation collection={categories} setModalIsOpen={setModalIsOpen} setDialogue={setDialogue}/>
       <List models={models}/>
     </div>

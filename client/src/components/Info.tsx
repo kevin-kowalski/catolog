@@ -5,27 +5,20 @@ function Info({ currentModel }: InfoProps) {
   /* Constants */
 
   const dateOptions: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const dateFmt = new Date(currentModel.date!).toLocaleDateString(undefined, dateOptions) ?? '';
-  const description = currentModel?.description ?? '';
-  const author = currentModel?.author ?? '';
+  const dateFormatted = new Date(currentModel.date!).toLocaleDateString(undefined, dateOptions) ?? '';
 
   /* Render component */
 
   return (<>
     {!currentModel && (
-      <div className="object-info loading">
+      <div className="info loading">
         <h3>Loading..</h3>
       </div>
     )}
     {currentModel && (
-      <div className="object-info">
-        <div className="details">
-          <h3 className='object-title'>{currentModel.title}</h3>
-          <p>
-            {description} <span className="date">({dateFmt})</span>
-          </p>
-          <p>{author}</p>
-        </div>
+      <div className="info">
+        <h3 className='title'>{currentModel.title}</h3>
+        <p className="date">{dateFormatted}</p>
       </div>
     )}
   </>);
