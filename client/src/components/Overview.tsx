@@ -4,6 +4,7 @@ import { getAll, getCategories, getCategory } from "../services/apiService";
 import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
 import Modal from "./Modal";
+import Search from "./Search";
 
 function Overview () {
 
@@ -12,6 +13,8 @@ function Overview () {
   const [currentCategory, setCurrentCategory] = useState<string>('all');
   const [models, setModels] = useState<ModelData[]>([]);
   const [allModels, setAllModels] = useState<ModelData[]>()
+
+  const [filter, setFilter] = useState<string | null>(null);
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   const [dialogue, setDialogue] = useState<string>('')
@@ -40,6 +43,14 @@ function Overview () {
     }
   }, [currentCategory]);
 
+  // When a filter is set through the Search component,
+  // filter the models, that are passed on to the List component
+  useEffect(() => {
+    if (filter) {
+      setModels(models.filter((model) => model.title.includes(filter)));
+    }
+  }, [filter, models, currentCategory]);
+
   // Handler Functions
 
   function handleButtonClick () {
@@ -53,6 +64,7 @@ function Overview () {
 
   return (<>
     <button onClick={handleButtonClick}>Add Item</button>
+    <Search setFilter={setFilter}/>
     <div className="overview">
       <SecondaryNavigation collection={categories} setPredicate={setCurrentCategory} setModalIsOpen={setModalIsOpen} setDialogue={setDialogue}/>
       <List models={models}/>

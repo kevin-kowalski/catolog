@@ -1,4 +1,4 @@
-import { BackendAdjustedCategory, Category, ModelData } from "../components/utils/Types";
+import { ModelData } from "../components/utils/Types";
 
 const baseUrl = 'http://localhost:3001';
 
@@ -66,7 +66,7 @@ export function postModel(model : ModelData) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    }, 
+    },
     body: JSON.stringify(
       model
     )

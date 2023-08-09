@@ -23,8 +23,8 @@ export interface Category {
   models: string[];
 }
 
-export interface BackendAdjustedCategory { 
-  title: String;
+export interface BackendAdjustedCategory {
+  title: string;
   categories: string[];
 }
 
@@ -37,16 +37,15 @@ export interface SecondaryNavigationProps {
 
 export interface ModalProps {
   dialogue: string;
-  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  allModels: ModelData[]
-
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  allModels: ModelData[];
+  collection: Category[];
 }
 
 export interface ChecklistProps {
-  setModelsToPost: Dispatch<SetStateAction<string[]>>
   models: ModelData[]
   setCategoryToPost: Dispatch<SetStateAction<string>>
-  categoryToPost: String
+  categoryToPost: string
   setModalIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
@@ -59,6 +58,10 @@ export interface ModelProps {
   currentModel: ModelData;
   currentObjectColor?: string;
   currentScene?: string;
+}
+
+export interface SearchProps {
+  setFilter: Dispatch<SetStateAction<string | null>>;
 }
 
 export interface InfoProps {
