@@ -95,8 +95,7 @@ a {
 
 .secondary-navigation .link-list-title {
   margin-bottom: 24px;
-  /* font-family: var(--type-mono);
-  font-weight: var(--weight-mono); */
+  user-select: none;
 }
 
 .secondary-navigation .nav-item {
