@@ -12,31 +12,31 @@ import { Category } from '../src/models/category.schema';
 // Create an array of default objects
 export const defaultObjects = [
   {
-    title: 'Default Cube',
+    title: 'Regular Cube',
     author: 'Unknown Artist',
     description: 'The famous default cube',
     glb: 'default_cube-transformed.glb',
-    categories: ['Default'],
+    categories: ['Geometry'],
     source: '',
     scale: 1.5,
     date: 1690448981121,
   },
   {
-    title: 'Wired Icosphere',
+    title: 'Icosphere',
     author: 'Artist Unknown',
     description: 'Wireframe icosphere',
     glb: 'default_ico_wired-transformed.glb',
-    categories: ['Default'],
+    categories: ['Wire'],
     source: '',
     scale: 1.5,
     date: 1690547882136,
   },
   {
-    title: 'Default Torus',
+    title: 'Faceted Torus',
     author: 'Artist Unknown',
     description: 'Default torus shape',
     glb: 'default_torus-transformed.glb',
-    categories: ['Default'],
+    categories: ['Geometry'],
     source: '',
     scale: 2,
     date: 1690620720422,
@@ -46,38 +46,38 @@ export const defaultObjects = [
     author: 'printable_models',
     description: "It's a duck",
     glb: 'rubber_duck.glb',
-    categories: ['Interior'],
+    categories: ['Object'],
     source: 'https://free3d.com/3d-model/rubber-duck-v1--614347.html',
     scale: 1,
     date: 1690620720422,
   },
   {
-    title: 'Knot',
+    title: 'Closed Knot',
     author: 'Unknown',
     description: '3D Knot',
     glb: 'knot.glb',
-    categories: ['Clothing', 'Interior'],
+    categories: ['Wire'],
     source: '',
     scale: 1,
     date: 1690651481963,
   },
   {
-    title: 'Head',
+    title: 'Head Figure',
     author: 'allpolovinkina',
     description: 'Head - low poly version',
     glb: 'head_lowpoly.glb',
-    categories: ['Clothing'],
+    categories: ['Wire'],
     source:
       'https://www.turbosquid.com/3d-models/3d-free-bust-head-base-mesh-model-1832518',
     scale: 3,
     date: 1690800144064,
   },
   {
-    title: 'Cat',
+    title: 'Plastic Cat',
     author: 'printable_models',
     description: 'Cat',
     glb: 'cat.glb',
-    categories: ['Interior'],
+    categories: ['Object'],
     source: 'https://free3d.com/3d-model/cat-v1--522281.html',
     scale: 2,
     date: 1690829240292,
@@ -87,15 +87,15 @@ export const defaultObjects = [
 // Create an array of default objects
 export const defaultCategories = [
   {
-    title: 'Default',
+    title: 'Geometry',
     models: [] as string[]
   },
   {
-    title: 'Interior',
+    title: 'Wire',
     models: [] as string[]
   },
   {
-    title: 'Clothing',
+    title: 'Object',
     models: [] as string[]
   }
 ];
