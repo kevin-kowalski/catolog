@@ -113,3 +113,5 @@ export async function register(user: {email: string, password: string}) {
     console.log(err);
   }
 }
+
+

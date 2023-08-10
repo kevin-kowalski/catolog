@@ -92,3 +92,17 @@ export const findOneAndUpdateCategories = async (id: string, category: string): 
     console.log(err);
   }
 };
+
+/**
+ * Deletes one object, and returns it
+ */
+export async function deleteOne (id: string) {
+  try {
+    const response = await WObject.deleteOne({
+      _id: id
+    })
+    return response
+  } catch (err) {
+    console.log(err)
+  }
+}
