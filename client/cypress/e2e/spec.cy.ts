@@ -72,7 +72,7 @@ describe('Load components', () => {
       cy.location('pathname').should('eq', '/');
         // Use cy.wait() to wait for any asynchronous operations that might affect the visibility of the element
       cy.wait(4000); // Adjust the wait time as needed
-      cy.get('.overview')
+      cy.get('.header')
         .should('exist')
         .should('be.visible');
     });
@@ -85,7 +85,7 @@ describe('Load components', () => {
       cy.location('pathname').should('eq', '/');
         // Use cy.wait() to wait for any asynchronous operations that might affect the visibility of the element
       cy.wait(4000); // Adjust the wait time as needed
-      cy.get('.secondary-navigation')
+      cy.get('.link-list')
         .should('exist')
         .should('be.visible');
     });
@@ -101,8 +101,8 @@ describe('Link Navigation', () => {
     cy.get('button[type="submit"]').click();
     cy.location('pathname').should('eq', '/');
     cy.wait(4000); 
-    cy.get('.nav-item').contains('Default').click(); // Replace 'a' with the appropriate selector for your link
-    cy.url().should('eq', 'http://localhost:5173/category/Default'); // Replace with the expected URL of the new page
+    cy.get('.nav-item').contains('Geometry').click(); // Replace 'a' with the appropriate selector for your link
+    cy.url().should('eq', 'http://localhost:5173/category/Geometry'); // Replace with the expected URL of the new page
   });
 
   it('should navigate to the single page after clicking on a model', () => {
@@ -112,8 +112,8 @@ describe('Link Navigation', () => {
     cy.get('button[type="submit"]').click();
     cy.location('pathname').should('eq', '/');
     cy.wait(4000); 
-    cy.get('.object-title').contains('Default Torus').click(); // Replace 'a' with the appropriate selector for your link
-    cy.url().should('eq', 'http://localhost:5173/model/64d35256927996fc89e9b3a2'); // Replace with the expected URL of the new page
+    cy.get('.list a').eq(2).click(); // Replace 'a' with the appropriate selector for your link
+    cy.get('.info-container .title').contains('Faceted Torus'); 
   });
 
 });
@@ -127,8 +127,8 @@ describe('Button Functionality', () => {
     cy.get('button[type="submit"]').click();
     cy.location('pathname').should('eq', '/');
     cy.wait(4000); 
-    cy.get('button').contains('Add collection').click(); // Replace 'a' with the appropriate selector for your link
-    cy.get('button').contains('Next')
+    cy.get('.button.add-collection').contains('Add collection').click(); // Replace 'a' with the appropriate selector for your link
+    cy.get('.button').contains('Next')
         .should('exist')
         .should('be.visible');
   });
@@ -140,8 +140,8 @@ describe('Button Functionality', () => {
     cy.get('button[type="submit"]').click();
     cy.location('pathname').should('eq', '/');
     cy.wait(4000); 
-    cy.get('button').contains('Add Item').click(); // Replace 'a' with the appropriate selector for your link
-    cy.get('button').contains('Create')
+    cy.get('.button.add-item').contains('Add Item').click(); // Replace 'a' with the appropriate selector for your link
+    cy.get('.button').contains('Create')
         .should('exist')
         .should('be.visible');
   });
