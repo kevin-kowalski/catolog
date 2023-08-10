@@ -20,8 +20,7 @@ function LogOut () {
   /* Render component */
 
   return (<>
-    <h1>Log out</h1>
-    <button onClick={handleLogOut}>Log out</button>
+    <button className="button" onClick={handleLogOut}>Log out</button>
   </>)
 }
 
