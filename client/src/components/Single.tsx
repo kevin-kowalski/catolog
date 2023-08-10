@@ -3,7 +3,7 @@ import Info from "./Info";
 import { ModelData } from "../types/types";
 import { Suspense, useEffect, useState } from "react";
 import LoadingStatus from "./fiber/LoadingStatus";
-import Scene from "./Scene";
+import Scene from "./fiber/Scene";
 import Model from "./Model";
 import { getModel } from "../services/apiService";
 import { useParams } from "react-router-dom";
@@ -17,6 +17,11 @@ function Single ( {model}: { model: ModelData | null} ) {
 
   // Set the model id through the params
   const { modelId } = useParams();
+
+  /* Constant */
+
+  const objectColor = `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`;
+
 
   /* Use effect */
 
@@ -45,7 +50,7 @@ function Single ( {model}: { model: ModelData | null} ) {
   /* Render component */
 
   return (<>
-    <div className="single" onMouseOver={handleHover} onMouseOut={handleHover} >
+    <div className="single appear" onMouseOver={handleHover} onMouseOut={handleHover} >
 
       <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
         <Suspense fallback={<LoadingStatus />}>
@@ -53,12 +58,12 @@ function Single ( {model}: { model: ModelData | null} ) {
             <>
               {localModel && (
                 <Model currentModel={localModel}
-                currentObjectColor={'rgb(28, 226, 29)'} />
+                currentObjectColor={objectColor} />
               )}
               {model && (
                 <Model
                 currentModel={model}
-                currentObjectColor={'rgb(28, 226, 29)'}
+                currentObjectColor={objectColor}
                 />
               )}
             </>

@@ -17,7 +17,7 @@ function SecondaryNavigation ({ collection, setModalIsOpen, setDialogue }: Secon
   /* Render component */
 
   return (<>
-    <div className="secondary-navigation">
+    <div className="secondary-navigation appear">
       <div className="link-list">
         <div className="link-list-title">Collections</div>
         {collectionWithAll.map((item: Category) => (

@@ -4,7 +4,7 @@ import { ChecklistProps} from "../types/types";
 import { postCategory } from "../services/apiService";
 import { useNavigate } from 'react-router-dom'
 
-function Checklist ({ models, categoryToPost, setModalIsOpen}: ChecklistProps) {
+function Checklist ({ models, categoryToPost, setModalIsOpen, handlePreviousButtonClick}: ChecklistProps) {
 
   /* Hook */
 
@@ -42,19 +42,22 @@ function Checklist ({ models, categoryToPost, setModalIsOpen}: ChecklistProps) {
         <div className="list">
           {models.map((model) => (
               <div key={model._id} className="checkbox-container">
-                <label htmlFor={model._id}>
                 <input
                   type="checkbox"
                   className="checkbox"
                   id={model._id}
                   value={model._id}
                 />
-                <Single model={model}/>
+                <label htmlFor={model._id}>
+                  <Single model={model}/>
                 </label>
               </div>
           ))}
         </div>
-        <button className="button primary" type="submit">Create Collection</button>
+        <div className="button-group">
+          <button className="button" onClick={handlePreviousButtonClick}>Back</button>
+          <button className="button primary" type="submit">Create Collection</button>
+        </div>
       </form>
     </div>
   </>);

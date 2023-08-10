@@ -41,10 +41,10 @@ export interface ModalProps {
 }
 
 export interface ChecklistProps {
-  models: ModelData[]
-  setCategoryToPost: Dispatch<SetStateAction<string>>
-  categoryToPost: string
-  setModalIsOpen: Dispatch<SetStateAction<boolean>>
+  models: ModelData[];
+  categoryToPost: string;
+  setModalIsOpen: Dispatch<SetStateAction<boolean>>;
+  handlePreviousButtonClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface SceneProps {
