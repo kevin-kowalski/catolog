@@ -11,6 +11,8 @@ function LogIn () {
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
 
+  /* Hooks */
+
   const signIn = useSignIn();
   const navigate = useNavigate();
 

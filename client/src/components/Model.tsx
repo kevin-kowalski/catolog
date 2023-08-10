@@ -5,6 +5,7 @@ import { ModelProps } from '../types/types';
 function Model({ currentModel, currentObjectColor }: ModelProps) {
 
   /* Constants */
+
   const { scene } = useGLTF('../' + currentModel.glb);
   const model = setupModel(scene);
   const geometry = model.geometry;

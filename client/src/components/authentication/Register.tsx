@@ -10,6 +10,8 @@ function Register () {
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
 
+  /* Hook */
+
   const navigate = useNavigate();
 
   /* Handler functions */

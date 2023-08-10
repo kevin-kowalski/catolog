@@ -30,7 +30,7 @@ export async function getModel(id: string | undefined): Promise<ModelData | unde
     const response = await fetch(`${baseUrl}/models/${id}`);
     return await response.json();
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
@@ -55,10 +55,10 @@ export async function postCategory(category : object) {
       body: JSON.stringify(
         category
       )
-    })
-    return await response.json()
+    });
+    return await response.json();
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
@@ -73,10 +73,10 @@ export async function postModel(model : ModelData): Promise<ModelData | undefine
       body: JSON.stringify(
         {...model, scale: model.scale?.$numberDecimal}
       )
-    })
-    return await response.json()
+    });
+    return await response.json();
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
  }
 
@@ -90,7 +90,6 @@ export async function logIn(user: {email: string, password: string}) {
       },
       body: JSON.stringify(user)
     });
-
     return await response.json();
   } catch (err) {
     console.log(err);
@@ -107,7 +106,6 @@ export async function register(user: {email: string, password: string}) {
       },
       body: JSON.stringify(user)
     });
-
     return await response.json();
   } catch (err) {
     console.log(err);

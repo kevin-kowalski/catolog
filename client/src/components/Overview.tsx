@@ -17,8 +17,8 @@ function Overview () {
 
   const [query, setQuery] = useState<string | null>(null);
 
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
-  const [dialogue, setDialogue] = useState<string>('')
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [dialogue, setDialogue] = useState<string>('');
 
   /* Hooks */
 
@@ -41,7 +41,7 @@ function Overview () {
     loadCategories();
   }, [params.categoryName, location]);
 
-  /* Helper function */
+  /* Helper functions */
 
   // Get and set the models according to the current category
   async function setCurrentCategoryModels () {
@@ -84,8 +84,8 @@ function Overview () {
   /* Handler function */
 
   function handleAddItemClick () {
-    setDialogue('object')
-    setModalIsOpen(true)
+    setDialogue('object');
+    setModalIsOpen(true);
   }
 
   /* Render component */
