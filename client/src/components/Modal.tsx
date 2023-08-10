@@ -9,15 +9,17 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
 
   /* State Variables */
 
-  const [inputValue, setInputValue] = useState<string>('')
+  const [inputValue, setInputValue] = useState<string>('');
   const [allModels, setAllModels] = useState<ModelData[] | null>(null);
 
-  const [showFirstConfiguratorCollection, setShowFirstConfiguratorCollection] = useState<boolean>(true)
-  const [showSecondConfiguratorCollection, setShowSecondConfiguratorCollection] = useState<boolean>(false)
+  const [showFirstConfiguratorCollection, setShowFirstConfiguratorCollection] = useState<boolean>(true);
+  const [showSecondConfiguratorCollection, setShowSecondConfiguratorCollection] = useState<boolean>(false);
 
-  const [categoryToPost, setCategoryToPost] = useState<string>('')
+  const [categoryToPost, setCategoryToPost] = useState<string>('');
 
-  const navigate = useNavigate()
+  /* Hook */
+
+  const navigate = useNavigate();
 
   /* Use effect */
 
@@ -33,20 +35,20 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
   /* Handler Functions */
 
   function handleChangeCollection (event: ChangeEvent<HTMLInputElement>) {
-    setInputValue(event.target.value)
+    setInputValue(event.target.value);
   }
 
   function handleSubmitCollection (event: FormEvent) {
     event.preventDefault();
     console.log('Form submitted:', inputValue);
-    setCategoryToPost(inputValue)
-    setShowFirstConfiguratorCollection(false)
-    setShowSecondConfiguratorCollection(true)
+    setCategoryToPost(inputValue);
+    setShowFirstConfiguratorCollection(false);
+    setShowSecondConfiguratorCollection(true);
   }
 
   function handlePreviousButtonClickCollection () {
-    setShowSecondConfiguratorCollection(false)
-    setShowFirstConfiguratorCollection(true)
+    setShowSecondConfiguratorCollection(false);
+    setShowFirstConfiguratorCollection(true);
   }
 
   async function handleSubmitObject(event: FormEvent<HTMLFormElement>) {

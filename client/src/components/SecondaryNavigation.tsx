@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 function SecondaryNavigation ({ collection, setModalIsOpen, setDialogue, loadCategories }: SecondaryNavigationProps) {
 
-  const navigate = useNavigate()
+  /* Hook */
+
+  const navigate = useNavigate();
+
+  /* Constant */
 
   const collectionWithAll = [{
     _id: 'all',

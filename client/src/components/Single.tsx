@@ -10,14 +10,14 @@ import { useParams, useNavigate } from "react-router-dom";
 
 function Single ( {model}: { model: ModelData | null} ) {
 
-  const navigate = useNavigate()
-
   /* State variables */
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [localModel, setLocalModel] = useState<ModelData | null>(null);
 
-  // Set the model id through the params
+  /* Hook */
+
+  const navigate = useNavigate();
   const { modelId } = useParams();
 
   /* Constant */
@@ -57,9 +57,9 @@ function Single ( {model}: { model: ModelData | null} ) {
   }
 
   function deleteObject (modelId: string | undefined) {
-    console.log(modelId)
-    deleteOneObject(modelId)
-    navigate('/')
+    console.log(modelId);
+    deleteOneObject(modelId);
+    navigate('/');
   }
 
   /* Helper function */

@@ -8,7 +8,7 @@ function Checklist ({ models, categoryToPost, setModalIsOpen, handlePreviousButt
 
   /* Hook */
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   /* Handler function */
 
@@ -25,13 +25,13 @@ function Checklist ({ models, categoryToPost, setModalIsOpen, handlePreviousButt
     const category = {
       title : categoryToPost,
       models: checkedItemIds
-    }
-    postCategory(category)
+    };
+    postCategory(category);
 
     // Redirect to the category route
     const categoryRoute = `/category/${category.title}`;
-    navigate(categoryRoute)
-    setModalIsOpen(false)
+    navigate(categoryRoute);
+    setModalIsOpen(false);
   }
 
   /* Render component */
