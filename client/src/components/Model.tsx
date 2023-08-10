@@ -30,7 +30,7 @@ function Model({ currentModel, currentObjectColor }: ModelProps) {
       scale={modelScale}
       position={[0, 0, 0]}
     >
-      <meshStandardMaterial color={currentObjectColor} />
+      <meshPhysicalMaterial color={currentObjectColor} roughness={0.2} metalness={0.2}/>
     </mesh>
   </>);
 }

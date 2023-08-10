@@ -196,7 +196,8 @@ canvas {
   padding: var(--padding-md);
 }
 
-:is(.overview-body) .button-group {
+:is(.overview-body) .button-group,
+:is(.checklist) .button-group:has(.danger) {
   display: none;
 }
 
@@ -398,6 +399,8 @@ select {
 
   margin-left: var(--padding-xs);
   padding: var(--padding-xxs) var(--padding-xxs);
+
+  /* color: hsl(0, 0%, 60%); */
 }
 
 /* UTILITY CLASSES */
