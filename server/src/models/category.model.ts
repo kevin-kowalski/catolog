@@ -1,9 +1,7 @@
 import { CategoryType } from "../types";
 import { Category, CategoryDocument } from "./category.schema";
 
-/**
- * Retrieves all objects, and returns them as an array
- */
+/* Retrieves all objects, and returns them as an array */
 export const getAll = async (): Promise<CategoryDocument[] | null> => {
   try {
     // Find all Objects
@@ -19,9 +17,7 @@ export const getAll = async (): Promise<CategoryDocument[] | null> => {
   }
 };
 
-/**
- * Retrieves one category by name, and returns it
- */
+/* Retrieves one category by name, and returns it */
 export const getOne = async (categoryName: string): Promise<CategoryDocument | null> => {
   try {
     const response = await Category.findOne({
@@ -33,9 +29,7 @@ export const getOne = async (categoryName: string): Promise<CategoryDocument | n
   }
 };
 
-/**
- * Creates one category, and returns it
- */
+/* Creates one category, and returns it */
 export const postOne = async (category: CategoryType): Promise<CategoryDocument | null> => {
   try {
     const response = await Category.create(category);
@@ -45,10 +39,8 @@ export const postOne = async (category: CategoryType): Promise<CategoryDocument 
   }
 };
 
-/**
- * Finds one category by its title,
- * updates its models array, and returns it
- */
+/* Finds one category by its title,
+ * updates its models array, and returns it */
 export const findOneAndUpdateModelIds = async (categoryName: string, id: string): Promise<CategoryDocument | null> => {
   try {
     const categoryData = await getOne(categoryName);
@@ -61,16 +53,14 @@ export const findOneAndUpdateModelIds = async (categoryName: string, id: string)
   }
 };
 
-/**
- * Deletes one category, and returns it
- */
+/* Deletes one category, and returns it */
 export async function deleteOne (id: string) {
   try {
     const response = await Category.deleteOne({
       _id: id
-    })
-    return response
+    });
+    return response;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };

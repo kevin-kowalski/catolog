@@ -5,10 +5,8 @@ import { findOneAndUpdateModelIds } from '../models/category.model';
 import { WObject } from '../models/object.schema';
 import { Category } from '../models/category.schema';
 
-/**
- * Controller function for retrieving a single object by its id.
- * It expects the object id to be provided as a request parameter.
- */
+/* Controller function for retrieving a single object by its id.
+ * It expects the object id to be provided as a request parameter. */
 export async function getOne (req: Request, res: Response) {
   try {
     // Retrieve the object’s id from the parameters
@@ -31,10 +29,8 @@ export async function getOne (req: Request, res: Response) {
   }
 };
 
-/**
- * Controller function for retrieving objects belonging to a specific category.
- * It expects the category name to be provided as a request parameter.
- */
+/* Controller function for retrieving objects belonging to a specific category.
+ * It expects the category name to be provided as a request parameter. */
 export async function getByCategory (req: Request, res: Response) {
   try {
     // Retrieve the category’s name from the parameters
@@ -57,9 +53,7 @@ export async function getByCategory (req: Request, res: Response) {
   }
 };
 
-/**
- * Controller function for retrieving all objects.
- */
+/* Controller function for retrieving all objects. */
 export async function getAll (req: Request, res: Response) {
   try {
     // Retrieve all objects using the Objects model's getAll function
@@ -73,9 +67,7 @@ export async function getAll (req: Request, res: Response) {
   }
 };
 
-/**
- * Controller function for posting one object.
- */
+/* Controller function for posting one object. */
 export async function postOne (req: Request, res: Response) {
   try {
     const object = req.body;
@@ -115,9 +107,7 @@ export async function postOne (req: Request, res: Response) {
   }
 };
 
-/**
- * Helper function
- */
+/* Helper function */
 
 // Update all categories’ models array, using the model
 // model’s findOneAndUpdateCategories function
@@ -127,9 +117,7 @@ function updateModelIdsOfCategories (object: ObjectType) {
   }
 }
 
-/**
- * Controller function for deleting one object.
- */
+/* Controller function for deleting one object. */
 export async function deleteOneFromCategory(req: Request, res: Response) {
   try {
     const categoryId = req.params.categoryId;
@@ -156,12 +144,10 @@ export async function deleteOneFromCategory(req: Request, res: Response) {
   }
 }
 
-/**
- * Controller function for deleting one object.
- */
+/* Controller function for deleting one object. */
 export async function deleteOne (req: Request, res: Response) {
   try {
-    const objectId  = req.params.id
+    const objectId  = req.params.id;
     // Filter Categories that have the model in models array
     // Remove the models from the models array 
     await Category.updateMany(
@@ -170,7 +156,7 @@ export async function deleteOne (req: Request, res: Response) {
     );
     // Then continue with the original task and delete the object
     const response = await objects.deleteOne(objectId)
-    res.status(200),
+    res.status(200);
     res.send(response);
   } catch (err) {
     res.status(500);

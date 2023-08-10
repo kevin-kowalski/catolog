@@ -16,6 +16,6 @@ console.log(connectionString);
 
 async function connectDb () {
   return await mongoose.connect(connectionString);
-}
+};
 
 export default connectDb;

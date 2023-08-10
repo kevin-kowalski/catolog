@@ -3,7 +3,7 @@ import app from '../src/index';
 import mongoose from 'mongoose';
 import * as objectModelFunctions from '../src/models/object.model';
 import * as categoryModelFunctions from '../src/models/category.model';
-import * as userModelFunctions from '../src/models/user.model'
+import * as userModelFunctions from '../src/models/user.model';
 
 import { mockObjectData, mockObjectsData, mockCategories, mockObject, mockCategory, mockUserController, mockUsers, mockUserModel} from './mocks';
 import { Category } from '../src/models/category.schema';
@@ -25,7 +25,7 @@ describe('Server', () => {
   it('should return 200, when accessing /models endpoint', async () => {
     const response = await request(app).get('/models');
     expect(response.statusCode).toBe(200);
-  })
+  });
 
 });
 
@@ -33,7 +33,7 @@ describe('Test database connection', () => {
 
   it('should establish a connection to the MongoDB database', () => {
     expect(mongoose.connection.readyState).toBe(1);
-  })
+  });
 
 });
 
@@ -52,7 +52,7 @@ describe('Database', () => {
     } catch (err) {
       throw err;
     }
-  })
+  });
 
   it('should retrieve an object from database without errors', async () => {
     try {
@@ -62,7 +62,7 @@ describe('Database', () => {
     } catch (err) {
       throw err;
     }
-  })
+  });
 
   it('should retrieve only objects of specific category', async () => {
     try {
@@ -72,7 +72,7 @@ describe('Database', () => {
     } catch (err) {
       throw err;
     }
-  })
+  });
 
 });
 
@@ -107,7 +107,6 @@ describe('Model', () => {
         const weeObjects = await objectModelFunctions.getAll();
         expect(weeObjects).toBeDefined();
         expect(Array.isArray(weeObjects)).toBe(true);
-        // weeObjects!.map((object, index) => expect(object.title).toBe(mockObjectsData[index].title));
       } catch (err) {
         console.log(err);
       }
@@ -117,12 +116,12 @@ describe('Model', () => {
       try{
         const response = await objectModelFunctions.postOne(mockObject);
         expect(response).toBeDefined();
-        expect(response.title).toBe(mockObject.title)
+        expect(response.title).toBe(mockObject.title);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    })
-  })
+    });
+  });
 
   describe('Categories', () => {
 
@@ -141,44 +140,44 @@ describe('Model', () => {
     it('should retrieve one category by name and return it ',async () => {
       try {
         const response = await categoryModelFunctions.getOne(mockCategories[0].title);
-        expect(response).toBeDefined()
-        expect(response.title).toBe(mockCategories[0].title)
+        expect(response).toBeDefined();
+        expect(response.title).toBe(mockCategories[0].title);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    })
+    });
 
     it('should post one category and return it', async () => {
       try{
         const response = await categoryModelFunctions.postOne(mockCategory);
         expect(response).toBeDefined();
-        expect(response.title).toBe(mockObject.title)
+        expect(response.title).toBe(mockObject.title);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    })
+    });
 
     it('should find ones category by its title, update its models array and return it', async() => {
       const response = await categoryModelFunctions.findOneAndUpdateModelIds(mockCategory.title, '230');
       expect(response).toBeDefined();
-      expect(response.title).toBe(mockCategory.title)
-    })
-  })
+      expect(response.title).toBe(mockCategory.title);
+    });
+  });
 
   describe('Users', () => {
 
     it('should find a user by email', async() => {
       const response = await userModelFunctions.findUserByEmail(mockUsers[1].email);
       expect(response).toBeDefined();
-      expect(response.email).toBe(mockUsers[1].email)
-    })
+      expect(response.email).toBe(mockUsers[1].email);
+    });
 
     it('should be able to create a user', async() => {
       const response = await userModelFunctions.createUser(mockUserModel.email, mockUserModel.password);
       expect(response).toBeDefined();
-      expect(response.email).toBe(mockUserModel.email)
-    })
-  })
+      expect(response.email).toBe(mockUserModel.email);
+    });
+  });
 
 });
 
@@ -241,7 +240,7 @@ describe('Router, Controller', () => {
           throw(err);
         }
       });
-    })
+    });
 
   });
 
@@ -250,7 +249,7 @@ describe('Router, Controller', () => {
     describe('GET', () => {
       it('should get all categories, and respond with 200 and array', async () => {
         try {
-          const response = await request(app).get('/categories')
+          const response = await request(app).get('/categories');
           expect(response.statusCode).toBe(200);
           expect(response.body).toBeInstanceOf(Array);
         } catch(err) {
@@ -265,17 +264,17 @@ describe('Router, Controller', () => {
         expect(response.statusCode).toBe(200);
         expect(typeof response.body).toBe('object');
         expect(response.body.title).toBe(mockCategory.title);
-      })
-    })
+      });
+    });
 
-  })
+  });
 
   describe('Users', () => {
 
     describe('POST', () => {
       it('should register a user, and respond with 201 and a message, as well as the userData', async () => {
         try {
-          const response = await request(app).post('/register').send(mockUserController)
+          const response = await request(app).post('/register').send(mockUserController);
           expect(response.statusCode).toBe(201);
         } catch(err) {
           throw(err);
@@ -284,7 +283,7 @@ describe('Router, Controller', () => {
 
       it('should login a user, and respond with 200 and a message, as well as the userData', async () => {
         try {
-          const response = await request(app).post('/login').send(mockUserController)
+          const response = await request(app).post('/login').send(mockUserController);
           expect(response.statusCode).toBe(200);
         } catch(err) {
           throw(err);
@@ -292,6 +291,6 @@ describe('Router, Controller', () => {
       });
     });
 
-  })
+  });
 
 });

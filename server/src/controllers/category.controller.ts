@@ -6,9 +6,7 @@ import { Model } from 'mongoose';
 import { WObject } from '../models/object.schema';
 import { Category } from '../models/category.schema';
 
-/**
- * Controller function for retrieving all categories.
- */
+/* Controller function for retrieving all categories. */
 export async function getAll(req: Request, res: Response) {
   try {
     // Retrieve all categories using the Category model's getAll function
@@ -22,9 +20,7 @@ export async function getAll(req: Request, res: Response) {
   }
 };
 
-/**
- * Controller function for posting one category.
- */
+/* Controller function for posting one category. */
 export async function postOne (req: Request, res: Response) {
   try {
     const categoryData = req.body;
@@ -81,9 +77,7 @@ export async function postOne (req: Request, res: Response) {
   }
 };
 
-/**
- * Helper function
- */
+/* Helper function */
 
 // Update all models’ categories array, using the "object"
 // model’s findOneAndUpdateCategories function
@@ -97,12 +91,10 @@ function updateCategoriesOfModels (category: CategoryType): boolean | null {
   return true;
 };
 
-/**
- * Controller function for deleting one category.
- */
+/* Controller function for deleting one category. */
 export async function deleteOne (req: Request, res: Response) {
   try {
-    const categoryId  = req.params.id
+    const categoryId  = req.params.id;
     // Find out the category name with a database query
     let categoryObject = await Category.findOne({_id: categoryId}).exec();
     // Filter documents that have the category in categories array
@@ -112,8 +104,8 @@ export async function deleteOne (req: Request, res: Response) {
       { $pull: { categories: categoryObject.title } } 
     );
     // Then continue with the original task and delete the category
-    const response = await category.deleteOne(categoryId)
-    res.status(200),
+    const response = await category.deleteOne(categoryId);
+    res.status(200);
     res.send(response);
   } catch (err) {
     res.status(500);

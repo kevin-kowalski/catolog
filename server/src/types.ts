@@ -8,14 +8,14 @@ export interface ObjectType {
   scale?: number;
   date?: number;
   _id?: string;
-}
+};
 
 export interface CategoryType {
   title: string;
   models: string[];
-}
+};
 
 export interface UserType {
   email: string;
   password: string;
-}
+};
