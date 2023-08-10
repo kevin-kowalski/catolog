@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import router from './router';
-import connectDb from './models/index.m';
+import connectDb from './models/_index.model';
 
 // Constants
 const app = express();

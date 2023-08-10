@@ -5,16 +5,17 @@ import dotenv from 'dotenv';
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Load environment variables from the appropriate .env file
-const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
-console.log(envFile);
+const envFileName = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 
-dotenv.config({ path: envFile });
+dotenv.config({ path: envFileName });
 
 // Retrieve the database URL from the environment variables
 const connectionString = process.env.DB_URL as string;
+console.log(connectionString);
+
 
 async function connectDb () {
   return await mongoose.connect(connectionString);
-}
+};
 
 export default connectDb;

@@ -1,8 +1,6 @@
 function BasicLights() {
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (
     <group>

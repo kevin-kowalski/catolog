@@ -1,7 +1,34 @@
 import defaultObjects from '../fixtures/objects.json';
 
-beforeEach(() => {
-  cy.intercept({
+
+describe('Registration', () => {
+
+  it('should register', () => {
+    cy.visit('localhost:5173/register');
+    cy.get('input[type="email"]').type('your@username10.com');
+    cy.get('input[type="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/register');
+  });
+
+});
+
+describe('Login', () => {
+
+  it('should login with valid credentials', () => {
+    cy.visit('localhost:5173/login');
+    cy.get('input[type="email"]').type('your@username10.com');
+    cy.get('input[type="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/');
+  });
+
+});
+
+describe('Api-Service', () => {
+
+  it('should load all the models based on category', () => {
+    cy.intercept({
     method: 'GET',
     url: '/models/category/*'
   }, (req) => {
@@ -13,114 +40,109 @@ beforeEach(() => {
 
     req.reply(filteredData); // Respond with the filtered data
   }).as('getCategory');
+  })
+  
+  it('should load all the models', () => {
+    cy.intercept({
+    method: 'GET',
+    url: '/models'
+  }, (req) => {
+    req.reply(defaultObjects); // Respond with the filtered data
+  }).as('getAll');
+  })
+ 
+  it('should load all the categories', () => {
+    cy.intercept({
+    method: 'GET',
+    url: '/categories'
+  }, (req) => {
+    req.reply(defaultObjects); // Respond with the filtered data
+  }).as('getAll');
+  });
+  
 })
-
-describe('Render routes', () => {
-
-  it('should render the root route', () => {
-
-    cy.visit('http://localhost:5173');
-    cy.contains('wee three');
-  })
-
-  it('should render the /wee route', () => {
-
-    cy.visit('http://localhost:5173/wee');
-    cy.get('.wee-view').should('exist');
-  })
-
-});
 
 describe('Load components', () => {
 
-  beforeEach(() => {
-    cy.visit('http://localhost:5173/wee');
-  });
+    it('the overview component should be visible', () => {
+      cy.visit('localhost:5173/login');
+      cy.get('input[type="email"]').type('your@username10.com');
+      cy.get('input[type="password"]').type('your-password');
+      cy.get('button[type="submit"]').click();
+      cy.location('pathname').should('eq', '/');
+        // Use cy.wait() to wait for any asynchronous operations that might affect the visibility of the element
+      cy.wait(4000); // Adjust the wait time as needed
+      cy.get('.header')
+        .should('exist')
+        .should('be.visible');
+    });
 
-  it('should load the wee-view component', () => {
-    cy.get('.wee-view').should('exist');
-  });
-
-  it('should load the object-info component', () => {
-    cy.get('.object-info').should('exist');
-  });
-
-  it('should load the popover picker component', () => {
-    cy.get('.picker').should('exist');
-  });
+    it('the secondary navigation component should be visible', () => {
+      cy.visit('localhost:5173/login');
+      cy.get('input[type="email"]').type('your@username10.com');
+      cy.get('input[type="password"]').type('your-password');
+      cy.get('button[type="submit"]').click();
+      cy.location('pathname').should('eq', '/');
+        // Use cy.wait() to wait for any asynchronous operations that might affect the visibility of the element
+      cy.wait(4000); // Adjust the wait time as needed
+      cy.get('.link-list')
+        .should('exist')
+        .should('be.visible');
+    });
 });
 
-describe('Navigation button functionality', () => {
 
-  beforeEach(() => {
-    cy.visit('http://localhost:5173/wee');
+describe('Link Navigation', () => {
+
+  it('should navigate to the category page after clicking on a category', () => {
+    cy.visit('localhost:5173/login');
+    cy.get('input[type="email"]').type('your@username10.com');
+    cy.get('input[type="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/');
+    cy.wait(4000); 
+    cy.get('.nav-item').contains('Geometry').click(); // Replace 'a' with the appropriate selector for your link
+    cy.url().should('eq', 'http://localhost:5173/category/Geometry'); // Replace with the expected URL of the new page
   });
 
-  it('should change the model when nav prev button is clicked', () => {
-    cy.get('.object-info .details h3')
-      .invoke('text')
-      .as('originalText')
-      .then(originalText => {
-        cy.get('.nav-prev').click();
-        cy.get('.object-info .details h3')
-          .invoke('text')
-          .should('not.eq', originalText);
-      });
-  });
-
-  it('should change the model when nav next button is clicked', () => {
-    cy.get('.object-info .details h3')
-      .invoke('text')
-      .as('originalText')
-      .then(originalText => {
-        cy.get('.nav-next').click();
-        cy.get('.object-info .details h3')
-          .invoke('text')
-          .should('not.eq', originalText);
-      });
-  });
-
-})
-
-describe('Scene button functionality', () => {
-
-  beforeEach(() => {
-    cy.visit('http://localhost:5173/wee');
-  });
-
-  it('should change the scene to "light" when "Light" button clicked', () => {
-    cy.contains('button', 'Light').click();
-    cy.get('.wee-view.light').should('exist');
-  });
-
-  it('should change the scene to "glass" when "Glass" button clicked', () => {
-    cy.contains('button', 'Glass').click();
-    cy.get('.wee-view.glass').should('exist');
-  });
-
-  it('should change the scene to "dark" when "Dark" button clicked', () => {
-    cy.contains('button', 'Dark').click();
-    cy.get('.wee-view.dark').should('exist');
+  it('should navigate to the single page after clicking on a model', () => {
+    cy.visit('localhost:5173/login');
+    cy.get('input[type="email"]').type('your@username10.com');
+    cy.get('input[type="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/');
+    cy.wait(4000); 
+    cy.get('.list a').eq(2).click(); // Replace 'a' with the appropriate selector for your link
+    cy.get('.info-container .title').contains('Faceted Torus'); 
   });
 
 });
 
-describe('Popover picker functionality', () => {
+describe('Button Functionality', () => {
 
-  beforeEach(() => {
-    cy.visit('http://localhost:5173/wee');
+  it('should open the modal component when the "add collection" button is clicked', () => {
+    cy.visit('localhost:5173/login');
+    cy.get('input[type="email"]').type('your@username10.com');
+    cy.get('input[type="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/');
+    cy.wait(4000); 
+    cy.get('.button.add-collection').contains('Add collection').click(); // Replace 'a' with the appropriate selector for your link
+    cy.get('.button').contains('Next')
+        .should('exist')
+        .should('be.visible');
   });
-
-  it('should open the popover when the picker is clicked', () => {
-    cy.get('.swatch').click();
-    cy.get('.popover').should('exist');
+  
+  it('should open the modal component when the "add item" button is clicked', () => {
+    cy.visit('localhost:5173/login');
+    cy.get('input[type="email"]').type('your@username10.com');
+    cy.get('input[type="password"]').type('your-password');
+    cy.get('button[type="submit"]').click();
+    cy.location('pathname').should('eq', '/');
+    cy.wait(4000); 
+    cy.get('.button.add-item').contains('Add Item').click(); // Replace 'a' with the appropriate selector for your link
+    cy.get('.button').contains('Create')
+        .should('exist')
+        .should('be.visible');
   });
-
-  it('should close the popover when the user clicks outside', () => {
-    cy.get('.swatch').click();
-    cy.get('.popover').should('exist');
-    cy.get('.details').click();
-    cy.get('.popover').should('not.exist');
-  });
-
 });

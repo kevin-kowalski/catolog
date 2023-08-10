@@ -1,15 +1,12 @@
-import WeeView from './components/WeeView';
-import './App.css';
+import Overview from './components/Overview';
 
 function App() {
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (
     <div className="app-container">
-      <WeeView />
+      <Overview />
     </div>
   );
 }

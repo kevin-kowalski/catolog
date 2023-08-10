@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 export default function ErrorPage() {
 
-  // useRouteError
+  /* Hook */
+
   const error = useRouteError();
 
-  // Constants
+  /* Constants */
+
   const errStatus = (error as { statusText?: string })?.statusText ?? '';
   const errMessage = (error as Error)?.message ?? '';
 
-  /**
-   * Render component
-   */
+  /* Render component */
 
   return (
     <div id="error-page">
