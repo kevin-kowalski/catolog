@@ -130,6 +130,35 @@ function updateModelIdsOfCategories (object: ObjectType) {
 /**
  * Controller function for deleting one object.
  */
+export async function deleteOneFromCategory(req: Request, res: Response) {
+  try {
+    const categoryId = req.params.categoryId;
+    const objectId = req.params.objectId;
+
+    // Find the respective category and remove the object from its models array
+    const categoryResponse = await Category.findOneAndUpdate(
+      { _id: categoryId },
+      { $pull: { models: { $in: [objectId] } } }
+    );
+    
+    // Find the categoryObject, in order to access its title
+    let categoryObject = await Category.findOne({_id: categoryId}).exec();
+    
+    // Find the respective object and remove the category from its categories array
+    const objectResponse = await WObject.findOneAndUpdate(
+      { _id: objectId },
+      { $pull: { categories: { $in: [categoryObject.title] } } }
+    );
+
+    res.status(200).json({ categoryResponse, objectResponse });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
+/**
+ * Controller function for deleting one object.
+ */
 export async function deleteOne (req: Request, res: Response) {
   try {
     const objectId  = req.params.id
