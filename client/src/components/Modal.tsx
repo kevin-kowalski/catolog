@@ -76,7 +76,7 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
   /* Render component */
 
   return (<>
-    <div className="modal-wrapper">
+    <div className="modal-wrapper appear">
     {dialogue ==='collection' && (
       <div className="modal modal-collection">
 
@@ -97,7 +97,6 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
         )}
         {showSecondConfiguratorCollection && (
           <>
-            {/* <button onClick={handlePreviousButtonClickCollection}>Back</button> */}
             <Checklist models={allModels!} categoryToPost={categoryToPost} setModalIsOpen={setModalIsOpen} handlePreviousButtonClick={handlePreviousButtonClickCollection}></Checklist>
           </>
         )}

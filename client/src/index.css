@@ -9,14 +9,19 @@
   --padding-xs: 6px;
   --padding-sm: 12px;
   --padding-md: 24px;
+
   --color-text: rgb(20, 20, 20);
+
   --color-bg: whitesmoke;
   --color-contrast: white;
+
   --color-primary: hsl(0, 0%, 80%);
   --color-primary-light: hsl(0, 0%, 70%);
   --color-danger: hsl(0, 87%, 65%);
   --color-danger-light: hsl(0, 92%, 72%);
+
   --radius: 3px;
+
   --type-sans: 'Inter';
   --weight-sans: 500;
   --type-mono: 'IBM Plex Mono';
@@ -105,7 +110,7 @@ a {
   padding: var(--padding-xxs) var(--padding-sm);
 
   font-size: 24px;
-  font-weight: 500;
+  font-weight: var(--weight-sans);
 }
 
 .secondary-navigation .button {
@@ -123,8 +128,9 @@ a {
 }
 
 :has(.checklist) .list {
-  overflow: scroll;
   height: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  overflow: scroll;
 }
 
 /* Single */
@@ -153,6 +159,10 @@ canvas {
   max-height: 70vh;
 }
 
+:is(.checklist) canvas {
+  aspect-ratio: 1;
+}
+
 /* Info */
 
 .info {
@@ -177,7 +187,7 @@ canvas {
   flex-direction: column;
   align-items: center;
 
-  background-color: hsla(0, 0%, 96%, 0.7);
+  background-color: hsla(0, 0%, 96%, 0.5);
   backdrop-filter: blur(20px);
 }
 
@@ -232,6 +242,7 @@ label {
 
 .checkbox-container label {
   position: relative;
+  cursor: pointer;
 }
 
 .checkbox-container label .single {
@@ -276,6 +287,8 @@ select {
 .heading {
   font-size: 24px;
   font-weight: 500;
+
+  max-width: 360px;
 }
 
 .button-group {
@@ -287,7 +300,6 @@ select {
 }
 
 .button {
-  margin: -1px 0; /* Offset border */
   padding: 4px 8px;
   display: inline-block;
   width: fit-content;

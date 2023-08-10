@@ -14,7 +14,7 @@ import Overview from './components/Overview';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (<RequireAuth loginPath='/authentication/login'>
+    element: (<RequireAuth loginPath='/login'>
                 <App />
               </RequireAuth>),
     errorElement: <ErrorPage />,
@@ -31,21 +31,21 @@ const router = createBrowserRouter([
   },
   {
     path: '/logout',
-    element: (<RequireAuth loginPath='/authentication/login'>
+    element: (<RequireAuth loginPath='/login'>
                 <LogOut />
               </RequireAuth>),
     errorElement: <ErrorPage />,
   },
   {
     path: '/model/:modelId',
-    element: (<RequireAuth loginPath='/authentication/login'>
+    element: (<RequireAuth loginPath='/login'>
                 <Single model={null}/>
               </RequireAuth>),
     errorElement: <ErrorPage />,
   },
   {
     path: '/category/:categoryName',
-    element: (<RequireAuth loginPath='/authentication/login'>
+    element: (<RequireAuth loginPath='/login'>
                 {/* <List models={null}/> */}
                 <Overview></Overview>
               </RequireAuth>),
