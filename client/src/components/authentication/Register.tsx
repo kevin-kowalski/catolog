@@ -14,8 +14,8 @@ function Register () {
 
   /* Handler functions */
 
-  // When the user submits the log-in form
-  async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
+  // When the user clicks the "Register" button
+  async function handleSubmit (event: React.MouseEvent<HTMLButtonElement>) {
     try {
       event.preventDefault();
       const response = await register({ email, password });
@@ -51,15 +51,21 @@ function Register () {
   /* Render component */
 
   return (<>
-    <h1>Register</h1>
-    <form onSubmit={handleSubmit}>
-      <input type="email" value={email} onChange={handleChangeEmail}></input>
-      <input type="password" value={password} onChange={handleChangePassword}></input>
-      <button type="submit">Register</button>
-    </form>
-    {error && (
-      <p>Error: {error}</p>
-    )}
+    <div className="modal-wrapper">
+      <div className="modal">
+        <h3 className="heading">Register</h3>
+        <form>
+          <label htmlFor="email">Email:</label>
+          <input id="email" type="email" value={email} onChange={handleChangeEmail}></input>
+          <label htmlFor="password">Password:</label>
+          <input id="password" type="password" value={password} onChange={handleChangePassword}></input>
+        </form>
+        <button className="button primary" type="submit" onClick={handleSubmit}>Register</button>
+        {error && (
+          <p>Error: {error}</p>
+        )}
+      </div>
+    </div>
   </>)
 }
 

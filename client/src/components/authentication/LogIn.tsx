@@ -16,8 +16,8 @@ function LogIn () {
 
   /* Handler functions */
 
-  // When the user submits the log-in form
-  async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
+  // When the user clicks the "Log in" button
+  async function handleSubmit (event: React.MouseEvent<HTMLButtonElement>) {
     try {
       event.preventDefault();
       const response = await logIn({ email, password });
@@ -61,15 +61,21 @@ function LogIn () {
   /* Render component */
 
   return (<>
-    <h1>Log in</h1>
-    <form onSubmit={handleSubmit}>
-      <input type="email" value={email} onChange={handleChangeEmail}></input>
-      <input type="password" value={password} onChange={handleChangePassword}></input>
-      <button type="submit">Log in</button>
-    </form>
-    {error && (
-      <p>Error: {error}</p>
-    )}
+    <div className="modal-wrapper">
+      <div className="modal">
+      <h3 className="heading">Log in</h3>
+        <form>
+          <label htmlFor="email">Email:</label>
+          <input id="email" type="email" value={email} onChange={handleChangeEmail}></input>
+          <label htmlFor="password">Password:</label>
+          <input id="password" type="password" value={password} onChange={handleChangePassword}></input>
+          {error && (
+            <p>Error: {error}</p>
+          )}
+        </form>
+        <button className="button primary" type="submit" onClick={handleSubmit}>Log in</button>
+      </div>
+    </div>
   </>)
 
 }

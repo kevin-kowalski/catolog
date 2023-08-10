@@ -39,6 +39,7 @@ function Checklist ({ models, categoryToPost, setModalIsOpen, handlePreviousButt
   return (<>
     <div className="checklist">
       <form onSubmit={handleSubmit}>
+        <h3 className="heading">Select the items that you want to add to the collection:</h3>
         <div className="list">
           {models.map((model) => (
               <div key={model._id} className="checkbox-container">

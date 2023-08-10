@@ -6,6 +6,7 @@ import SecondaryNavigation from "./SecondaryNavigation";
 import Modal from "./Modal";
 import Search from "./Search";
 import { Link, useParams } from "react-router-dom";
+import LogOut from "./authentication/LogOut";
 
 function Overview () {
 
@@ -77,7 +78,7 @@ function Overview () {
 
   /* Handler function */
 
-  function handleButtonClick () {
+  function handleAddItemClick () {
     setDialogue('object')
     setModalIsOpen(true)
   }
@@ -86,10 +87,13 @@ function Overview () {
 
   return (<>
     <div className="header">
-      <Link to={'/'}><h1 className="page-title button">Catolog</h1></Link>
+      <div className="controls-group">
+        <Link to={'/'}><h1 className="page-title button">Catolog</h1></Link>
+        <LogOut />
+      </div>
       <div className="controls-group">
         <Search setQuery={setQuery}/>
-        <div className="button add add-item" onClick={handleButtonClick}>Add Item</div>
+        <div className="button add add-item" onClick={handleAddItemClick}>Add Item</div>
       </div>
     </div>
     <div className="overview-body">

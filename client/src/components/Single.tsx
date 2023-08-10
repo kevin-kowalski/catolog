@@ -22,8 +22,7 @@ function Single ( {model}: { model: ModelData | null} ) {
 
   /* Constant */
 
-  const objectColor = `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`;
-
+  const objectColor = generateRandomColorString();
 
   /* Use effect */
 
@@ -42,10 +41,18 @@ function Single ( {model}: { model: ModelData | null} ) {
   /* Handler functions */
 
   // When the user hovers over the component
-  function handleHover (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function handleMouseOver (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const target = event.target as HTMLDivElement;
     if (target) {
-      setIsHovered(!isHovered);
+      setIsHovered(true);
+    }
+  }
+
+  // When the user stops hovering over the component
+  function handleMouseOut (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const target = event.target as HTMLDivElement;
+    if (target) {
+      setIsHovered(false);
     }
   }
 
@@ -53,12 +60,26 @@ function Single ( {model}: { model: ModelData | null} ) {
     console.log(modelId)
     deleteOneObject(modelId)
     navigate('/')
+
+  /* Helper function */
+
+  // Generate a random value for each color channel,
+  // and build a rgb color string from them
+  function generateRandomColorString () {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    // Format the color string in the "rgb(r, g, b)" format
+    const colorString = "rgb(" + red + ", " + green + ", " + blue + ")";
+
+    return colorString;
   }
 
   /* Render component */
 
   return (<>
-    <div className="single appear" onMouseOver={handleHover} onMouseOut={handleHover} >
+    <div className="single appear" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} >
 
       <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 2.5, -15], fov: 30 }}>
         <Suspense fallback={<LoadingStatus />}>
