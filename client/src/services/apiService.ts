@@ -114,4 +114,17 @@ export async function register(user: {email: string, password: string}) {
   }
 }
 
-
+export function deleteOneObject (id: string | undefined) {
+  fetch(baseUrl + '/model/' + id, {
+    method: 'DELETE'
+  })
+  .then(res => res.json())
+  .catch(error => console.log(error));
+}
+export function deleteOneCategory (id: string | undefined) {
+  fetch(baseUrl + '/category/' + id, {
+    method: 'DELETE'
+  })
+  .then(res => res.json())
+  .catch(error => console.log(error));
+}
