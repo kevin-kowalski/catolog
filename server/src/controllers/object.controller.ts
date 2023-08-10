@@ -3,6 +3,7 @@ import * as objects from '../models/object.model';
 import { ObjectType } from '../types';
 import { findOneAndUpdateModelIds } from '../models/category.model';
 import { WObject } from '../models/object.schema';
+import { Category } from '../models/category.schema';
 
 /**
  * Controller function for retrieving a single object by its id.
@@ -132,7 +133,13 @@ function updateModelIdsOfCategories (object: ObjectType) {
 export async function deleteOne (req: Request, res: Response) {
   try {
     const objectId  = req.params.id
-    console.log(objectId)
+    // Filter Categories that have the model in models array
+    // Remove the models from the models array 
+    await Category.updateMany(
+      { models: { $in: [objectId] }}, 
+      { $pull: { models: objectId} } 
+    );
+    // Then continue with the original task and delete the object
     const response = await objects.deleteOne(objectId)
     res.status(200),
     res.send(response);
@@ -142,4 +149,3 @@ export async function deleteOne (req: Request, res: Response) {
   }
 };
 
-// the object must also be deleted from the models array in the category

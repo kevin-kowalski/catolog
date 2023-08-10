@@ -56,7 +56,7 @@ export const defaultObjects = [
     author: 'Unknown',
     description: '3D Knot',
     glb: 'knot.glb',
-    categories: ['Clothing'],
+    categories: ['Clothing', 'Interior'],
     source: '',
     scale: 1,
     date: 1690651481963,
