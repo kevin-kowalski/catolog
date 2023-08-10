@@ -130,6 +130,26 @@ function updateModelIdsOfCategories (object: ObjectType) {
 /**
  * Controller function for deleting one object.
  */
+export async function deleteOneFromCategory (req: Request, res: Response) {
+  try {
+    const objectId  = req.params.id
+    // Filter Categories that have the model in models array
+    // Remove the models from the models array 
+    const response = await Category.updateMany(
+      { models: { $in: [objectId] }}, 
+      { $pull: { models: objectId} } 
+    );
+    res.status(200),
+    res.send(response);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+/**
+ * Controller function for deleting one object.
+ */
 export async function deleteOne (req: Request, res: Response) {
   try {
     const objectId  = req.params.id
