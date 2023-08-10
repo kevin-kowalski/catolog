@@ -109,11 +109,14 @@ a {
   display: block;
 }
 
-.nav-item {
-  width: 100%;
+.nav-item-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.nav-item {
+  width: 100%;
 
   margin: 0 calc(-1 * var(--padding-sm));
   padding: var(--padding-xxs) var(--padding-sm);
@@ -126,12 +129,12 @@ a {
   font-weight: var(--weight-sans);
 }
 
-.nav-item svg {
+.nav-item-wrapper svg {
   opacity: 0;
   transition: opacity .2s ease-in-out;
 }
 
-.nav-item:hover svg {
+.nav-item-wrapper:hover svg {
   opacity: 1;
 }
 
@@ -199,6 +202,13 @@ canvas {
 :is(.overview-body) .button-group,
 :is(.checklist) .button-group:has(.danger) {
   display: none;
+}
+
+/* SinglePage */
+
+.single-wrapper {
+  padding: var(--padding-md);
+  margin-top: -8px;
 }
 
 /* Info */

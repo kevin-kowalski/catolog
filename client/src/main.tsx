@@ -4,12 +4,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
 import './index.css';
 import App from './App';
-import Single from './components/Single';
 import { AuthProvider, RequireAuth } from 'react-auth-kit';
 import LogIn from './components/authentication/LogIn';
 import LogOut from './components/authentication/LogOut';
 import Register from './components/authentication/Register';
 import Overview from './components/Overview';
+import SinglePage from './components/SinglePage';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
   {
     path: '/model/:modelId',
     element: (<RequireAuth loginPath='/login'>
-                <Single model={null}/>
+                <SinglePage/>
               </RequireAuth>),
     errorElement: <ErrorPage />,
   },
