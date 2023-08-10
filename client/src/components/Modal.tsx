@@ -88,7 +88,7 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
               <label htmlFor="title">Title</label>
               <input type="text" id="title" value={inputValue} onChange={handleChangeCollection} autoComplete="off"/>
               <div className="button-group">
-                <button className="button danger" onClick={() => setModalIsOpen(false)}>Cancel</button>
+                <button className="button" onClick={() => setModalIsOpen(false)}>Cancel</button>
                 <button className="button primary" type="submit">Next</button>
               </div>
             </form>
@@ -97,8 +97,8 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
         )}
         {showSecondConfiguratorCollection && (
           <>
-            <button onClick={handlePreviousButtonClickCollection}>Back</button>
-            <Checklist models={allModels!} setCategoryToPost={setCategoryToPost} categoryToPost={categoryToPost} setModalIsOpen={setModalIsOpen}></Checklist>
+            {/* <button onClick={handlePreviousButtonClickCollection}>Back</button> */}
+            <Checklist models={allModels!} categoryToPost={categoryToPost} setModalIsOpen={setModalIsOpen} handlePreviousButtonClick={handlePreviousButtonClickCollection}></Checklist>
           </>
         )}
       </div>
@@ -125,7 +125,7 @@ function Modal ({dialogue, setModalIsOpen, collection}: ModalProps) {
           }
           </select>
           <div className="button-group">
-            <button className="button danger" onClick={() => setModalIsOpen(false)}>Cancel</button>
+            <button className="button" onClick={() => setModalIsOpen(false)}>Cancel</button>
             <button className="button primary" type="submit">Create</button>
           </div>
         </form>
