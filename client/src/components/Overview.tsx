@@ -5,7 +5,7 @@ import List from "./List";
 import SecondaryNavigation from "./SecondaryNavigation";
 import Modal from "./Modal";
 import Search from "./Search";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import LogOut from "./authentication/LogOut";
 
 function Overview () {
@@ -23,6 +23,7 @@ function Overview () {
   /* Hooks */
 
   const params = useParams();
+  const location = useLocation().pathname;
 
   /* Use effects */
 
@@ -32,20 +33,19 @@ function Overview () {
   // and set the models accordingly
   useEffect(() => {
     setCurrentCategoryModels();
-  }, [params.categoryName, query]);
+  }, [params.categoryName, location, query]);
 
   // Retrieve all categories and set the categories
   // state variable to them
   useEffect(() => {
-    getCategories().then((categories) => setCategories(categories!));
-  }, []);
+    loadCategories();
+  }, [params.categoryName, location]);
 
   /* Helper function */
 
   // Get and set the models according to the current category
   async function setCurrentCategoryModels () {
     let modelsData: ModelData[] | undefined;
-
 
     // If the path is a category, load all models
     // in that category
@@ -68,6 +68,11 @@ function Overview () {
     else if (!modelsData) modelsData = [];
 
     setModels(modelsData);
+  }
+
+  // Get all categories
+  function loadCategories () {
+    getCategories().then((categories) => setCategories(categories!));
   }
 
   // Filter an array of models according to the current query
@@ -97,7 +102,7 @@ function Overview () {
       </div>
     </div>
     <div className="overview-body">
-      <SecondaryNavigation collection={categories} setModalIsOpen={setModalIsOpen} setDialogue={setDialogue}/>
+      <SecondaryNavigation collection={categories} setModalIsOpen={setModalIsOpen} setDialogue={setDialogue} loadCategories={loadCategories}/>
       <List models={models}/>
     </div>
     {modalIsOpen && (

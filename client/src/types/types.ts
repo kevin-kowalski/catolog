@@ -32,6 +32,7 @@ export interface SecondaryNavigationProps {
   collection: Category[];
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDialogue: React.Dispatch<React.SetStateAction<string>>;
+  loadCategories: () => void;
 }
 
 export interface ModalProps {
