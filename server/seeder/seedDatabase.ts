@@ -126,7 +126,7 @@ async function seedDb () {
     console.log(err);
     process.exit(1);
   }
-}
+};
 
 // Run the function to populate the database
 seedDb();

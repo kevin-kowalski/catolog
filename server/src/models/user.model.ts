@@ -6,7 +6,7 @@ export async function findUserByEmail(email: string): Promise<UserDocument | nul
   } catch (err) {
     throw err;
   }
-}
+};
 
 export async function createUser(email: string, password: string): Promise<UserDocument> {
   try {
@@ -15,4 +15,4 @@ export async function createUser(email: string, password: string): Promise<UserD
   } catch (err) {
     throw err;
   }
-}
+};

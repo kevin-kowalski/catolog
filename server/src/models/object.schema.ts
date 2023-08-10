@@ -9,7 +9,7 @@ export interface WObjectDocument extends Document {
   categories: string[];
   scale: number;
   date: { type: DateConstructor; default: number; };
-}
+};
 
 // Schema for the 3d objects
 const objectSchema = new Schema<WObjectDocument>({

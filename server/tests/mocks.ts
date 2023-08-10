@@ -71,12 +71,12 @@ export const mockCategory = {
 export const mockUserController = {
   email: 'hello@norbertmaier.org',
   password: 'derherberthatsodickeeier'
-}
+};
 
 export const mockUserModel = {
   email: 'hello@güntermaier.org',
   password: 'diespinnendochalle'
-}
+};
 
 
 export const mockUsers = [
@@ -89,4 +89,4 @@ export const mockUsers = [
     password: 'meinherberthatsodickeeier'
   },
 
-]
+];

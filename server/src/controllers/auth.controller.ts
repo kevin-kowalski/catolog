@@ -43,7 +43,7 @@ export async function register(req: Request, res: Response): Promise<void> {
     res.status(500);
     res.send({ message: 'Internal server error' });
   }
-}
+};
 
 export async function login(req: Request, res: Response): Promise<void> {
   try {
@@ -72,4 +72,4 @@ export async function login(req: Request, res: Response): Promise<void> {
     res.status(500);
     res.send({ message: 'Internal server error' });
   }
-}
+};

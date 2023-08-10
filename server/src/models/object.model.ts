@@ -1,9 +1,7 @@
 import { ObjectType } from '../types';
 import { WObject, WObjectDocument } from './object.schema';
 
-/**
- * Retrieves all objects, and returns them as an array
- */
+/* Retrieves all objects, and returns them as an array */
 export const getAll = async (): Promise<WObjectDocument[] | null> => {
   try {
     // Find all Objects
@@ -19,9 +17,7 @@ export const getAll = async (): Promise<WObjectDocument[] | null> => {
   }
 };
 
-/**
- * Retrieves a single object based on its name, and returns it.
- */
+/* Retrieves a single object based on its name, and returns it. */
 export const getOne = async (id: string): Promise<WObjectDocument | null> => {
   try {
     // Find a Object with a title that matches the provided name (case-insensitive)
@@ -39,10 +35,8 @@ export const getOne = async (id: string): Promise<WObjectDocument | null> => {
   }
 };
 
-/**
- * Retrieves objects belonging to a specific category,
- * and returns them as an array
- */
+/* Retrieves objects belonging to a specific category,
+ * and returns them as an array */
 export const getByCategory = async (categoryName: string): Promise<WObjectDocument[] | null> => {
   try {
     // Find Objects with a category that matches the provided name (case-insensitive)
@@ -60,9 +54,7 @@ export const getByCategory = async (categoryName: string): Promise<WObjectDocume
   }
 };
 
-/**
- * Creates one object, and returns it
- */
+/* Creates one object, and returns it */
 export const postOne = async (object: ObjectType): Promise<WObjectDocument | null> => {
   try {
     const response = await WObject.create(object);
@@ -72,10 +64,8 @@ export const postOne = async (object: ObjectType): Promise<WObjectDocument | nul
   }
 };
 
-/**
- * Finds one object by its title,
- * updates its categories array, and returns it
- */
+/* Finds one object by its title,
+ * updates its categories array, and returns it */
 export const findOneAndUpdateCategories = async (id: string, category: string): Promise<WObjectDocument | null> => {
   try {
     const modelData = await getOne(id);
@@ -93,16 +83,14 @@ export const findOneAndUpdateCategories = async (id: string, category: string): 
   }
 };
 
-/**
- * Deletes one object, and returns it
- */
+/* Deletes one object, and returns it */
 export async function deleteOne (id: string) {
   try {
     const response = await WObject.deleteOne({
       _id: id
-    })
-    return response
+    });
+    return response;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
