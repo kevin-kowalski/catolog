@@ -55,7 +55,7 @@ Except for the regular suspects; git, Node, npm, you need a MongoDB running loca
 * [React](https://reactnative.dev/)
 * [React Three Fiber](https://github.com/pmndrs/react-three-fiber)
 * [Express](https://expressjs.com/)
-* [MongoDB](https://www.mongodb.com/))
+* [MongoDB](https://www.mongodb.com/)
 * [Mongoose](https://mongoosejs.com/)
   
 ## Developers
