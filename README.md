@@ -28,7 +28,7 @@ Unleash your inner curator, declutter your digital world, and find inspiration i
 1. Clone this repo and enter!
 
    ```bash
-   git clone https://github.com/makekema/Medusa.git
+   git clone https://github.com/kevin-kowalski/catolog.git
    ```
 
 2. Install dependencies.
