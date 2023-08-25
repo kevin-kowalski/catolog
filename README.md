@@ -34,9 +34,9 @@ Unleash your inner curator, declutter your digital world, and find inspiration i
 2. Install dependencies.
 
    ```bash
-   cd client		# ! Change into the client folder !
+   cd client  # ! Change into the client folder !
    npm install
-   cd ./server		# ! Change into the server folder !
+   cd ./server  # ! Change into the server folder !
    npm install
    ```
 
@@ -51,9 +51,9 @@ Except for the regular suspects; git, Node, npm, you need a MongoDB running loca
 2. Run the application.
 
    ```bash
-   npm run setup  # ! Seed the database with example data !
-   npm run start  # ! Run the backend server !
-   cd ./client		# ! Change into the client folder and run the frontend server !
+   npm run setup # ! Seed the database with example data !
+   npm run start # ! Run the backend server !
+   cd ./client  # ! Change into the client folder and run the frontend server !
    npm run dev
    ```
 
