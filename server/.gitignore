@@ -8,6 +8,7 @@ pids
 node_modules
 
 .env
+.env.test
 
 # Optional npm cache directory
 .npm
@@ -18,3 +19,4 @@ node_modules
 # Custom
 private
 dist
+.DS_Store
