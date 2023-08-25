@@ -1,11 +1,18 @@
 import { Category, ModelData } from "../types/types";
 
-const baseUrl = 'http://localhost:3001';
+let BASE_URL = 'http://localhost:3001';
+
+// Check if running in a Node.js environment
+if (typeof window === 'undefined') {
+  const dotenv = require('dotenv');
+  dotenv.config();
+  BASE_URL = process.env.REACT_APP_BASE_URL || BASE_URL;
+}
 
 // Retrieve all objects from the /models route
 export async function getAll(): Promise<ModelData[] | undefined> {
   try {
-    const response = await fetch(`${baseUrl}/models`);
+    const response = await fetch(`${BASE_URL}/models`);
     return await response.json();
   } catch (err) {
     console.log(err);
@@ -16,7 +23,7 @@ export async function getAll(): Promise<ModelData[] | undefined> {
 // category from the /models/category route
 export async function getCategory(title: string): Promise<ModelData[] | undefined> {
   try {
-    const response = await fetch(`${baseUrl}/models/category/${title}`);
+    const response = await fetch(`${BASE_URL}/models/category/${title}`);
     return await response.json();
   } catch (err) {
     console.log(err);
@@ -27,7 +34,7 @@ export async function getCategory(title: string): Promise<ModelData[] | undefine
 // title from the /models/:title route
 export async function getModel(id: string | undefined): Promise<ModelData | undefined> {
   try {
-    const response = await fetch(`${baseUrl}/models/${id}`);
+    const response = await fetch(`${BASE_URL}/models/${id}`);
     return await response.json();
   } catch (err) {
     console.log(err);
@@ -37,7 +44,7 @@ export async function getModel(id: string | undefined): Promise<ModelData | unde
 // Retrieve all categories from the /categories route
 export async function getCategories(): Promise<Category[] | undefined> {
   try {
-    const response = await fetch(`${baseUrl}/categories`);
+    const response = await fetch(`${BASE_URL}/categories`);
     return await response.json();
   } catch (err) {
     console.log(err);
@@ -47,7 +54,7 @@ export async function getCategories(): Promise<Category[] | undefined> {
 // Post a newly created category to the database
 export async function postCategory(category : object) {
   try{
-    const response = await fetch(baseUrl + '/category', {
+    const response = await fetch(BASE_URL + '/category', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -65,7 +72,7 @@ export async function postCategory(category : object) {
 // Post a newly created model to the database
 export async function postModel(model : ModelData): Promise<ModelData | undefined> {
   try {
-    const response = await fetch(baseUrl + '/model', {
+    const response = await fetch(BASE_URL + '/model', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -83,7 +90,7 @@ export async function postModel(model : ModelData): Promise<ModelData | undefine
 // Log in
 export async function logIn(user: {email: string, password: string}) {
   try {
-    const response = await fetch(`${baseUrl}/login`, {
+    const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -99,7 +106,7 @@ export async function logIn(user: {email: string, password: string}) {
 // Register
 export async function register(user: {email: string, password: string}) {
   try {
-    const response = await fetch(`${baseUrl}/register`, {
+    const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -113,14 +120,14 @@ export async function register(user: {email: string, password: string}) {
 }
 
 export function deleteOneObject (id: string | undefined) {
-  fetch(baseUrl + '/model/' + id, {
+  fetch(BASE_URL + '/model/' + id, {
     method: 'DELETE'
   })
   .then(res => res.json())
   .catch(error => console.log(error));
 }
 export function deleteOneCategory (id: string | undefined) {
-  fetch(baseUrl + '/category/' + id, {
+  fetch(BASE_URL + '/category/' + id, {
     method: 'DELETE'
   })
   .then(res => res.json())

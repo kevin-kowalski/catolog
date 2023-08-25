@@ -1,11 +1,13 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import router from './router';
 import connectDb from './models/_index.model';
 
-// Constants
 const app = express();
-const PORT = 3001;
+
+dotenv.config();
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
