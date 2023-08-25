@@ -4,8 +4,6 @@
   <img src="images/logo.png" />
 </p>
 
-Introducing Catolog: Your 3D Object Oasis
-
 Welcome to Catolog, the ultimate digital sanctuary for 3D object enthusiasts seeking order, creativity, and organization in their digital lives. Here's why Catolog is your ideal destination:
 
 1. Sculpt Your World: Catolog is your canvas for 3D objects. Whether you're a 3D artist, a collector, or just someone who appreciates the beauty of three-dimensional art, Catolog offers a dedicated space for your creations.
@@ -76,28 +74,29 @@ Except for the regular suspects; git, Node, npm, you need a MongoDB running loca
 
 Our development team, comprised of two members, took over an existing project from a colleague in the past. Our primary objective was to enhance and elevate the project, aiming for higher levels of functionality and code quality. We were actively engaged in code review, refactoring, and implementing new features to bring substantial improvements to the project. During this period, we made the following significant strides in its development.
 
-Project Enhancements
+### Enhancements
 
-Front End Enhancements:
-* Type Safety: Fixed TypeScript errors by adding missing types.
-* Test Coverage: Wrote tests for components to ensure they display correctly based on the application state.
-* Documentation: Added comments to all components for improved code understanding.
+**Front End Enhancements:**
+- Type Safety: Fixed TypeScript errors by adding missing types.
+- Test Coverage: Wrote tests for components to ensure they display correctly based on the application state.
+- Documentation: Added comments to all components for improved code understanding.
 
-Back End Enhancements:
-* Test Coverage: Implemented tests for models, controllers, and API requests for robust backend functionality.
-* Documentation: Added comments to upper-level functions for clarity and maintainability.
+**Back End Enhancements:**
+- Test Coverage: Implemented tests for models, controllers, and API requests for robust backend functionality.
+- Documentation: Added comments to upper-level functions for clarity and maintainability.
 
-New Features:
+### New Features
 
-Front End:
-* Authentication (MVP): Added user authentication for improved security.
-* Gallery View (MVP): Introduced a gallery view for enhanced user experience.
-* 3D Model CRUD (MVP): Enabled Create, Read, Update, and Delete operations for 3D models.
-* Lists of 3D Models CRUD (Bonus): Added the ability to manage lists of 3D models for added functionality.
+**Front End:**
+- Authentication (MVP): Added user authentication for improved security.
+- Gallery View (MVP): Introduced a gallery view for enhanced user experience.
+- 3D Model CRUD (MVP): Enabled Create, Read, Update, and Delete operations for 3D models.
+- Lists of 3D Models CRUD (Bonus): Added the ability to manage lists of 3D models for added functionality.
 
-Back End:
-* Authentication Changes (MVP): Implemented necessary changes in models and controllers to support user authentication.
-* 3D Model CRUD Changes (MVP): Updated models and controllers to support the CRUD operations for 3D models.
-* List Management Changes (Bonus): Introduced changes in models and controllers to enable CRUD operations for lists of 3D models.
-* These improvements have enhanced the codebase by addressing errors, adding testing for reliability, documenting for clarity, and introducing valuable new features for users.
+**Back End:**
+- Authentication Changes (MVP): Implemented necessary changes in models and controllers to support user authentication.
+- 3D Model CRUD Changes (MVP): Updated models and controllers to support the CRUD operations for 3D models.
+- List Management Changes (Bonus): Introduced changes in models and controllers to enable CRUD operations for lists of 3D models.
+
+These improvements have enhanced the codebase by addressing errors, adding testing for reliability, documenting for clarity, and introducing valuable new features for users.
 
