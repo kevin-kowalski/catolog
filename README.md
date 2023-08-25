@@ -1,7 +1,7 @@
 # Catolog
 
 <p align="center">
-  <img src="images/logo.png" />
+  <img src="images/screenshot-readme.png" />
 </p>
 
 Welcome to Catolog, the ultimate digital sanctuary for 3D object enthusiasts seeking order, creativity, and organization in their digital lives. Here's why Catolog is your ideal destination:
@@ -16,27 +16,20 @@ Welcome to Catolog, the ultimate digital sanctuary for 3D object enthusiasts see
 
 Unleash your inner curator, declutter your digital world, and find inspiration in the beauty of 3D objects with Catolog. Join us today, and let's create a more organized and artful digital future together.
 
-## Screenshots
-
-<p align="center">
-  <img src="images/screenshot-readme-1-a.png" />
-  <img src="images/screenshot-readme-1-b.png" />
-</p>
-
 ## Installation
 
 1. Clone this repo and enter!
 
    ```bash
-   git clone https://github.com/makekema/Medusa.git
+   git clone https://github.com/kevin-kowalski/catolog.git
    ```
 
 2. Install dependencies.
 
    ```bash
-   cd client		# ! Change into the client folder !
+   cd client  # ! Change into the client folder !
    npm install
-   cd ./server		# ! Change into the server folder !
+   cd ./server  # ! Change into the server folder !
    npm install
    ```
 
@@ -51,9 +44,9 @@ Except for the regular suspects; git, Node, npm, you need a MongoDB running loca
 2. Run the application.
 
    ```bash
-   npm run setup  # ! Seed the database with example data !
-   npm run start  # ! Run the backend server !
-   cd ./client		# ! Change into the client folder and run the frontend server !
+   npm run setup # ! Seed the database with example data !
+   npm run start # ! Run the backend server !
+   cd ./client  # ! Change into the client folder and run the frontend server !
    npm run dev
    ```
 
@@ -99,4 +92,3 @@ Our development team, comprised of two members, took over an existing project fr
 - List Management Changes (Bonus): Introduced changes in models and controllers to enable CRUD operations for lists of 3D models.
 
 These improvements have enhanced the codebase by addressing errors, adding testing for reliability, documenting for clarity, and introducing valuable new features for users.
-
