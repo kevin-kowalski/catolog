@@ -6,13 +6,27 @@
 
 Welcome to Catolog, the ultimate digital sanctuary for 3D object enthusiasts seeking order, creativity, and organization in their digital lives. Here's why Catolog is your ideal destination:
 
-1. Sculpt Your World: Catolog is your canvas for 3D objects. Whether you're a 3D artist, a collector, or just someone who appreciates the beauty of three-dimensional art, Catolog offers a dedicated space for your creations.
-2. Collections Galore: Tired of the digital clutter? Catolog allows you to create and curate collections effortlessly. Group your 3D objects by themes, projects, or however you see fit, bringing harmony to your digital world.
-3. Craftsmanship at Your Fingertips: Editing and managing your 3D collections has never been easier. With Catolog's intuitive tools, you can fine-tune, enhance, or reorganize your objects with a few simple clicks.
-4. Seamless Upload and Cleanup: Add your 3D objects to Catolog's library effortlessly. Whether you're showcasing your latest masterpiece or clearing digital space, uploading and deleting objects is a breeze.
-5. Order from Chaos: Catolog is your personal KonMari for digital assets. It's the perfect solution to declutter your digital life and find the zen within your digital collections.
-6.Your Digital Haven: Catolog brings together like-minded individuals who appreciate the beauty of 3D objects and the art of organization. Share your collections, discover new ones, and connect with a community that values creativity and tidiness.
-7. A Space for Every Idea: At Catolog, we believe that every 3D object has a story to tell. It's a platform where your ideas can flourish, your collections can shine, and your digital world can find the balance it deserves.
+**1.** **Sculpt Your World:**  
+  Catolog is your canvas for 3D objects. Whether you're a 3D artist, a collector, or just someone who appreciates the beauty of three-dimensional art, Catolog offers a dedicated space for your creations.
+
+**2.** **Collections Galore:**  
+  Tired of the digital clutter? Catolog allows you to create and curate collections effortlessly. Group your 3D objects by themes, projects, or however you see fit, bringing harmony to your digital world.
+
+**3.** **Craftsmanship at Your Fingertips:**  
+  Editing and managing your 3D collections has never been easier. With Catolog's intuitive tools, you can fine-tune, enhance, or reorganize your objects with a few simple clicks.
+
+**4.** **Seamless Upload and Cleanup:**  
+  Add your 3D objects to Catolog's library effortlessly. Whether you're showcasing your latest masterpiece or clearing digital space, uploading and deleting objects is a breeze.
+
+**5.** **Order from Chaos:**  
+  Catolog is your personal KonMari for digital assets. It's the perfect solution to declutter your digital life and find the zen within your digital collections.
+
+**6.** **Your Digital Haven:**  
+  Catolog brings together like-minded individuals who appreciate the beauty of 3D objects and the art of organization. Share your collections, discover new ones, and connect with a community that values creativity and tidiness.
+
+**7.** **A Space for Every Idea:**  
+  At Catolog, we believe that every 3D object has a story to tell. It's a platform where your ideas can flourish, your collections can shine, and your digital world can find the balance it deserves.
+
 
 Unleash your inner curator, declutter your digital world, and find inspiration in the beauty of 3D objects with Catolog. Join us today, and let's create a more organized and artful digital future together.
 
