@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="images/catolog_logo_small.png" />
-</p>
+<img src="images/catolog_logo_small.png" width="400" />
 
 # Catolog
 
