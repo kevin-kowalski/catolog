@@ -48,6 +48,7 @@ Except for the regular suspects; git, Node, npm, you need a MongoDB running loca
 * [MongoDB](https://www.mongodb.com/)
 * [Mongoose](https://mongoosejs.com/)
 
+
 ## Developers
 
 * Magdalena Keller - [GitHub](https://github.com/makekema) - [LinkedIn](https://www.linkedin.com/in//)
