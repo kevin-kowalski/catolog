@@ -296,9 +296,6 @@ label {
 .checkbox:checked + label > .single {
   box-shadow: inset 0 0 0 1px hsl(0, 0%, 60%);
 }
-/* .checkbox-container .single:hover {
-  box-shadow: inset 0 0 0 1px hsl(0, 0%, 80%);
-} */
 
 /* GENERAL TAGS */
 
@@ -342,7 +339,6 @@ select {
 .button-group {
   display: flex;
   justify-content: space-between;
-  /* justify-content: end; */
   gap: var(--padding-sm);
   margin-top: var(--padding-sm);
 }
@@ -359,6 +355,7 @@ select {
 
   color: hsl(0, 0%, 40%);
   font-weight: 400;
+  line-height: 1.6;
 
   transition: all 0.1s ease-in-out;
 }
@@ -409,8 +406,6 @@ select {
 
   margin-left: var(--padding-xs);
   padding: var(--padding-xxs) var(--padding-xxs);
-
-  /* color: hsl(0, 0%, 60%); */
 }
 
 /* UTILITY CLASSES */
